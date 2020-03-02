@@ -1,0 +1,31 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+ij_continuation_indent_size = 8
+ij_visual_guides = 120
+
+[*.java]
+ij_java_align_multiline_parameters = false
+ij_java_generate_final_locals = false
+ij_java_generate_final_parameters = false
+ij_java_keep_blank_lines_before_right_brace = 0
+ij_java_keep_blank_lines_between_package_declaration_and_header = 1
+ij_java_keep_blank_lines_in_code = 1
+ij_java_keep_blank_lines_in_declarations = 1
+ij_java_space_after_comma = true
+ij_java_class_count_to_use_import_on_demand = 999
+ij_java_names_count_to_use_import_on_demand = 999
+
+[*.md]
+trim_trailing_whitespace = false
+
+# Properties are expected to be encoded in ISO-8859-1
+# See https://docs.oracle.com/javase/8/docs/api/java/util/Properties.html#load-java.io.InputStream-
+[*.properties]
+charset = latin1

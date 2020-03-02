@@ -1,0 +1,11 @@
+{
+    "firstName": "Bob",
+    "lastName": "Square Pants",
+    "email": "sponge.bob@bikinibottom.io",
+    "age": 22,
+    "address": {
+        "address1": "ananas house",
+        "city": "Bikini Bottom",
+        "zipcode": 10101
+    }
+}
