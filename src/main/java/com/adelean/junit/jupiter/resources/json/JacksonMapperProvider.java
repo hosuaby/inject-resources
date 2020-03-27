@@ -1,40 +1,22 @@
 package com.adelean.junit.jupiter.resources.json;
 
+import org.jetbrains.annotations.Nullable;
 import com.adelean.junit.jupiter.resources.WithJacksonMapper;
-import com.adelean.junit.jupiter.resources.common.InjectionContext;
-import com.adelean.junit.jupiter.resources.common.ParserProvider;
-import org.junit.platform.commons.util.StringUtils;
+import com.adelean.junit.jupiter.resources.core.AbstractParserProvider;
+import com.adelean.junit.jupiter.resources.core.cdi.InjectionContext;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-public final class JacksonMapperProvider extends ParserProvider<WithJacksonMapper> {
+public final class JacksonMapperProvider
+        extends AbstractParserProvider<WithJacksonMapper, ObjectMapper, JacksonResourceParser> {
     public JacksonMapperProvider(
             InjectionContext injectionContext,
-            Object testInstance,
+            @Nullable Object testInstance,
             Class<?> testClass) {
         super(injectionContext, testInstance, testClass, WithJacksonMapper.class);
     }
 
     @Override
-    protected String parserNameFromMethod(Method method, WithJacksonMapper annotation) {
-        String parserName = StringUtils.isNotBlank(annotation.name())
-                ? annotation.name()
-                : annotation.value();
-
-        return StringUtils.isNotBlank(parserName)
-                ? parserName
-                : super.parserNameFromMethod(method, annotation);
-    }
-
-    @Override
-    protected String parserNameFromField(Field instanceField, WithJacksonMapper annotation) {
-        String parserName = StringUtils.isNotBlank(annotation.name())
-                ? annotation.name()
-                : annotation.value();
-
-        return StringUtils.isNotBlank(parserName)
-                ? parserName
-                : super.parserNameFromField(instanceField, annotation);
+    protected JacksonResourceParser createParser(WithJacksonMapper parserAnnotation, ObjectMapper objectMapper) {
+        return new JacksonResourceParser(objectMapper);
     }
 }

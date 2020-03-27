@@ -1,6 +1,7 @@
 package com.adelean.junit.jupiter.resources;
 
-import com.adelean.junit.jupiter.resources.common.SupportedTypes;
+import com.adelean.junit.jupiter.resources.core.annotations.Parser;
+import com.adelean.junit.jupiter.resources.core.annotations.SupportedTypes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apiguardian.api.API;
 
@@ -16,6 +17,7 @@ import static org.apiguardian.api.API.Status.EXPERIMENTAL;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @API(status = EXPERIMENTAL, since = "5.6")
+@Parser
 @SupportedTypes(ObjectMapper.class)
 public @interface WithJacksonMapper {
     String value() default "";

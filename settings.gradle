@@ -1,1 +1,5 @@
 rootProject.name = 'junit-jupiter-resources'
+include 'test-resources'
+include 'tests-with-jackson'
+include 'tests-with-gson'
+

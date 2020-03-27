@@ -1,6 +1,8 @@
 package com.adelean.junit.jupiter.resources;
 
-import com.adelean.junit.jupiter.resources.common.SupportedTypes;
+import com.adelean.junit.jupiter.resources.core.annotations.Extends;
+import com.adelean.junit.jupiter.resources.core.annotations.Resource;
+import com.adelean.junit.jupiter.resources.core.annotations.SupportedTypes;
 import org.apiguardian.api.API;
 
 import java.lang.annotation.Documented;
@@ -18,6 +20,8 @@ import static org.apiguardian.api.API.Status.EXPERIMENTAL;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @API(status = EXPERIMENTAL, since = "5.6")
+@Resource
+@Extends(GivenBinaryResource.class)
 @SupportedTypes(String.class)
 public @interface GivenTextResource {
     String value() default "";

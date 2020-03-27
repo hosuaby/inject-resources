@@ -1,2 +1,2 @@
 # junit-jupiter-resources
-Convinient resource injection for your tests
+Convenient resource injection for your tests
