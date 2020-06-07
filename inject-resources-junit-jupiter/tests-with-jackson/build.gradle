@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+def JUNIT_VERSION = '5.6.0'
+def JACKSON_VERSION = '2.10.3'
+
+dependencies {
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
+    testCompile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.11.0'
+
+    testImplementation project(':inject-resources-core')
+    testImplementation project(':inject-resources-junit-jupiter')
+    testImplementation project(':test-resources')
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+def JUNIT_VERSION = '5.6.0'
+def GSON_VERSION = '2.8.0'
+
+dependencies {
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
+
+    testImplementation project(':inject-resources-core')
+    testImplementation project(':inject-resources-junit-jupiter')
+    testImplementation project(':test-resources')
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
+    testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
+    testImplementation group: 'com.fatboyindustrial.gson-javatime-serialisers', name: 'gson-javatime-serialisers', version: '1.1.1'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

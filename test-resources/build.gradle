@@ -1,6 +1,3 @@
 plugins {
     id 'java'
 }
-
-group 'com.adelean'
-version '0.1.0-SNAPSHOT'
