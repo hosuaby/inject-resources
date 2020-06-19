@@ -1,5 +1,7 @@
 # @InjectResources
 
+[![Build Status](https://travis-ci.org/hosuaby/inject-resources.svg?branch=master)](https://travis-ci.org/hosuaby/inject-resources)
+
 A convenient way to have resources content in your tests.
 
 ## Adding the dependency
