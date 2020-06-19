@@ -1,0 +1,8 @@
+language: java
+jdk: openjdk11
+
+jobs:
+    include:
+        - stage: build
+          install: skip
+          script: ./gradlew clean build
