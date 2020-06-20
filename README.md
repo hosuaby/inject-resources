@@ -7,7 +7,32 @@ A convenient way to have resources content in your tests.
 
 ## Adding the dependency
 
-Include a library into your project (with Maven):
+Setup repository (with Maven):
+
+```xml
+<repositories>
+    <repository>
+        <id>bintray-hosuaby-InjectResources</id>
+        <name>bintray</name>
+        <url>https://dl.bintray.com/hosuaby/InjectResources</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+```
+
+or with Gradle:
+
+```groovy
+repositories {
+    maven {
+        url  "https://dl.bintray.com/hosuaby/InjectResources" 
+    }
+}
+```
+
+Include library into your project (with Maven):
 
 ```xml
 <dependency>
@@ -25,6 +50,7 @@ testCompile group: 'com.adelean', name: 'inject-resources-core', version: '0.1.0
 ```
 
 For tests with *JUnit 5* you also need (Maven):
+
 ```xml
 <dependency>
     <groupId>com.adelean</groupId>
@@ -43,11 +69,13 @@ testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', versio
 ## Usage
 
 Binary content of `/com/adelean/junit/jupiter/fibonacci.bin`:
+
 ```
 1 1 2 3 5 8 13 21 34 55 89
 ```
 
 Text content of `/com/adelean/junit/jupiter/resource.txt`:
+
 ```
 The quick brown fox jumps over the lazy dog.
 ```
