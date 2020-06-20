@@ -12,7 +12,7 @@ Include a library into your project (with Maven):
 <dependency>
     <groupId>com.adelean</groupId>
     <artifactId>inject-resources-core</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.0-alpha</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -28,7 +28,7 @@ For tests with *JUnit 5* you also need (Maven):
 <dependency>
     <groupId>com.adelean</groupId>
     <artifactId>inject-resources-junit-jupiter</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.0-alpha</version>
     <scope>test</scope>
 </dependency>
 ```

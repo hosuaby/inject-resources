@@ -23,7 +23,7 @@ import java.util.TreeSet;
 
 /**
  * Factory for {@link Collection}s. Provides default implementation for all abstract collections and collection
- * interfaces. Inspired by {@link BasicDeserializerFactory.ContainerDefaultMappings}.
+ * interfaces. Inspired by {@code BasicDeserializerFactory.ContainerDefaultMappings} of Jackson.
  */
 public final class CollectionFactory {
     private static final Class<? extends Collection> DEFAULT_LIST = ArrayList.class;
