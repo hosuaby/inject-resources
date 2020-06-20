@@ -1,7 +1,8 @@
 # @InjectResources
 
 [![Build Status](https://travis-ci.org/hosuaby/inject-resources.svg?branch=master)](https://travis-ci.org/hosuaby/inject-resources)
-[ ![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg) ](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
+[![Coverage Status](https://coveralls.io/repos/github/hosuaby/inject-resources/badge.svg?branch=coverall)](https://coveralls.io/github/hosuaby/inject-resources?branch=coverall)
+[![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg)](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
 
 A convenient way to have resources content in your tests.
 

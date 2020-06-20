@@ -1,3 +1,11 @@
+plugins {
+    id 'base'
+    id 'java'
+    id 'maven-publish'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.10.1'
+}
+
 allprojects {
     group 'com.adelean'
     version '0.1.0-alpha'
@@ -7,4 +15,39 @@ allprojects {
         mavenLocal()
         jcenter()
     }
+
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+}
+
+def publishedProjectsPaths = [ ':inject-resources-core', ':inject-resources-junit-jupiter' ]
+
+def publishedProjects = subprojects.findAll { subproject ->
+    publishedProjectsPaths.contains(subproject.path)
+}
+
+task jacocoMerge(type: JacocoMerge) {
+    publishedProjects.each { subproject ->
+        executionData subproject.tasks.withType(Test)
+    }
+}
+
+task jacocoRootReport(type: JacocoReport) {
+    dependsOn publishedProjects.jacocoTestReport, project.jacocoMerge
+
+    additionalSourceDirs.from(files(publishedProjects.sourceSets.main.allSource.srcDirs))
+    sourceDirectories.from(files(publishedProjects.sourceSets.main.allSource.srcDirs))
+    classDirectories.from(files(publishedProjects.sourceSets.main.output))
+
+    executionData(jacocoMerge.destinationFile)
+
+    reports {
+        html.enabled = true
+        xml.enabled = true
+    }
+}
+
+coveralls {
+    sourceDirs = publishedProjects.sourceSets.main.allSource.srcDirs.flatten()
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
 }

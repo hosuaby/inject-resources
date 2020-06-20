@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'jacoco'
     id 'com.jfrog.bintray' version '1.8.5'
 }
 
@@ -11,6 +12,13 @@ compileJava {
 
 compileTestJava {
     sourceCompatibility = JavaVersion.VERSION_11
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
