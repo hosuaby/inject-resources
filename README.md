@@ -5,6 +5,54 @@
 
 A convenient way to have resources content in your tests.
 
+## Example
+
+Binary content of `/com/adelean/junit/jupiter/fibonacci.bin`:
+
+```
+1 1 2 3 5 8 13 21 34 55 89
+```
+
+Text content of `/com/adelean/junit/jupiter/resource.txt`:
+
+```
+The quick brown fox jumps over the lazy dog.
+```
+
+```java
+import com.adelean.inject.resources.junit.jupiter.GivenBinaryResource;
+import com.adelean.inject.resources.junit.jupiter.GivenTextResource;
+import com.adelean.inject.resources.junit.jupiter.TestWithResources;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@TestWithResources
+@DisplayName("Tests with injected content of resources")
+public class MyTests {
+
+    @GivenBinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
+    byte[] fibonacci;
+
+    @Test
+    @DisplayName("Injects binary content into byte[] field")
+    public void testInjectBinaryContentIntoByteArrayInstanceField() {
+        assertThat(fibonacci)
+                .contains(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+    }
+
+    @Test
+    @DisplayName("Injects text content into String parameter")
+    public void testInjectTextContentInStringParameter(
+            @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
+            String resourceContent) {
+        assertThat(resourceContent)
+                .isEqualTo("The quick brown fox jumps over the lazy dog.");
+    }
+}
+```
+
 ## Adding the dependency
 
 Setup repository (with Maven):
@@ -67,52 +115,6 @@ testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', versio
 ```
 
 ## Usage
-
-Binary content of `/com/adelean/junit/jupiter/fibonacci.bin`:
-
-```
-1 1 2 3 5 8 13 21 34 55 89
-```
-
-Text content of `/com/adelean/junit/jupiter/resource.txt`:
-
-```
-The quick brown fox jumps over the lazy dog.
-```
-
-```java
-import com.adelean.inject.resources.junit.jupiter.GivenBinaryResource;
-import com.adelean.inject.resources.junit.jupiter.GivenTextResource;
-import com.adelean.inject.resources.junit.jupiter.TestWithResources;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-@TestWithResources
-@DisplayName("Tests with injected content of resources")
-public class MyTests {
-
-    @GivenBinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
-    byte[] fibonacci;
-
-    @Test
-    @DisplayName("Injects binary content into byte[] field")
-    public void testInjectBinaryContentIntoByteArrayInstanceField() {
-        assertThat(fibonacci)
-                .contains(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89);
-    }
-
-    @Test
-    @DisplayName("Injects text content into String parameter")
-    public void testInjectTextContentInStringParameter(
-            @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
-            String resourceContent) {
-        assertThat(resourceContent)
-                .isEqualTo("The quick brown fox jumps over the lazy dog.");
-    }
-}
-```
 
 The following sections explain how to load and parse different types of resources.
 
