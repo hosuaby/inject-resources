@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @TestWithResources
 @DisplayName("Tests with injected content of resources")
-public class MyTests {
+class MyTests {
 
     @GivenBinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
     byte[] fibonacci;
@@ -131,7 +131,7 @@ Import the content of that resource as following:
 
 ```java
 @TestWithResources
-public class InjectBinaryResourcesTests {
+class InjectBinaryResourcesTests {
 
     @GivenBinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
     byte[] fibonacci;
@@ -156,7 +156,7 @@ You can inject its content:
 
 ```java
 @TestWithResources
-public class InjectTextResourcesTests {
+class InjectTextResourcesTests {
 
     @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
     String instanceField;
@@ -183,7 +183,7 @@ You can use those properties in tests like that:
 
 ```java
 @TestWithResources
-public class InjectPropertiesResourcesTests {
+class InjectPropertiesResourcesTests {
 
     @GivenPropertiesResource("/com/adelean/junit/jupiter/db.properties")
     Properties dbProperties;
@@ -241,7 +241,7 @@ Now you can inject content of *JSON/JSONL* into your tests:
 
 ```java
 @TestWithResources
-public class TestsWithJackson {
+class TestsWithJackson {
 
     @WithJacksonMapper
     ObjectMapper objectMapper = new ObjectMapper()
@@ -281,7 +281,7 @@ Now you can inject content of *JSON/JSONL* into your tests:
 
 ```java
 @TestWithResources
-public class TestsWithGson {
+class TestsWithGson {
 
     @WithGson
     Gson gson = new GsonBuilder();
@@ -314,7 +314,7 @@ But for all other formats and libraries `@InjectResources` proposes convinient J
 Here the example showing how to parse *.properties* file with `jackson-dataformat-properties`:
 
 ```java
-public class JavaDslTests {
+class JavaDslTests {
     static final JavaPropsSchema SCHEMA = JavaPropsSchema
             .emptySchema()
             .withoutPathSeparator();
@@ -351,7 +351,7 @@ This section talks about the scope of objects annotated with `@With*`. Those obj
 
 ```java
 @TestWithResources
-public class TestsWithNamedParser {
+class TestsWithNamedParser {
 
     @WithJacksonMapper("custom-mapper")
     ObjectMapper objectMapper = new ObjectMapper()
@@ -378,7 +378,7 @@ abstract class SuperClassWithParser {
 }
 
 @TestWithResources
-public class TestsSubclass extends SuperClassWithParser {
+class TestsSubclass extends SuperClassWithParser {
 
     @GivenJsonLinesResource(
         from = "/com/adelean/junit/jupiter/logs.jsonl",
@@ -403,7 +403,7 @@ public final class GlobalJacksonMapper {
 }
 
 @TestWithResources
-public class TestsWithJson {
+class TestsWithJson {
 
     @GivenJsonLinesResource(
         from = "/com/adelean/junit/jupiter/logs.jsonl",
