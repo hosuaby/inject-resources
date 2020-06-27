@@ -6,6 +6,11 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Wrapper for resource that may open that resource as {@link Reader} with defined {@link #charset}.
+ *
+ * @author Alexei KLENIN
+ */
 public class ResourceAsReader implements Parsable<Reader>, AutoCloseable {
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -22,10 +27,16 @@ public class ResourceAsReader implements Parsable<Reader>, AutoCloseable {
         this.charset = charset;
     }
 
+    /**
+     * @return {@link Reader} from resource.
+     */
     public BufferedReader reader() {
         return read();
     }
 
+    /**
+     * @return {@link Reader} from resource.
+     */
     @Override
     public BufferedReader read() {
         reader = delegate.resourceLoader.resourceReader(delegate.resourcePath, charset);
@@ -39,6 +50,12 @@ public class ResourceAsReader implements Parsable<Reader>, AutoCloseable {
         }
     }
 
+    /**
+     * Returns resource wrapper {@link ResourceAsLines} that opens resource as stream of text lines with defined
+     * {@link #charset}.
+     *
+     * @return wrapper that opens resource as stream of text lines
+     */
     public ResourceAsLines asLines() {
         return new ResourceAsLines(this);
     }

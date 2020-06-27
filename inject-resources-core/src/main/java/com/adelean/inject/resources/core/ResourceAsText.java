@@ -3,6 +3,11 @@ package com.adelean.inject.resources.core;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Wrapper for resource that may read that resource as {@link String} with defined {@link #charset}.
+ *
+ * @author Alexei KLENIN
+ */
 public class ResourceAsText implements Parsable<String> {
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
@@ -18,10 +23,16 @@ public class ResourceAsText implements Parsable<String> {
         this.charset = charset;
     }
 
+    /**
+     * @return content of resource as {@link String}
+     */
     public String text() {
         return read();
     }
 
+    /**
+     * @return content of resource as {@link String}
+     */
     @Override
     public String read() {
         return delegate.resourceLoader.readAsText(delegate.resourcePath, charset);

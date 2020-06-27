@@ -13,13 +13,31 @@ import com.adelean.inject.resources.junit.jupiter.core.annotations.Parser;
 import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
 import com.google.gson.Gson;
 
+/**
+ * Annotates field or method of a test class or of a tests advice class (see {@link TestsAdvice}) that defines
+ * {@link Gson} object used to parse JSON/JSONL resources.
+ *
+ * @see GivenJsonResource
+ * @see GivenJsonLinesResource
+ * @see TestsAdvice
+ * @author Alexei KLENIN
+ */
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@API(status = EXPERIMENTAL, since = "5.6")
+@API(status = EXPERIMENTAL, since = "0.1")
 @Parser
 @SupportedTypes(Gson.class)
 public @interface WithGson {
+
+    /**
+     * @return Alias for {@link #name()}.
+     */
     String value() default "";
+
+    /**
+     * @return Optional. A name of that parser. If it is present, parser is called 'named', or 'anonymous' if it
+     * is absent.
+     */
     String name() default "";
 }

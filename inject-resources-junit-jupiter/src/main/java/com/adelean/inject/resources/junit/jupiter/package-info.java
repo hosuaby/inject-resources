@@ -1,4 +1,17 @@
 /**
+ * This package provides exposed API of {@link com.adelean.inject.resources.junit.jupiter.TestWithResources} JUnit
+ * Jupiter extension.
+ *
+ * <p>This API consists of four parts:</p>
+ * <ul>
+ *     <li>@{@link com.adelean.inject.resources.junit.jupiter.TestWithResources} - adds this extension to a test
+ *     class.</li>
+ *     <li>Annotations {@code @Given*Resource} - a.k.a resource annotations. Request content of resource.</li>
+ *     <li>Annotations {@code @With*} - a.k.a parser annotations. Declared parser objects.</li>
+ *     <li>@{@link com.adelean.inject.resources.junit.jupiter.TestsAdvice} - defines Tests Advice, a class that
+ *     provides globally available parsers.</li>
+ * </ul>
+ *
  * <h2>Rules of parser selection</h2>
  * <p>Parsers are created in execution contexts of tests by {@code @With*} annotations. Parsers can be named or
  * anonymous. All of {@code @With*} annotations have attribute {@code name} to specify the name of parser. Annotations

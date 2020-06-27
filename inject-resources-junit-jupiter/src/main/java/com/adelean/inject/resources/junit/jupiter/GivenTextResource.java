@@ -14,17 +14,31 @@ import java.lang.annotation.Target;
 import static org.apiguardian.api.API.Status.EXPERIMENTAL;
 
 /**
+ * Annotates field or test parameter that must be injected with content of text resource file with path {@code 'from'}.
+ *
  * @author Alexei KLENIN
  */
 @Target({ ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@API(status = EXPERIMENTAL, since = "5.6")
+@API(status = EXPERIMENTAL, since = "0.1")
 @Resource
 @Extends(GivenBinaryResource.class)
 @SupportedTypes(String.class)
 public @interface GivenTextResource {
+
+    /**
+     * @return Alias for {@link GivenTextResource#from()}.
+     */
     String value() default "";
+
+    /**
+     * @return Absolute path to requested text resource file.
+     */
     String from() default "";
+
+    /**
+     * @return Encoding charset of resource file.
+     */
     String charset() default "UTF-8";
 }
