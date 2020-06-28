@@ -56,6 +56,8 @@ class MyTests {
 
 ## Adding the dependency
 
+Java 8+ is required in order to use this library.
+
 Setup repository (with Maven):
 
 ```xml
