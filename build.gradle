@@ -4,6 +4,7 @@ plugins {
     id 'maven-publish'
     id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.10.1'
+    id 'org.asciidoctor.jvm.convert' version '3.1.0'
 }
 
 allprojects {
@@ -50,4 +51,9 @@ task jacocoRootReport(type: JacocoReport) {
 coveralls {
     sourceDirs = publishedProjects.sourceSets.main.allSource.srcDirs.flatten()
     jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
+}
+
+asciidoctor {
+    sourceDir project.rootDir
+    attributes 'project-version': project.version
 }

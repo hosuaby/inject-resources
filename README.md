@@ -97,7 +97,7 @@ Include library into your project (with Maven):
 or with Gradle:
 
 ```groovy
-testCompile group: 'com.adelean', name: 'inject-resources-core', version: '0.1.0'
+testCompile group: 'com.adelean', name: 'inject-resources-core', version: '0.1.0-alpha'
 ```
 
 For tests with *JUnit 5* you also need (Maven):
@@ -114,7 +114,7 @@ For tests with *JUnit 5* you also need (Maven):
 or with Gradle:
 
 ```groovy
-testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', version: '0.1.0'
+testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', version: '0.1.0-alpha'
 ```
 
 ## Usage
@@ -368,7 +368,7 @@ class TestsWithNamedParser {
 
 In this example, resource `/com/adelean/junit/jupiter/logs.jsonl` is parsed by `ObjectMapper` named *"custom-mapper"*.
 
-By default, parsers are scoped to test class where they was defined. If a test class inherite from another class, parsers déclared in super class can be used in subclass:
+By default, parsers are scoped to test class where they were defined. If a test class inherit from another class, parsers declared in super-class can be used in subclass:
 
 ```java
 
@@ -392,7 +392,7 @@ class TestsSubclass extends SuperClassWithParser {
 
 #### Tests advice
 
-It is possible to define parser that can be used by all tests on classpath by creating a `public` `final` class annotated with `@TestsAdvice`:
+It is possible to define a parser that can be used by all tests on classpath by creating a `public` `final` class annotated with `@TestsAdvice`:
 
 ```java
 @TestsAdvice
@@ -414,10 +414,13 @@ class TestsWithJson {
 }
 ```
 
-## What's comming next
+## What's coming next
 
 - [ ] YAML support
 - [ ] SnakeYAML native integration
 - [ ] XML support
 - [ ] Junit 4 support
 - [ ] Caching for parsed resources
+- [ ] Spring support
+- [ ] CSV support
+

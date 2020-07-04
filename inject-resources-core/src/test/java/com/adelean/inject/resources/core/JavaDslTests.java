@@ -68,7 +68,7 @@ public class JavaDslTests {
     @Test
     @DisplayName("Test resource as lines")
     public void testResourceAsLines() {
-        var header = new AtomicReference<>();
+        var header = new AtomicReference<String>();
         var lines = new ArrayList<String>();
 
         resource()
@@ -78,7 +78,7 @@ public class JavaDslTests {
                 .onFirstLine(header::set)
                 .forEachLine(lines::add);
 
-        assertThat((String) header.get())
+        assertThat(header.get())
                 .isNotNull()
                 .isNotEmpty()
                 .isNotBlank()

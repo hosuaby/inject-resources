@@ -1,0 +1,39 @@
+[[inject-resources]]
+= @InjectResources usage guide
+:toc: left
+:toclevels: 4
+:numbered:
+:icons: font
+:hide-uri-scheme:
+:source-highlighter: prettify
+Alexei Klenin
+
+(C) 2020 - 2022 by Alexei Klenin
+
+Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any
+fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or
+electronically.
+
+== Preface
+
+`@InjectResources` is a Java library providing simple and convenient way to load and parse resource files. It does all
+opening and closing of input streams and handles exceptions.
+
+Java 8+ is required in order to use this library.
+
+== Modules
+
+Library composed of following modules:
+
+- <<inject-resources-core>>
+- <<inject-resources-junit-jupiter>>
+
+[[inject-resources-core]]
+== Java DSL
+
+include::inject-resources-core/index.adoc[]
+
+[[inject-resources-junit-jupiter]]
+== JUnit Jupiter extension
+
+include::inject-resources-junit-jupiter/index.adoc[]
