@@ -31,16 +31,15 @@ public class ResourceAsReader implements Parsable<Reader>, AutoCloseable {
      * @return {@link Reader} from resource.
      */
     public BufferedReader reader() {
-        return read();
+        return delegate.resourceLoader.resourceReader(delegate.resourcePath, charset);
     }
 
     /**
      * @return {@link Reader} from resource.
      */
     @Override
-    public BufferedReader read() {
-        reader = delegate.resourceLoader.resourceReader(delegate.resourcePath, charset);
-        return reader;
+    public BufferedReader get() {
+        return reader();
     }
 
     @Override

@@ -27,7 +27,6 @@ public class JavaDslTests {
     public void testResourceAsBinary() {
         byte[] fibonacci = resource()
                 .withPath(PATH_PREFIX, "fibonacci.bin")
-                .asByteArray()
                 .bytes();
 
         assertThat(fibonacci)
@@ -42,7 +41,6 @@ public class JavaDslTests {
     public void testResourceAsText() {
         var text = resource()
                 .withPath(PATH_PREFIX, "resource.txt")
-                .asText()
                 .text();
 
         assertThat(text)

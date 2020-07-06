@@ -20,16 +20,16 @@ public class ResourceAsInputStream implements Parsable<InputStream>, AutoCloseab
      * @return {@link InputStream} from resource.
      */
     public InputStream inputStream() {
-        return read();
+        inputStream = delegate.resourceLoader.resourceStream(delegate.resourcePath);
+        return inputStream;
     }
 
     /**
      * @return {@link InputStream} from resource.
      */
     @Override
-    public InputStream read() {
-        inputStream = delegate.resourceLoader.resourceStream(delegate.resourcePath);
-        return inputStream;
+    public InputStream get() {
+        return inputStream();
     }
 
     @Override

@@ -7,13 +7,18 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * Interface of resource builder that can parse content of resource.
+ * Interface of resource builder that can parse content of resource file.
  *
  * @param <I>  type of resource content
  *
  * @author Alexei KLENIN
  */
-public interface Parsable<I> extends Readable<I> {
+public interface Parsable<I> {
+
+    /**
+     * @return content of resource as type {@code T}.
+     */
+    I get();
 
     /**
      * Parses content of resource using {@code parsingFunction}.
@@ -23,7 +28,7 @@ public interface Parsable<I> extends Readable<I> {
      * @return parsed resource content
      */
     default <O> O parse(Function<I, O> parsingFunction) {
-        return parsingFunction.apply(read());
+        return parsingFunction.apply(get());
     }
 
     /**
@@ -36,7 +41,7 @@ public interface Parsable<I> extends Readable<I> {
      * @return parsed resource content
      */
     default <O> O parseChecked(ThrowingFunction<I, O> parsingFunction) {
-        I content = read();
+        I content = get();
 
         try {
             return parsingFunction.apply(content);
@@ -59,7 +64,7 @@ public interface Parsable<I> extends Readable<I> {
      * @param contentConsumer  content consumer
      */
     default void then(Consumer<I> contentConsumer) {
-        contentConsumer.accept(read());
+        contentConsumer.accept(get());
     }
 
     /**
@@ -68,10 +73,10 @@ public interface Parsable<I> extends Readable<I> {
      * @param contentConsumer  content consumer that may throw exception
      */
     default void thenChecked(ThrowingConsumer<I> contentConsumer) {
-        I content = read();
+        I content = get();
 
         try {
-            contentConsumer.accept(read());
+            contentConsumer.accept(get());
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
         } finally {

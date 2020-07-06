@@ -16,14 +16,14 @@ public class ResourceAsByteArray implements Parsable<byte[]> {
      * @return content of resource as bytes array
      */
     public byte[] bytes() {
-        return read();
+        return delegate.resourceLoader.readAsByteArray(delegate.resourcePath);
     }
 
     /**
      * @return content of resource as bytes array
      */
     @Override
-    public byte[] read() {
-        return delegate.resourceLoader.readAsByteArray(delegate.resourcePath);
+    public byte[] get() {
+        return bytes();
     }
 }

@@ -169,7 +169,7 @@ public class ResourceAsLines implements AutoCloseable {
         }
 
         @Override
-        public String read() {
+        public String get() {
             return line;
         }
     }

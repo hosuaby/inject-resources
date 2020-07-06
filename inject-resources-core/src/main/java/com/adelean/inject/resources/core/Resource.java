@@ -40,6 +40,15 @@ public class Resource {
     }
 
     /**
+     * Returns content of resource file as bytes array.
+     *
+     * @return content as bytes array
+     */
+    public byte[] bytes() {
+        return new ResourceAsByteArray(this).bytes();
+    }
+
+    /**
      * Returns resource wrapper {@link ResourceAsReader} that opens resource as {@link java.io.Reader} with default
      * charset.
      *
@@ -98,6 +107,25 @@ public class Resource {
      */
     public ResourceAsText asText(Charset charset) {
         return new ResourceAsText(this, charset);
+    }
+
+    /**
+     * Returns content of resource file as {@link String} using with default charset.
+     *
+     * @return content as text
+     */
+    public String text() {
+        return new ResourceAsText(this).text();
+    }
+
+    /**
+     * Returns content of resource file as {@link String} using with specified charset.
+     *
+     * @param charset  text resource charset
+     * @return content as text
+     */
+    public String text(Charset charset) {
+        return new ResourceAsText(this, charset).text();
     }
 
     /**

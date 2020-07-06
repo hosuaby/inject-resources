@@ -27,14 +27,14 @@ public class ResourceAsText implements Parsable<String> {
      * @return content of resource as {@link String}
      */
     public String text() {
-        return read();
+        return delegate.resourceLoader.readAsText(delegate.resourcePath, charset);
     }
 
     /**
      * @return content of resource as {@link String}
      */
     @Override
-    public String read() {
-        return delegate.resourceLoader.readAsText(delegate.resourcePath, charset);
+    public String get() {
+        return text();
     }
 }
