@@ -1,7 +1,0 @@
-rootProject.name = 'inject-resources'
-include 'inject-resources-core'
-include 'inject-resources-junit-jupiter'
-include 'inject-resources-junit-jupiter:tests-with-jackson'
-include 'inject-resources-junit-jupiter:tests-with-gson'
-include 'test-resources'
-
