@@ -6,6 +6,8 @@
 
 A convenient way to have resources content in your tests.
 
+[Documentation](https://hosuaby.github.io/inject-resources/0.1.0-alpha/asciidoc/)
+
 ## Example
 
 Binary content of `/com/adelean/junit/jupiter/fibonacci.bin`:
