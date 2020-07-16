@@ -56,4 +56,5 @@ coveralls {
 asciidoctor {
     sourceDir project.rootDir
     attributes 'project-version': project.version
+    outputDir "docs/${project.version}/asciidoc"
 }
