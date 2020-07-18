@@ -3,6 +3,7 @@ package com.adelean.inject.resources.junit.jupiter.json;
 import com.adelean.inject.resources.core.ResourceAsReader;
 import com.adelean.inject.resources.junit.jupiter.GivenJsonLinesResource;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
+import com.adelean.inject.resources.junit.jupiter.core.helpers.ClassSupport;
 import com.adelean.inject.resources.junit.jupiter.core.helpers.CollectionFactory;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.extension.ExtensionConfigurationException;
@@ -28,8 +29,7 @@ public final class JacksonJsonLinesResourcesInjector extends AbstractJacksonReso
 
     public JacksonJsonLinesResourcesInjector(
             InjectionContext injectionContext,
-            @Nullable
-            Object testInstance,
+            @Nullable Object testInstance,
             Class<?> testClass) {
         super(injectionContext, testInstance, testClass, GivenJsonLinesResource.class);
         this.resourceResolver = new JsonLinesResourceResolver(testClass);
@@ -51,25 +51,25 @@ public final class JacksonJsonLinesResourcesInjector extends AbstractJacksonReso
     public Object valueToInject(Type valueType, GivenJsonLinesResource resourceAnnotation) {
         JsonParser jsonParser = findJsonParser(resourceAnnotation);
 
-        Type elementType = elementType(valueType);
+        Type elementType = ClassSupport.elementType(valueType);
 
         try (ResourceAsReader resource = resourceResolver.resolve(resourceAnnotation)) {
             Stream<Object> items = resource
                     .asLines()
                     .parseLines(line -> jsonParser.parse(line, elementType));
 
-            if (isArray(valueType)) {
+            if (ClassSupport.isArray(valueType)) {
                 return items.toArray(length -> (Object[]) Array.newInstance((Class<?>) elementType, length));
-            } else if (valueType instanceof ParameterizedType)  {
+            } else if (ClassSupport.isCollection(valueType))  {
                 Collection collection = CollectionFactory.newCollection((ParameterizedType) valueType);
                 items.forEach(collection::add);
                 return collection;
             }
-
-            return null;
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        return null;
     }
 
     @Override
@@ -90,25 +90,6 @@ public final class JacksonJsonLinesResourcesInjector extends AbstractJacksonReso
     @Override
     String gsonName(GivenJsonLinesResource resourceAnnotation) {
         return resourceAnnotation.gson();
-    }
-
-    @Nullable
-    static Type elementType(Type valueType) {
-        Type elementType = null;
-
-        if (isArray(valueType)) {
-            Class<?> arrayType = (Class<?>) valueType;
-            elementType = arrayType.getComponentType();
-        } else if (valueType instanceof ParameterizedType) {
-            ParameterizedType collectionType = (ParameterizedType) valueType;
-            elementType = collectionType.getActualTypeArguments()[0];
-        }
-
-        return elementType;
-    }
-
-    static boolean isArray(Type valueType) {
-        return valueType instanceof Class && ((Class<?>) valueType).isArray();
     }
 
     static void assertArrayOrCollection(String target, Class<?> targetType) {

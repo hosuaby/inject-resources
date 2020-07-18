@@ -1,0 +1,12 @@
+---
+date: 2012-01-01 02:00:01 Z
+severity: ERROR
+msg: Foo failed
+---
+date: 2012-01-01 02:04:02 Z
+severity: INFO
+msg: Bar was successful
+---
+date: 2012-01-01 02:10:12 Z
+severity: DEBUG
+msg: Baz was notified

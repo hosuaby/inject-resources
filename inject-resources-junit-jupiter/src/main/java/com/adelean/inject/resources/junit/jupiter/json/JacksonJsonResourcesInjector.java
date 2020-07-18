@@ -4,6 +4,7 @@ import com.adelean.inject.resources.core.ResourceAsReader;
 import com.adelean.inject.resources.junit.jupiter.GivenJsonResource;
 import com.adelean.inject.resources.junit.jupiter.core.ResourceParser;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
+import org.jetbrains.annotations.Nullable;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ public final class JacksonJsonResourcesInjector extends AbstractJacksonResources
 
     public JacksonJsonResourcesInjector(
             InjectionContext injectionContext,
-            Object testInstance,
+            @Nullable Object testInstance,
             Class<?> testClass) {
         super(injectionContext, testInstance, testClass, GivenJsonResource.class);
         this.resourceResolver = new JsonResourceResolver(testClass);

@@ -11,6 +11,8 @@ public final class ClasspathSupport {
 
     private static boolean GSON_PRESENT = isClassPresent("com.google.gson.Gson");
 
+    private static boolean SNAKE_YAML_PRESENT = isClassPresent("org.yaml.snakeyaml.Yaml");
+
     private ClasspathSupport() {
     }
 
@@ -20,6 +22,10 @@ public final class ClasspathSupport {
 
     public static boolean isGsonPresent() {
         return GSON_PRESENT;
+    }
+
+    public static boolean isSnakeYamlPresent() {
+        return SNAKE_YAML_PRESENT;
     }
 
     static boolean isClassPresent(String className) {

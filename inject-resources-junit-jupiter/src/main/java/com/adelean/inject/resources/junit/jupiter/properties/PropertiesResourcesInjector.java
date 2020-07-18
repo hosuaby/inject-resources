@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Properties;
 
+import org.jetbrains.annotations.Nullable;
+
 public final class PropertiesResourcesInjector extends AbstractResourcesInjector<GivenPropertiesResource> {
     private final PropertiesResourceResolver resourceResolver;
 
     public PropertiesResourcesInjector(
             InjectionContext injectionContext,
-            Object testInstance,
+            @Nullable Object testInstance,
             Class<?> testClass) {
         super(injectionContext, testInstance, testClass, GivenPropertiesResource.class);
         this.resourceResolver = new PropertiesResourceResolver(testClass);

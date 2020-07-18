@@ -15,7 +15,7 @@ public class InjectPropertiesResourcesTests {
     Properties dbProperties;
 
     @Test
-    @DisplayName("loads properties file into Properties object")
+    @DisplayName("injects content of properties resource file into Properties instance field")
     public void testInjectTextIntoStringInstanceField() {
         assertThat(dbProperties)
                 .isNotNull()
