@@ -8,6 +8,7 @@ import com.adelean.junit.jupiter.resources.data.Person;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.testkit.engine.EngineTestKit;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.as;
@@ -40,6 +42,12 @@ public class InjectJsonResourcesTests {
 
     @GivenJsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
     Person spongeBob;
+
+    @GivenJsonResource("/com/adelean/junit/jupiter/velib.json")
+    List<Map<String, ?>> velibAsList;
+
+    @GivenJsonResource("/com/adelean/junit/jupiter/velib.json")
+    Map<String, ?>[] velibAsArray;
 
     @Test
     @DisplayName("injects JSON content into Map instance field")
@@ -85,6 +93,42 @@ public class InjectJsonResourcesTests {
                 .hasFieldOrPropertyWithValue("address1", "ananas house")
                 .hasFieldOrPropertyWithValue("city", "Bikini Bottom")
                 .hasFieldOrPropertyWithValue("zipcode", 10101);
+    }
+
+    @Test
+    @DisplayName("injects JSON array into List instance field")
+    public void testInjectJsonArrayIntoListField() {
+        assertThat(velibAsList)
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(2)
+                .containsExactly(
+                        ImmutableMap.of(
+                                "name", "Mairie du 12ème",
+                                "nom_arrondissement_communes", "Paris",
+                                "capacity", 30),
+                        ImmutableMap.of(
+                                "name", "Charles Frérot - Albert Guilpin",
+                                "nom_arrondissement_communes", "Gentilly",
+                                "capacity", 23));
+    }
+
+    @Test
+    @DisplayName("injects JSON array into Map[] instance field")
+    public void testInjectJsonArrayIntoArrayField() {
+        assertThat(velibAsArray)
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(2)
+                .containsExactly(
+                        ImmutableMap.of(
+                                "name", "Mairie du 12ème",
+                                "nom_arrondissement_communes", "Paris",
+                                "capacity", 30),
+                        ImmutableMap.of(
+                                "name", "Charles Frérot - Albert Guilpin",
+                                "nom_arrondissement_communes", "Gentilly",
+                                "capacity", 23));
     }
 
     @Test
