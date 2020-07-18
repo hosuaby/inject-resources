@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/hosuaby/inject-resources.svg?branch=master)](https://travis-ci.org/hosuaby/inject-resources)
 [![Coverage Status](https://coveralls.io/repos/github/hosuaby/inject-resources/badge.svg?branch=coverall)](https://coveralls.io/github/hosuaby/inject-resources?branch=coverall)
 [![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg)](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
-[![User guide](https://img.shields.io/badge/User%20guide-0.1.0--alpha-green)](https://hosuaby.github.io/inject-resources/0.1.0-alpha/asciidoc/)
+[![User guide](https://img.shields.io/badge/User%20guide-0.1.0--alpha-red)](https://hosuaby.github.io/inject-resources/0.1.0-alpha/asciidoc/)
+[![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.1.0--alpha-orange)](https://javadoc.io/doc/com.adelean/inject-resources-core)
+[![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.1.0--alpha-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter)
 
 A convenient way to have resources content in your tests.
 
