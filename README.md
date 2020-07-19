@@ -66,12 +66,12 @@ Setup repository (with Maven):
 ```xml
 <repositories>
     <repository>
-        <id>bintray-hosuaby-InjectResources</id>
-        <name>bintray</name>
-        <url>https://dl.bintray.com/hosuaby/InjectResources</url>
         <snapshots>
             <enabled>false</enabled>
         </snapshots>
+        <id>central</id>
+        <name>bintray</name>
+        <url>https://jcenter.bintray.com</url>
     </repository>
 </repositories>
 ```
@@ -80,9 +80,7 @@ or with Gradle:
 
 ```groovy
 repositories {
-    maven {
-        url  "https://dl.bintray.com/hosuaby/InjectResources" 
-    }
+    jcenter()
 }
 ```
 
