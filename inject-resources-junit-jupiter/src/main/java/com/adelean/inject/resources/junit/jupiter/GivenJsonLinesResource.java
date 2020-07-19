@@ -29,7 +29,7 @@ import com.adelean.inject.resources.junit.jupiter.core.annotations.Resource;
 public @interface GivenJsonLinesResource {
 
     /**
-     * @return Alias for {@link GivenJsonLinesResource#from()}.
+     * @return Alias for {@link #from()}.
      */
     String value() default "";
 

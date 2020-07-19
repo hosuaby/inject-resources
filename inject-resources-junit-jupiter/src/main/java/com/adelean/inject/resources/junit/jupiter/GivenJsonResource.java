@@ -30,7 +30,7 @@ import com.adelean.inject.resources.junit.jupiter.core.annotations.Resource;
 public @interface GivenJsonResource {
 
     /**
-     * @return Alias for {@link GivenJsonResource#from()}.
+     * @return Alias for {@link #from()}.
      */
     String value() default "";
 

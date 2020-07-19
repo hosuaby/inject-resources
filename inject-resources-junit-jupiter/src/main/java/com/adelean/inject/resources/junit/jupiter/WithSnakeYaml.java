@@ -13,6 +13,15 @@ import org.yaml.snakeyaml.Yaml;
 import com.adelean.inject.resources.junit.jupiter.core.annotations.Parser;
 import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
 
+/**
+ * Annotates field or method of a test class or of a tests advice class (see {@link TestsAdvice}) that defines
+ * {@link Yaml} object used to parse YAML resources.
+ *
+ * @see GivenYamlResource
+ * @see GivenYamlDocumentsResource
+ * @see TestsAdvice
+ * @author Alexei KLENIN
+ */
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -20,6 +29,15 @@ import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedType
 @Parser
 @SupportedTypes(Yaml.class)
 public @interface WithSnakeYaml {
+
+    /**
+     * @return Alias for {@link #name()}.
+     */
     String value() default "";
+
+    /**
+     * @return Optional. A name of that parser. If it is present, parser is called 'named', or 'anonymous' if it
+     * is absent.
+     */
     String name() default "";
 }

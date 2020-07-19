@@ -27,7 +27,7 @@ import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedType
 public @interface GivenBinaryResource {
 
     /**
-     * @return Alias for {@link GivenBinaryResource#from()}.
+     * @return Alias for {@link #from()}.
      */
     String value() default "";
 

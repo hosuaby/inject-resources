@@ -31,7 +31,7 @@ import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedType
 public @interface GivenPropertiesResource {
 
     /**
-     * @return Alias for {@link GivenPropertiesResource#from()}.
+     * @return Alias for {@link #from()}.
      */
     String value() default "";
 

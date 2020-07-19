@@ -28,7 +28,7 @@ import static org.apiguardian.api.API.Status.EXPERIMENTAL;
 public @interface GivenTextResource {
 
     /**
-     * @return Alias for {@link GivenTextResource#from()}.
+     * @return Alias for {@link #from()}.
      */
     String value() default "";
 
