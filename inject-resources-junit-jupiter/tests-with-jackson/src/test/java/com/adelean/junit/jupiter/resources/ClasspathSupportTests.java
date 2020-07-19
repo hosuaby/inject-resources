@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.ClasspathSupport;
+import com.adelean.inject.resources.commons.ClasspathSupport;
 
 public class ClasspathSupportTests {
 

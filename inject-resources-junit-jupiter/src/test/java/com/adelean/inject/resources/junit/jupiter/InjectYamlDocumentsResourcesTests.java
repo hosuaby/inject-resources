@@ -8,8 +8,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
+import com.adelean.junit.jupiter.resources.data.LogSeverity;
+import com.adelean.junit.jupiter.resources.data.snakeyaml.Log;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.Yaml;
@@ -176,7 +177,7 @@ public class InjectYamlDocumentsResourcesTests {
 
     @Test
     @DisplayName("injects YAML documents content into collection field")
-    public void testInjectYamlDocumentsIntoCollection() {
+    public void testInjectYamlDocumentsIntoCollectionField() {
         assertThat(logsAsCollection)
                 .isNotNull()
                 .isNotEmpty()
@@ -194,45 +195,5 @@ public class InjectYamlDocumentsResourcesTests {
                                 Date.from(LocalDateTime.of(2012, 1, 1, 2, 10, 12).atZone(ZoneId.of("UTC")).toInstant()),
                                 LogSeverity.DEBUG,
                                 "Baz was notified"));
-    }
-
-    enum LogSeverity {
-        DEBUG, INFO, ERROR
-    }
-
-    static class Log {
-        public Date date;
-        public LogSeverity severity;
-        public String msg;
-
-        public Log() {
-        }
-
-        Log(Date date, LogSeverity severity, String msg) {
-            this.date = date;
-            this.severity = severity;
-            this.msg = msg;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-
-            if (other == null || getClass() != other.getClass()) {
-                return false;
-            }
-
-            Log another = (Log) other;
-            return Objects.equals(date, another.date)
-                    && severity == another.severity
-                    && Objects.equals(msg, another.msg);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(date, severity, msg);
-        }
     }
 }

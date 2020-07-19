@@ -2,10 +2,10 @@ package com.adelean.inject.resources.junit.jupiter.yaml;
 
 import java.lang.reflect.Type;
 
+import com.adelean.inject.resources.commons.ClassSupport;
 import org.yaml.snakeyaml.Yaml;
 import com.adelean.inject.resources.core.ResourceAsReader;
 import com.adelean.inject.resources.junit.jupiter.core.ResourceParser;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.ClassSupport;
 
 public final class SnakeYamlResourceParser implements ResourceParser<ResourceAsReader, Object> {
     private final Yaml yaml;

@@ -22,7 +22,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.Errors.internalError;
+import static com.adelean.inject.resources.commons.Errors.internalError;
 import static java.util.stream.Collectors.toList;
 
 public final class Annotations {

@@ -1,16 +1,21 @@
 package com.adelean.inject.resources.junit.jupiter.core.helpers;
 
+import com.adelean.inject.resources.junit.jupiter.GivenJsonLinesResource;
 import com.adelean.inject.resources.junit.jupiter.GivenTextResource;
 import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
 import com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts;
+import com.adelean.inject.resources.junit.jupiter.json.JsonLinesResourcesInjector;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionConfigurationException;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
+import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertArrayOrCollection;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 @DisplayName("Test FieldAsserts")
@@ -132,6 +137,19 @@ public class FieldAssertsTests {
         assertThatCode(callable)
                 .isInstanceOf(ExtensionConfigurationException.class)
                 .hasMessage(expectedError);
+    }
+
+    @Test
+    @DisplayName("Test assert array or collection")
+    public void testAssertArrayOrCollection() {
+        assertThatCode(() -> assertArrayOrCollection("field", byte[].class, GivenJsonLinesResource.class))
+                .doesNotThrowAnyException();
+        assertThatCode(() -> assertArrayOrCollection("field", ArrayList.class, GivenJsonLinesResource.class))
+                .doesNotThrowAnyException();
+        assertThatCode(() -> assertArrayOrCollection("field", HashMap.class, GivenJsonLinesResource.class))
+                .isInstanceOf(ExtensionConfigurationException.class)
+                .hasMessage("@GivenJsonLinesResource cannot be resolved on field of type java.util.HashMap. "
+                    + "Field must be array or collection.");
     }
 
     private static class TestClass {

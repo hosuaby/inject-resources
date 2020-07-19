@@ -1,6 +1,6 @@
 package com.adelean.inject.resources.junit.jupiter;
 
-import com.adelean.inject.resources.junit.jupiter.core.helpers.ClasspathSupport;
+import com.adelean.inject.resources.commons.ClasspathSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

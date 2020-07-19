@@ -21,10 +21,15 @@ allprojects {
     apply plugin: 'jacoco'
 }
 
-def publishedProjectsPaths = [ ':inject-resources-core', ':inject-resources-junit-jupiter' ]
+def coveredProjectsPaths = [
+        ':inject-resources-core',
+        ':inject-resources-commons',
+        ':inject-resources-junit-jupiter',
+        ':inject-resources-junit-vintage'
+]
 
 def publishedProjects = subprojects.findAll { subproject ->
-    publishedProjectsPaths.contains(subproject.path)
+    coveredProjectsPaths.contains(subproject.path)
 }
 
 task jacocoMerge(type: JacocoMerge) {

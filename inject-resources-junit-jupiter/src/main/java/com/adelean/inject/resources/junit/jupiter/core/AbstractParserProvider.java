@@ -1,10 +1,10 @@
 package com.adelean.inject.resources.junit.jupiter.core;
 
+import com.adelean.inject.resources.commons.ClassSupport;
 import com.adelean.inject.resources.core.Parsable;
 import com.adelean.inject.resources.junit.jupiter.TestWithResourcesExtension;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
 import com.adelean.inject.resources.junit.jupiter.core.helpers.Annotations;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.ClassSupport;
 import com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts;
 import com.adelean.inject.resources.junit.jupiter.core.helpers.MethodAsserts;
 import org.jetbrains.annotations.Nullable;

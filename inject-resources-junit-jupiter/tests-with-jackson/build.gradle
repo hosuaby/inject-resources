@@ -17,7 +17,7 @@ dependencies {
 
     testImplementation project(':inject-resources-core')
     testImplementation project(':inject-resources-junit-jupiter')
-    testImplementation project(':test-resources')
+    testImplementation project(':test-commons')
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION

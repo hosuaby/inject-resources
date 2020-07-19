@@ -1,8 +1,8 @@
 package com.adelean.inject.resources.junit.jupiter.core;
 
+import com.adelean.inject.resources.commons.ClassSupport;
 import com.adelean.inject.resources.junit.jupiter.TestWithResourcesExtension;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.ClassSupport;
 import org.jetbrains.annotations.Nullable;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.junit.platform.commons.support.ReflectionSupport;

@@ -3,7 +3,7 @@ package com.adelean.junit.jupiter.resources;
 import com.adelean.inject.resources.junit.jupiter.GivenJsonLinesResource;
 import com.adelean.inject.resources.junit.jupiter.TestWithResources;
 import com.adelean.inject.resources.junit.jupiter.WithJacksonMapper;
-import com.adelean.junit.jupiter.resources.data.Log;
+import com.adelean.junit.jupiter.resources.data.jackson.Log;
 import com.adelean.junit.jupiter.resources.data.LogSeverity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

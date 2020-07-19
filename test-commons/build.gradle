@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+def JACKSON_VERSION = '2.10.3'
+def GSON_VERSION = '2.8.0'
+
+dependencies {
+    compileOnly group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
+    compileOnly group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
+}

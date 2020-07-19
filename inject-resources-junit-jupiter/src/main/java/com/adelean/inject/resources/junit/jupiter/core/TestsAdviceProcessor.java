@@ -15,7 +15,7 @@ import org.reflections.Reflections;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import com.adelean.inject.resources.junit.jupiter.TestsAdvice;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.Errors;
+import com.adelean.inject.resources.commons.Errors;
 
 public final class TestsAdviceProcessor {
     private static final String ERR_MULTIPLE_TESTS_ADVICES_ON_CLASSPATH =

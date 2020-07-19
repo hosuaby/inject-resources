@@ -161,7 +161,7 @@ public class Resource {
         }
     }
 
-    static String buildPath(String firstPathToken, String... otherTokens) {
+    public static String buildPath(String firstPathToken, String... otherTokens) {
         return Stream
                 .concat(Stream.of(firstPathToken), Stream.of(otherTokens))
                 .map(token -> token.split("/"))

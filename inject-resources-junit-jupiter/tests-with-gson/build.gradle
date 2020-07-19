@@ -16,7 +16,7 @@ dependencies {
 
     testImplementation project(':inject-resources-core')
     testImplementation project(':inject-resources-junit-jupiter')
-    testImplementation project(':test-resources')
+    testImplementation project(':test-commons')
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
     testImplementation group: 'com.fatboyindustrial.gson-javatime-serialisers', name: 'gson-javatime-serialisers', version: '1.1.1'

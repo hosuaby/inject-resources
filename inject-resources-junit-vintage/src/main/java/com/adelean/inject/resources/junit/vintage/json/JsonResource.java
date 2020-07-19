@@ -1,0 +1,49 @@
+package com.adelean.inject.resources.junit.vintage.json;
+
+import com.adelean.inject.resources.core.function.ThrowingFunction;
+import com.adelean.inject.resources.junit.vintage.helpers.CodeAnchor;
+import com.adelean.inject.resources.junit.vintage.helpers.ReifiedGenerics;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
+
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.nio.charset.Charset;
+
+import static com.adelean.inject.resources.core.InjectResources.resource;
+
+/**
+ * @author Alexei KLENIN
+ */
+public final class JsonResource<T> extends AbstractJsonResource<T> {
+    public JsonResource(CodeAnchor codeAnchor, String firstPathToken, String... otherTokens) {
+        super(codeAnchor, firstPathToken, otherTokens);
+    }
+
+    public JsonResource(CodeAnchor codeAnchor, String path, Charset charset, Object parser) {
+        super(codeAnchor, path, charset, parser);
+    }
+
+    @Override
+    public <U> JsonResource<U> withCharset(Charset charset) {
+        return new JsonResource<>(this.codeAnchor, this.path, charset, this.parser);
+    }
+
+    @Override
+    public <U> JsonResource<U> parseWith(Object parser) {
+        return new JsonResource<>(this.codeAnchor, this.path, this.charset, parser);
+    }
+
+    @Override
+    protected T load(Statement base, Description description) {
+        Class<?> testClass = description.getTestClass();
+        Type targetType = ReifiedGenerics.targetType(testClass, this);
+        ThrowingFunction<Reader, T> parseFunction = parseFunction(assertHasParser(), targetType);
+
+        return resource()
+                .onClassLoaderOf(testClass)
+                .withPath(path)
+                .asReader(charset)
+                .parseChecked(parseFunction);
+    }
+}

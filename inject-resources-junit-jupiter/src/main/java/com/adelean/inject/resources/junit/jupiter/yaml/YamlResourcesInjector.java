@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 
 public final class YamlResourcesInjector extends AbstractYamlResourcesInjector<GivenYamlResource> {
-    private static final String ERR_SNAKE_YAML_MISSING_ON_CLASS_PATH = "Snakeyaml is missing on classpath.";
-
     private final YamlResourceResolver resourceResolver;
 
     public YamlResourcesInjector(

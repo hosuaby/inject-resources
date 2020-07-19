@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import org.yaml.snakeyaml.Yaml;
 import com.adelean.inject.resources.junit.jupiter.core.AbstractResourcesInjector;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.ClasspathSupport;
+import com.adelean.inject.resources.commons.ClasspathSupport;
 
 abstract class AbstractYamlResourcesInjector<A extends Annotation> extends AbstractResourcesInjector<A> {
     private static final String ERR_SNAKE_YAML_MISSING_ON_CLASS_PATH = "Snakeyaml is missing on classpath.";
