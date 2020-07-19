@@ -308,6 +308,56 @@ class TestsWithGson {
 }
 ```
 
+### YAML
+
+Thanks to native support of *Snakeyaml* library is able to parse *YAML* resources files. `org.yaml:snakeyaml` must be
+present on Classpath in order to use that feature.
+
+Declare `Yaml` object used for parsing and annotate it with `@WithSnakeYaml`:
+
+```java
+@WithSnakeYaml
+Yaml yaml = new Yaml();
+```
+
+Resource annotations `@GivenYamlResource` and `@GivenYamlDocumentsResource` can be now used to parse *YAML* with single
+or multiple documents respectively:
+
+```java
+@TestWithResources
+class TestsWithYaml {
+
+    @WithSnakeYaml
+    Yaml yaml = new Yaml();
+
+    /* YAML resource with a single document */
+    @GivenYamlResource("/com/adelean/junit/jupiter/receipt.yml")
+    Map<String, Object> receipt;
+
+    @GivenYamlResource("/com/adelean/junit/jupiter/sponge-bob.yaml")
+    Person spongeBob;
+
+    /* YAML resource with multiple documents separated by '---' */
+    @GivenYamlDocumentsResource("/com/adelean/junit/jupiter/stacktrace.yaml")
+    List<Map<String, Object>> stacktraceAsList;
+}
+```
+
+`Yaml` object must be configured to be able parse documents from multi-document _YAML_ into POJO:
+
+```java
+@TestWithResources
+class TestsWithYaml {
+
+    /* Assuming we have defined class Log */
+    @WithSnakeYaml("log-parser")
+    Yaml logParser = new Yaml(new Constructor(Log.class));
+
+    @GivenYamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yaml = "log-parser")
+    Log[] logsAsArray;
+}
+```
+
 ### Custom format
 
 There is a wide range of file formats in the computer world and huge number of libraries that know how to load/parse them. `@InjectResources` can not support all those libraries natively. That's why it was choosen to make native integration only with the most used and most stable libraries: *Jackson*, *GSON* and upcoming integration with *SnakeYAML*.
@@ -417,8 +467,6 @@ class TestsWithJson {
 
 ## What's coming next
 
-- [ ] YAML support
-- [ ] SnakeYAML native integration
 - [ ] XML support
 - [ ] Junit 4 support
 - [ ] Caching for parsed resources

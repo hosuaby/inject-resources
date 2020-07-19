@@ -277,7 +277,7 @@ class TestsWithGson {
 Thanks to native support of https://bitbucket.org/asomov/snakeyaml/wiki/Documentation[Snakeyaml] library is able to
 parse _YAML_ resources files. `org.yaml:snakeyaml` must be present on Classpath in order to use that feature.
 
-Declare _Yaml_ object used for parsing and annotate it with `@WithSnakeYaml`:
+Declare `Yaml` object used for parsing and annotate it with `@WithSnakeYaml`:
 
 [source, java]
 ----
