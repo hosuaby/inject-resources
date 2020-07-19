@@ -21,6 +21,36 @@ opening and closing of input streams and handles exceptions.
 
 Java 8+ is required in order to use this library.
 
+== Repository
+
+Artifacts belonging to `@InjectResources` are hosted on _JCenter_ so you need to set it up as a repository in your
+_Maven/Gradle_ project.
+
+For Maven:
+
+[source, xml]
+----
+<repositories>
+    <repository>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <id>central</id>
+        <name>bintray</name>
+        <url>https://jcenter.bintray.com</url>
+    </repository>
+</repositories>
+----
+
+For Gradle:
+
+[source, groovy]
+----
+repositories {
+    jcenter()
+}
+----
+
 == Modules
 
 Library composed of following modules:
