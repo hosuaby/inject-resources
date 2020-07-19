@@ -157,7 +157,8 @@ class InjectPropertiesResourcesTests {
 
 === Load and parse JSON
 
-Library simplifies loading and parsing of _JSON_ & _JSONL_ (JSON Lines) files. Native support for _Jackson_ and _GSON_
+Library simplifies loading and parsing of _JSON_ & _JSONL_ (JSON Lines) files. Native support for
+https://github.com/FasterXML/jackson[Jackson] and https://github.com/google/gson/blob/master/UserGuide.md[GSON]
 gives ability to parse _JSON_ content into `Map<String, Object>`, `JsonNode` (for _Jackson_) & `JsonElement`
 (for _GSON_) or to Java POJO.
 
@@ -268,6 +269,59 @@ class TestsWithGson {
 
     @GivenJsonLinesResource("/com/adelean/junit/jupiter/logs.jsonl")
     Collection<Log> logsAsCollection;
+}
+----
+
+=== Load and parse YAML
+
+Thanks to native support of https://bitbucket.org/asomov/snakeyaml/wiki/Documentation[Snakeyaml] library is able to
+parse _YAML_ resources files. `org.yaml:snakeyaml` must be present on Classpath in order to use that feature.
+
+Declare _Yaml_ object used for parsing and annotate it with `@WithSnakeYaml`:
+
+[source, java]
+----
+@WithSnakeYaml
+Yaml yaml = new Yaml();
+----
+
+Resource annotations `@GivenYamlResource` and `@GivenYamlDocumentsResource` can be now used to parse _YAML_ with single
+or multiple documents respectively:
+
+[source, java]
+----
+@TestWithResources
+class TestsWithYaml {
+
+    @WithSnakeYaml
+    Yaml yaml = new Yaml();
+
+    /* YAML resource with a single document */
+    @GivenYamlResource("/com/adelean/junit/jupiter/receipt.yml")
+    Map<String, Object> receipt;
+
+    @GivenYamlResource("/com/adelean/junit/jupiter/sponge-bob.yaml")
+    Person spongeBob;
+
+    /* YAML resource with multiple documents separated by '---' */
+    @GivenYamlDocumentsResource("/com/adelean/junit/jupiter/stacktrace.yaml")
+    List<Map<String, Object>> stacktraceAsList;
+}
+----
+
+`Yaml` object must be configured to be able parse documents from multi-document _YAML_ into POJO:
+
+[source, java]
+----
+@TestWithResources
+class TestsWithYaml {
+
+    /* Assuming we have defined class Log */
+    @WithSnakeYaml("log-parser")
+    Yaml logParser = new Yaml(new Constructor(Log.class));
+
+    @GivenYamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yaml = "log-parser")
+    Log[] logsAsArray;
 }
 ----
 
