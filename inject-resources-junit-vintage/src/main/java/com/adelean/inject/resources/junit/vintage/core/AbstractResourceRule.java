@@ -7,6 +7,10 @@ import org.junit.runners.model.Statement;
 import static com.adelean.inject.resources.core.Resource.buildPath;
 
 /**
+ * Base implementation of resource rule.
+ *
+ * @param <T>  type of resource content
+ *
  * @author Alexei KLENIN
  */
 public abstract class AbstractResourceRule<T> implements ResourceRule<T> {

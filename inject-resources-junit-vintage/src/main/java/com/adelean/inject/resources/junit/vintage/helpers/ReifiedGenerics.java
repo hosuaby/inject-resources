@@ -24,6 +24,37 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
+ * Java doesn't have reified generics. But this library offers to user concise syntax like:
+ *
+ * <pre>
+ * &#64;Rule
+ * public JsonResource&#60;Map&#60;String, Object&#62;&#62; jsonAsMap = givenResource()
+ *         .json("/com/adelean/junit/jupiter/sponge-bob.json")
+ *         .parseWith(objectMapper);
+ * </pre>
+ *
+ * <p>Resource rule {@code JsonResource} is able to capture its generic argument {@code Map<String, Object>} and convert
+ * content of JSON resource to {@code Map<String, Object>} without any type token being explicitly passed to the rule
+ * builder.
+ *
+ * <p>So how it works?
+ *
+ * <p>JUnit 4 supplies test rules with {@link org.junit.runner.Description} object that gives us access to test class
+ * with {@link org.junit.runner.Description#getTestClass()}. So we can get information about actual type parameters of
+ * resource rules using reflexion.
+ *
+ * <p>But, we also need to be able associate resource rule objects with fields of test class containing them. This is
+ * a little tricky. We know that JUnit 4 constrains test classes to have {@code public} zero-argument constructor.
+ * So we are able to create an instance of a test class.
+ *
+ * <p>Each resource rule has attribute of type {@link CodeAnchor}, which contains a test class and the line number of
+ * call to the factory method {@link com.adelean.inject.resources.junit.vintage.GivenResource#givenResource()} that
+ * created that rule.
+ *
+ * <p>So, to get generic parameter of the rule, we need to instantiate a new copy of test class, through reflexion find
+ * the field of that instance that contains the rule with same {@code codeAnchor}, and then get generic information from
+ * found field.
+ *
  * @author Alexei KLENIN
  */
 public final class ReifiedGenerics {

@@ -17,7 +17,7 @@ public class TextResourceRuleTests {
             .withCharset(StandardCharsets.UTF_8);
 
     @Test
-    public void testInjectTextIntoString() {
+    public void testLoadTextIntoString() {
         assertThat(textResource.get())
                 .isNotNull()
                 .isNotEmpty()

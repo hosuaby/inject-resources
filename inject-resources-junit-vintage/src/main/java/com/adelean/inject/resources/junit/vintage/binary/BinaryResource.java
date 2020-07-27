@@ -8,6 +8,16 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
+ * Rule representing resource with binary content.
+ *
+ * <p>Usage:
+ *
+ * <pre>
+ * &#64;Rule
+ * public BinaryResource fibonacci = givenResource()
+ *         .binary("/com/adelean/junit/jupiter/fibonacci.bin");
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 public final class BinaryResource extends AbstractResourceRule<byte[]> {

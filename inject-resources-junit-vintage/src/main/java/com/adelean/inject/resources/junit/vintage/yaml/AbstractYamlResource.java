@@ -27,5 +27,12 @@ public abstract class AbstractYamlResource<T> extends AbstractTextResource<T> {
                 yaml, String.format("Rule %s must have defined Yaml object.", getClass().getSimpleName()));
     }
 
+    /**
+     * Defines Snakeyaml {@link Yaml} object used to parse content of YAML resource.
+     *
+     * @param yaml  yaml parser from Snakeyaml
+     * @param <U>  type to which resource content will be converted
+     * @return this rule
+     */
     public abstract <U> AbstractYamlResource<U> parseWith(Yaml yaml);
 }

@@ -10,6 +10,17 @@ import org.junit.runners.model.Statement;
 import java.nio.charset.Charset;
 
 /**
+ * Rule representing resource with textual content.
+ *
+ * <p>Usage:
+ *
+ * <pre>
+ * &#64;Rule
+ * public TextResource textResource = givenResource()
+ *         .text("/com/adelean/junit/jupiter/resource.txt")
+ *         .withCharset(StandardCharsets.UTF_8);
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 public final class TextResource extends AbstractTextResource<String> {
@@ -21,6 +32,7 @@ public final class TextResource extends AbstractTextResource<String> {
         super(codeAnchor, path, charset);
     }
 
+    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public TextResource withCharset(Charset charset) {

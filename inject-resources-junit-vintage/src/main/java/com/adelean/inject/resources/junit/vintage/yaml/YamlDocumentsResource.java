@@ -21,6 +21,19 @@ import java.util.Collection;
 import java.util.stream.StreamSupport;
 
 /**
+ * Rule representing resource with YAML containing multiple documents separated by three hyphens "---".
+ *
+ * <p>Can convert YAML documents into array or collection.
+ *
+ * <p>Usage:
+ *
+ * <pre>
+ * &#64;Rule
+ * public YamlDocumentsResource&#60;ArrayList&#60;Log&#62;&#62; logsAsArrayList = givenResource()
+ *         .yamlDocuments("/com/adelean/junit/jupiter/logs.yml")
+ *         .parseWith(logParser);
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 public final class YamlDocumentsResource<T> extends AbstractYamlResource<T> {
@@ -32,11 +45,13 @@ public final class YamlDocumentsResource<T> extends AbstractYamlResource<T> {
         super(codeAnchor, path, charset, yaml);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> YamlDocumentsResource<U> withCharset(Charset charset) {
         return new YamlDocumentsResource<>(this.codeAnchor, this.path, charset, this.yaml);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> YamlDocumentsResource<U> parseWith(Yaml yaml) {
         return new YamlDocumentsResource<>(this.codeAnchor, this.path, this.charset, yaml);

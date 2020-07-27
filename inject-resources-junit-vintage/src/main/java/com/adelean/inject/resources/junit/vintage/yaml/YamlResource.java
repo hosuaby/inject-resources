@@ -13,6 +13,17 @@ import java.nio.charset.Charset;
 import static com.adelean.inject.resources.core.InjectResources.resource;
 
 /**
+ * Rule representing resource with YAML content.
+ *
+ * <p>Usage:
+ *
+ * <pre>
+ * &#64;Rule
+ * public YamlResource&#60;Person&#62; spongeBob = givenResource()
+ *         .yaml("/com/adelean/junit/jupiter/sponge-bob.yaml")
+ *         .parseWith(yaml);
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 public final class YamlResource<T> extends AbstractYamlResource<T> {
@@ -24,11 +35,13 @@ public final class YamlResource<T> extends AbstractYamlResource<T> {
         super(codeAnchor, path, charset, yaml);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> YamlResource<U> withCharset(Charset charset) {
         return new YamlResource<>(this.codeAnchor, this.path, charset, this.yaml);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> YamlResource<U> parseWith(Yaml yaml) {
         return new YamlResource<>(this.codeAnchor, this.path, this.charset, yaml);

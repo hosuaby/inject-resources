@@ -13,6 +13,18 @@ import java.nio.charset.Charset;
 import static com.adelean.inject.resources.core.InjectResources.resource;
 
 /**
+ * Rule representing resource with JSON content.
+ *
+ * <p>Usage:
+ *
+ * <pre>
+ * &#64;Rule
+ * public JsonResource&#60;Person&#62; spongeBob = givenResource()
+ *         .json("/com/adelean/junit/jupiter/sponge-bob.json")
+ *         .withCharset(StandardCharsets.UTF_8)
+ *         .parseWith(objectMapper);
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 public final class JsonResource<T> extends AbstractJsonResource<T> {
@@ -24,11 +36,13 @@ public final class JsonResource<T> extends AbstractJsonResource<T> {
         super(codeAnchor, path, charset, parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> JsonResource<U> withCharset(Charset charset) {
         return new JsonResource<>(this.codeAnchor, this.path, charset, this.parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> JsonResource<U> parseWith(Object parser) {
         return new JsonResource<>(this.codeAnchor, this.path, this.charset, parser);

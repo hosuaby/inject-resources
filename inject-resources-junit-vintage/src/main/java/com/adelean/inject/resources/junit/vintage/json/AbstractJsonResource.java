@@ -37,6 +37,16 @@ public abstract class AbstractJsonResource<T> extends AbstractTextResource<T> {
                 parser, String.format("Rule %s must have defined parser.", getClass().getSimpleName()));
     }
 
+    /**
+     * Defines object used to parse content of this JSON resource. Can be Jackson {@code ObjectMapper} or Google Gson
+     * {@code Gson}.
+     *
+     * <p>Parser must be provided during rule building, or exception will be thrown during resource loading.
+     *
+     * @param parser  Jackson {@code ObjectMapper} or Google Gson {@code Gson} object
+     * @param <U>  type to which resource content will be converted
+     * @return this rule
+     */
     public abstract <U> AbstractJsonResource<U> parseWith(Object parser);
 
     protected static <U> ThrowingFunction<Reader, U> parseFunction(Object parser, Type targetType) {

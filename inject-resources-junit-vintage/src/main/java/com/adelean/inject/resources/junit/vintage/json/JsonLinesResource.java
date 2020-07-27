@@ -24,6 +24,19 @@ import static com.adelean.inject.resources.core.InjectResources.resource;
 import static com.adelean.inject.resources.junit.vintage.helpers.Asserts.assertArrayOrCollection;
 
 /**
+ * Rule representing resource with content in format JSON Lines (one JSON document per line).
+ *
+ * <p>Can convert JSON Lines into array or collection.
+ *
+ * <p>Usage:
+ *
+ * <pre>
+ * &#64;Rule
+ * public JsonLinesResource&#60;Log[]&#62; logsAsArray = givenResource()
+ *         .jsonLines("/com/adelean/junit/jupiter/logs.jsonl")
+ *         .parseWith(objectMapper);
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 public final class JsonLinesResource<T> extends AbstractJsonResource<T> {
@@ -35,11 +48,13 @@ public final class JsonLinesResource<T> extends AbstractJsonResource<T> {
         super(codeAnchor, path, charset, parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> JsonLinesResource<U> withCharset(Charset charset) {
         return new JsonLinesResource<>(this.codeAnchor, this.path, charset, this.parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     public <U> JsonLinesResource<U> parseWith(Object parser) {
         return new JsonLinesResource<>(this.codeAnchor, this.path, this.charset, parser);
