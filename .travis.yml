@@ -1,6 +1,9 @@
 language: java
 jdk: openjdk13
 
+git:
+    submodules: false
+
 jobs:
     include:
     - stage: build
