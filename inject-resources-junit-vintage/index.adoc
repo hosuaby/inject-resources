@@ -1,0 +1,208 @@
+`@InjectResources` JUnit 4 (Vintage) extension simplifies access to content of resources in your JUnit tests.
+
+=== Dependency
+
+Add `inject-resources-core` and `inject-resources-junit-vintage` to your project.
+
+Using Maven:
+
+[source, xml, subs="+attributes"]
+----
+<dependency>
+    <groupId>com.adelean</groupId>
+    <artifactId>inject-resources-core</artifactId>
+    <version>{project-version}</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>com.adelean</groupId>
+    <artifactId>inject-resources-junit-vintage</artifactId>
+    <version>{project-version}</version>
+    <scope>test</scope>
+</dependency>
+----
+
+Using Gradle:
+
+[source, groovy, subs="+attributes"]
+----
+testCompile group: 'com.adelean', name: 'inject-resources-core', version: '{project-version}'
+testCompile group: 'com.adelean', name: 'inject-resources-junit-vintage', version: '{project-version}'
+----
+
+=== Resource rules
+
+Library `inject-resources-junit-vintage` provides set of rules that simplify access to content of resources. Those rules
+are accessible through static method `GivenResource.givenResource()`. It's recommended to statically import this method
+in test classes and use it as chained builder for resource rules.
+
+[source, java]
+----
+import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
+----
+
+Then resource rules can be built using chained builder:
+
+[source, java]
+----
+@Rule
+public JsonResource<Person> spongeBob = givenResource()
+        .json("/com/adelean/junit/jupiter/sponge-bob.json")
+        .withCharset(StandardCharsets.UTF_8)
+        .parseWith(new ObjectMapper());
+----
+
+Following sub-sections show rules for different types of resources.
+
+==== Binary resource rule
+
+`BinaryResource` rule loads content of binary resource.
+
+Given a resource `/com/adelean/junit/jupiter/fibonacci.bin` with binary content:
+
+[source, text]
+----
+1 1 2 3 5 8 13 21 34 55 89
+----
+
+Its content can be accessed as following:
+
+[source, java]
+----
+class MyTestClass {
+
+    @Rule
+    public BinaryResource fibonacci = givenResource()
+            .binary("/com/adelean/junit/jupiter/fibonacci.bin");
+
+    @Test
+    public void testWithBinaryResource() {
+        assertThat(fibonacci.get())
+                .contains(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+    }
+}
+----
+
+==== Text resource rule
+
+`TextResource` loads content of text resource.
+
+Assuming there is a resource `/com/adelean/junit/jupiter/resource.txt` containing
+
+[source, text]
+----
+The quick brown fox jumps over the lazy dog.
+----
+
+Its content can be accessed as following:
+
+[source, java]
+----
+class MyTestClass {
+
+    @Rule
+    public ResourceRule<String> textResource = givenResource()
+            .text("/com/adelean/junit/jupiter/resource.txt")
+            .withCharset(StandardCharsets.UTF_8);
+
+    @Test
+    public void testWithTextResource() {
+        assertThat(textResource.get())
+                .isEqualTo("The quick brown fox jumps over the lazy dog.");
+    }
+}
+----
+
+==== Properties resource rule
+
+`PropertiesResource` loads content of java properties resource.
+
+Given a properties resource `/com/adelean/junit/jupiter/db.properties` with content:
+
+[source, properties]
+----
+db.user=hosuaby
+db.password=password
+db.url=localhost
+----
+
+Its content can be accessed as following:
+
+[source, java]
+----
+class MyTestClass {
+
+    @Rule
+    public PropertiesResource dbProperties = givenResource()
+            .properties("/com/adelean/junit/jupiter/db.properties");
+    @Test
+    public void testWithJavaPropertiesResource() {
+        assertThat(dbProperties.get())
+                .containsEntry("db.user", "hosuaby")
+                .containsEntry("db.password", "password")
+                .containsEntry("db.url", "localhost");
+    }
+}
+----
+
+==== JSON and JSON Lines resource rules
+
+Rules `JsonResource` and `JsonLinesResource` can be used to parse content of resources in formats _JSON_ and
+_JSON Lines_ (one _JSON_ document per line) respectively. They rely on popular libraries, _Jackson_ or _Gson_ to parse
+content into multiple Java types like `Map<String, Object>`, `JsonNode` (for _Jackson_) & `JsonElement` (for _GSON_) or
+to Java POJO.
+
+In order to use those rules _Jackson_ (modules `jackson-core` & `jackson-databind`) or _Gson_
+(module `com.google.code.gson:gson`) must be present on Classpath.
+
+`json()` and `jsonLines()` rule builders require parser object provided using method `parseWith(Object parser)`.
+
+Example:
+
+[source, java]
+----
+class MyTestClass {
+
+    /* Parse JSON with Jackson */
+    @Rule
+    public JsonResource<Map<String, Object>> jsonAsMap = givenResource()
+            .json("/com/adelean/junit/jupiter/sponge-bob.json")
+            .parseWith(new ObjectMapper());
+
+    /* Parse JSON with Gson */
+    @Rule
+    public JsonLinesResource<Collection<Log>> logsAsCollection = givenResource()
+            .jsonLines("/com/adelean/junit/jupiter/logs.jsonl")
+            .parseWith(new Gson());
+}
+----
+
+==== YAML and YAML documents resource rules
+
+Rules `YamlResource` and `YamlDocumentsResource` can be used to parse content of resources in formats _YAML_ and
+_YAML documents_ (multiple YAML documents in the same file separated by three hyphens ---). `org.yaml:snakeyaml` must be
+present on Classpath in order to use those rules.
+
+`yaml()` and `yamlDocument()` rule builders requires to specify `Yaml` parser object using method
+`parseWith(Yaml yaml)`.
+
+Example:
+
+[source, java]
+----
+class MyTestClass {
+
+    /* Load and parse YAML resource */
+    @Rule
+    public YamlResource<Person> spongeBob = givenResource()
+            .yaml("/com/adelean/junit/jupiter/sponge-bob.yaml")
+            .parseWith(new Yaml());
+
+    /* Load and parse YAML documents resource */
+    @Rule
+    public YamlDocumentsResource<Log[]> logsAsArray = givenResource()
+            .yamlDocuments("/com/adelean/junit/jupiter/logs.yml")
+            .parseWith(new Yaml(new Constructor(Log.class)));
+}
+----

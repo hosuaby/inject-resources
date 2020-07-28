@@ -67,3 +67,8 @@ include::inject-resources-core/index.adoc[]
 == JUnit Jupiter extension
 
 include::inject-resources-junit-jupiter/index.adoc[]
+
+[[inject-resources-junit-vintage]]
+== JUnit 4 (Vintage) extension
+
+include::inject-resources-junit-vintage/index.adoc[]
