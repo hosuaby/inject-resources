@@ -4,9 +4,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/hosuaby/inject-resources/badge.svg)](https://coveralls.io/github/hosuaby/inject-resources)
 [![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg)](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
 [![User guide](https://img.shields.io/badge/User%20guide-0.1.0--beta-red)](https://hosuaby.github.io/inject-resources/0.1.0-beta/asciidoc/)
-[![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.1.0--beta-orange)](https://javadoc.io/doc/com.adelean/inject-resources-core)
-[![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.1.0--beta-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter)
-[![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.1.0--beta-yellow)](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage)
+[![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.1.0--beta-orange)](https://javadoc.io/doc/com.adelean/inject-resources-core/0.1.0-beta)
+[![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.1.0--beta-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter/0.1.0-beta)
+[![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.1.0--beta-yellow)](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage/0.1.0-beta)
 
 A convenient way to have resources content in your tests.
 
