@@ -468,7 +468,6 @@ class TestsWithJson {
 ## What's coming next
 
 - [ ] XML support
-- [ ] Junit 4 support
 - [ ] Caching for parsed resources
 - [ ] Spring support
 - [ ] CSV support
