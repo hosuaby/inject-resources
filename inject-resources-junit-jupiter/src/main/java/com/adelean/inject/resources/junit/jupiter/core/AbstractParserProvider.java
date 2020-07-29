@@ -1,12 +1,12 @@
 package com.adelean.inject.resources.junit.jupiter.core;
 
+import com.adelean.inject.resources.commons.AnnotationSupport;
 import com.adelean.inject.resources.commons.ClassSupport;
 import com.adelean.inject.resources.core.Parsable;
 import com.adelean.inject.resources.junit.jupiter.TestWithResourcesExtension;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.Annotations;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.MethodAsserts;
+import com.adelean.inject.resources.commons.FieldAsserts;
+import com.adelean.inject.resources.commons.MethodAsserts;
 import org.jetbrains.annotations.Nullable;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.junit.platform.commons.support.ReflectionSupport;
@@ -98,12 +98,12 @@ public abstract class AbstractParserProvider<
     }
 
     protected String parserNameFromMethod(Method method, A annotation) {
-        String parserName = Annotations.getName(annotation);
+        String parserName = AnnotationSupport.getName(annotation);
         return parserName != null ? parserName : method.getName();
     }
 
     protected String parserNameFromField(Field field, A annotation) {
-        String parserName = Annotations.getName(annotation);
+        String parserName = AnnotationSupport.getName(annotation);
         return parserName != null ? parserName : field.getName();
     }
 

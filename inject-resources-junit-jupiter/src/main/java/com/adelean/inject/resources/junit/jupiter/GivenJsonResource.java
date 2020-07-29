@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 
 import static org.apiguardian.api.API.Status.EXPERIMENTAL;
 
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Extends;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Resource;
+import com.adelean.inject.resources.annotations.Extends;
+import com.adelean.inject.resources.annotations.Resource;
 
 /**
  * Annotates field or test parameter that must be injected with parsed content of JSON resource file with path

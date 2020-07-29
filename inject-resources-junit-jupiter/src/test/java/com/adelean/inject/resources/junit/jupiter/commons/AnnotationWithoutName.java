@@ -5,8 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Extends;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Named;
+import com.adelean.inject.resources.annotations.Extends;
+import com.adelean.inject.resources.annotations.Named;
 
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)

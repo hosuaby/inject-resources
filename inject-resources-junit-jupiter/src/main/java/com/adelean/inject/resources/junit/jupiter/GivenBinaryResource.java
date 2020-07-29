@@ -9,8 +9,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.apiguardian.api.API;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Resource;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
+import com.adelean.inject.resources.annotations.Resource;
+import com.adelean.inject.resources.annotations.SupportedTypes;
 
 /**
  * Annotates field or test parameter that must be injected with content of binary resource file with path

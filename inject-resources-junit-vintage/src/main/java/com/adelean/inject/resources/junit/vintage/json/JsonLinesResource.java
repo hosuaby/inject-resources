@@ -5,6 +5,7 @@ import com.adelean.inject.resources.core.ResourceAsLines;
 import com.adelean.inject.resources.core.function.ThrowingFunction;
 import com.adelean.inject.resources.junit.vintage.helpers.CodeAnchor;
 import com.adelean.inject.resources.junit.vintage.helpers.ReifiedGenerics;
+import com.adelean.inject.resources.parsers.Parsers;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
@@ -67,7 +68,7 @@ public final class JsonLinesResource<T> extends AbstractJsonResource<T> {
         Type targetType = assertArrayOrCollection(ReifiedGenerics.targetType(testClass, this), getClass());
         Type elementType = elementType(targetType);
 
-        ThrowingFunction<Reader, T> parseFunction = parseFunction(assertHasParser(), elementType);
+        ThrowingFunction<Reader, T> parseFunction = Parsers.parseFunction(assertHasParser(), elementType);
 
         try (ResourceAsLines resource = resource()
                 .onClassLoaderOf(testClass)

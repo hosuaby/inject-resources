@@ -17,8 +17,8 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertArrayOrCollection;
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertNonPrivate;
+import static com.adelean.inject.resources.commons.FieldAsserts.assertArrayOrCollection;
+import static com.adelean.inject.resources.commons.FieldAsserts.assertNonPrivate;
 
 public final class JsonLinesResourcesInjector extends AbstractJsonResourcesInjector<GivenJsonLinesResource> {
     private final JsonLinesResourceResolver resourceResolver;

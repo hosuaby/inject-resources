@@ -1,11 +1,11 @@
 package com.adelean.inject.resources.junit.vintage.helpers;
 
-import static org.reflections.ReflectionUtils.getAllFields;
-import static org.reflections.ReflectionUtils.getConstructors;
-import static org.reflections.ReflectionUtils.withAnnotation;
-import static org.reflections.ReflectionUtils.withModifier;
-import static org.reflections.ReflectionUtils.withParametersCount;
-import static org.reflections.ReflectionUtils.withTypeAssignableTo;
+import static org.reflections8.ReflectionUtils.getAllFields;
+import static org.reflections8.ReflectionUtils.getConstructors;
+import static org.reflections8.ReflectionUtils.withAnnotation;
+import static org.reflections8.ReflectionUtils.withModifier;
+import static org.reflections8.ReflectionUtils.withParametersCount;
+import static org.reflections8.ReflectionUtils.withTypeAssignableTo;
 
 import com.adelean.inject.resources.junit.vintage.core.AbstractResourceRule;
 import com.adelean.inject.resources.junit.vintage.core.ResourceRule;

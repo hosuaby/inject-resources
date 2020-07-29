@@ -1,8 +1,8 @@
 package com.adelean.inject.resources.junit.jupiter;
 
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Extends;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Resource;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
+import com.adelean.inject.resources.annotations.Extends;
+import com.adelean.inject.resources.annotations.Resource;
+import com.adelean.inject.resources.annotations.SupportedTypes;
 import org.apiguardian.api.API;
 
 import java.lang.annotation.Documented;

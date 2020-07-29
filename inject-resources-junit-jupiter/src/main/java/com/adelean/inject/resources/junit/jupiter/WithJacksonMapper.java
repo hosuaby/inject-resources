@@ -1,7 +1,7 @@
 package com.adelean.inject.resources.junit.jupiter;
 
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Parser;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
+import com.adelean.inject.resources.annotations.Parser;
+import com.adelean.inject.resources.annotations.SupportedTypes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apiguardian.api.API;
 

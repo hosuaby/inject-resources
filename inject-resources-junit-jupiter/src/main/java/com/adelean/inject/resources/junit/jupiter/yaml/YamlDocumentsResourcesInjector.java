@@ -1,7 +1,7 @@
 package com.adelean.inject.resources.junit.jupiter.yaml;
 
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertArrayOrCollection;
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertNonPrivate;
+import static com.adelean.inject.resources.commons.FieldAsserts.assertArrayOrCollection;
+import static com.adelean.inject.resources.commons.FieldAsserts.assertNonPrivate;
 
 import com.adelean.inject.resources.commons.ClassSupport;
 import com.adelean.inject.resources.core.ResourceAsReader;
@@ -70,11 +70,6 @@ public final class YamlDocumentsResourcesInjector extends AbstractYamlResourcesI
     @Override
     @Nullable
     protected String yamlParserName(GivenYamlDocumentsResource resourceAnnotation) {
-        String yamlParserName = resourceAnnotation.yaml();
-        if (StringUtils.isBlank(yamlParserName)) {
-            yamlParserName = null;
-        }
-
-        return yamlParserName;
+        return StringUtils.blankToNull(resourceAnnotation.yaml());
     }
 }

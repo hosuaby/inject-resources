@@ -3,6 +3,7 @@ package com.adelean.inject.resources.junit.vintage.json;
 import com.adelean.inject.resources.core.function.ThrowingFunction;
 import com.adelean.inject.resources.junit.vintage.helpers.CodeAnchor;
 import com.adelean.inject.resources.junit.vintage.helpers.ReifiedGenerics;
+import com.adelean.inject.resources.parsers.Parsers;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
@@ -52,7 +53,7 @@ public final class JsonResource<T> extends AbstractJsonResource<T> {
     protected T load(Statement base, Description description) {
         Class<?> testClass = description.getTestClass();
         Type targetType = ReifiedGenerics.targetType(testClass, this);
-        ThrowingFunction<Reader, T> parseFunction = parseFunction(assertHasParser(), targetType);
+        ThrowingFunction<Reader, T> parseFunction = Parsers.parseFunction(assertHasParser(), targetType);
 
         return resource()
                 .onClassLoaderOf(testClass)

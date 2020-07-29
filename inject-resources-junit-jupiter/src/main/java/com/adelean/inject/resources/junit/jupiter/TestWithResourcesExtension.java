@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.Annotations.PARSER_ANNOTATIONS;
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.Annotations.RESOURCE_ANNOTATIONS;
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertNotConstructor;
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertNotStaticMethod;
+import static com.adelean.inject.resources.commons.MethodAsserts.assertNotConstructor;
+import static com.adelean.inject.resources.commons.MethodAsserts.assertNotStaticMethod;
+import static com.adelean.inject.resources.junit.jupiter.core.Annotations.PARSER_ANNOTATIONS;
+import static com.adelean.inject.resources.junit.jupiter.core.Annotations.RESOURCE_ANNOTATIONS;
 import static java.util.stream.Collectors.toList;
 
 public class TestWithResourcesExtension implements BeforeAllCallback, BeforeEachCallback, ParameterResolver {

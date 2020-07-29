@@ -1,5 +1,7 @@
 package com.adelean.inject.resources.core.helpers;
 
+import org.jetbrains.annotations.Nullable;
+
 public final class StringUtils {
     private StringUtils() {
     }
@@ -14,5 +16,10 @@ public final class StringUtils {
 
     public static boolean isBlank(String str) {
         return (str == null || str.trim().isEmpty());
+    }
+
+    @Nullable
+    public static String blankToNull(String str) {
+        return isNotBlank(str) ? str : null;
     }
 }

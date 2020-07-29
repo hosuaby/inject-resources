@@ -1,0 +1,60 @@
+package com.adelean.inject.resources.spring.json;
+
+import static com.adelean.inject.resources.commons.ClasspathSupport.GSON_CLASS_NAME;
+import static com.adelean.inject.resources.commons.ClasspathSupport.JACKSON_MAPPER_CLASS_NAME;
+import static com.adelean.inject.resources.commons.ClasspathSupport.isGsonPresent;
+import static com.adelean.inject.resources.commons.ClasspathSupport.isJackson2Present;
+
+import com.adelean.inject.resources.spring.core.AbstractResourceInjectedElement;
+import org.reflections8.ReflectionUtils;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.lang.Nullable;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Member;
+
+abstract class AbstractJsonResourceInjectedElement<A extends Annotation>
+        extends AbstractResourceInjectedElement<A> {
+    private static final String ERR_NO_PARSER_BEAN =
+            "No JSON parser bean was found.\nBean of any of following types is required:"
+                    + "\n\t- " + JACKSON_MAPPER_CLASS_NAME
+                    + "\n\t- " + GSON_CLASS_NAME;
+
+    protected AbstractJsonResourceInjectedElement(
+            Member member,
+            A resourceAnnotation,
+            ApplicationContext applicationContext) {
+        super(member, resourceAnnotation, applicationContext);
+    }
+
+    protected Object findParser(@Nullable String parserBeanName) {
+        Object parser = null;
+
+        if (parserBeanName != null) {
+            parser = applicationContext.getBean(parserBeanName);
+        } else {
+            if (isJackson2Present()) {
+                Class<?> jacksonMapperClass = ReflectionUtils.forName(JACKSON_MAPPER_CLASS_NAME);
+                try {
+                    parser = applicationContext.getBean(jacksonMapperClass);
+                } catch (Exception ignored) {
+                }
+            }
+
+            if (parser == null && isGsonPresent()) {
+                Class<?> gsonClass = ReflectionUtils.forName(GSON_CLASS_NAME);
+                try {
+                    parser = applicationContext.getBean(gsonClass);
+                } catch (Exception ignored) {
+                }
+            }
+        }
+
+        if (parser != null) {
+            return parser;
+        } else {
+            throw new NoSuchBeanDefinitionException("", ERR_NO_PARSER_BEAN);
+        }
+    }
+}

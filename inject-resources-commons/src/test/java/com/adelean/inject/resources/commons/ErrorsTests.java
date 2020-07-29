@@ -38,7 +38,7 @@ public class ErrorsTests {
         String expected =
                 "\t- java.lang.String\n"
                 + "\t- java.io.File\n"
-                + "\t- java.nio.file.Path\n";
+                + "\t- java.nio.file.Path";
 
         /* When */
         String str = Errors.typesToString(types);

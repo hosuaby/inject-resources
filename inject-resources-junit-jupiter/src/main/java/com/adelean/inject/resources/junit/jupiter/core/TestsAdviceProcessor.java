@@ -1,7 +1,7 @@
 package com.adelean.inject.resources.junit.jupiter.core;
 
-import static org.reflections.ReflectionUtils.withModifier;
-import static org.reflections.ReflectionUtils.withParametersCount;
+import static org.reflections8.ReflectionUtils.withModifier;
+import static org.reflections8.ReflectionUtils.withParametersCount;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
@@ -10,10 +10,10 @@ import java.util.Set;
 
 import org.junit.jupiter.api.extension.ExtensionConfigurationException;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.reflections.ReflectionUtils;
-import org.reflections.Reflections;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
+import org.reflections8.ReflectionUtils;
+import org.reflections8.Reflections;
+import org.reflections8.util.ClasspathHelper;
+import org.reflections8.util.ConfigurationBuilder;
 import com.adelean.inject.resources.junit.jupiter.TestsAdvice;
 import com.adelean.inject.resources.commons.Errors;
 

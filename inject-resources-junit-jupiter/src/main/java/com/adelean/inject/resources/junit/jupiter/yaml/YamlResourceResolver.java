@@ -1,9 +1,9 @@
 package com.adelean.inject.resources.junit.jupiter.yaml;
 
+import com.adelean.inject.resources.commons.AnnotationSupport;
 import com.adelean.inject.resources.core.ResourceAsReader;
 import com.adelean.inject.resources.junit.jupiter.GivenYamlResource;
 import com.adelean.inject.resources.junit.jupiter.core.ResourceResolver;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.Annotations;
 
 import java.nio.charset.Charset;
 
@@ -16,7 +16,7 @@ public final class YamlResourceResolver extends ResourceResolver<GivenYamlResour
 
     @Override
     public ResourceAsReader resolve(GivenYamlResource resourceAnnotation) {
-        String path = Annotations.getFrom(resourceAnnotation);
+        String path = AnnotationSupport.getFrom(resourceAnnotation);
         Charset charset = Charset.forName(resourceAnnotation.charset());
 
         return resource()

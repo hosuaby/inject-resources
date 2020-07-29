@@ -1,0 +1,64 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'jacoco'
+    id 'com.jfrog.bintray' version '1.8.5'
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+def JUNIT_VERSION = '5.6.0'
+
+dependencies {
+    compileOnly project(':inject-resources-core')
+    compileOnly project(':inject-resources-commons')
+    compileOnly group: 'org.springframework', name: 'spring-context'
+    compileOnly group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+
+    implementation group: 'net.oneandone.reflections8', name: 'reflections8', version: '0.11.7'
+
+    implementation enforcedPlatform('org.springframework.boot:spring-boot-dependencies:2.3.2.RELEASE')
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    testCompile group: 'io.leangen.geantyref', name: 'geantyref', version: '1.3.11'
+
+    testImplementation project(':test-commons')
+    testImplementation project(':inject-resources-core')
+    testImplementation project(':inject-resources-commons')
+    testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
+    testImplementation group: 'com.tngtech.archunit', name: 'archunit', version: '0.14.1'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

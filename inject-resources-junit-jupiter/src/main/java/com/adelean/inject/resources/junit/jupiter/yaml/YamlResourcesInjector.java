@@ -34,11 +34,6 @@ public final class YamlResourcesInjector extends AbstractYamlResourcesInjector<G
     @Override
     @Nullable
     protected String yamlParserName(GivenYamlResource resourceAnnotation) {
-        String yamlParserName = resourceAnnotation.yaml();
-        if (StringUtils.isBlank(yamlParserName)) {
-            yamlParserName = null;
-        }
-
-        return yamlParserName;
+        return StringUtils.blankToNull(resourceAnnotation.yaml());
     }
 }

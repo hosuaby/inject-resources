@@ -4,10 +4,10 @@ import static com.adelean.inject.resources.core.InjectResources.resource;
 
 import java.nio.charset.Charset;
 
+import com.adelean.inject.resources.commons.AnnotationSupport;
 import com.adelean.inject.resources.core.ResourceAsReader;
 import com.adelean.inject.resources.junit.jupiter.GivenJsonResource;
 import com.adelean.inject.resources.junit.jupiter.core.ResourceResolver;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.Annotations;
 
 public final class JsonResourceResolver extends ResourceResolver<GivenJsonResource, ResourceAsReader> {
     protected JsonResourceResolver(Class<?> testClass) {
@@ -16,7 +16,7 @@ public final class JsonResourceResolver extends ResourceResolver<GivenJsonResour
 
     @Override
     public ResourceAsReader resolve(GivenJsonResource resourceAnnotation) {
-        String path = Annotations.getFrom(resourceAnnotation);
+        String path = AnnotationSupport.getFrom(resourceAnnotation);
         Charset charset = Charset.forName(resourceAnnotation.charset());
 
         return resource()

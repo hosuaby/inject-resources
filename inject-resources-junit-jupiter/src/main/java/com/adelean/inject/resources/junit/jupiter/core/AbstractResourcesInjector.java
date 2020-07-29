@@ -15,8 +15,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Map;
 
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertNonPrivate;
-import static com.adelean.inject.resources.junit.jupiter.core.helpers.FieldAsserts.assertSupportedType;
+import static com.adelean.inject.resources.commons.FieldAsserts.assertNonPrivate;
+import static com.adelean.inject.resources.commons.FieldAsserts.assertSupportedType;
 import static java.util.stream.Collectors.toMap;
 import static org.junit.platform.commons.util.ReflectionUtils.makeAccessible;
 

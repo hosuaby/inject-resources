@@ -9,8 +9,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.apiguardian.api.API;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Parser;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
+import com.adelean.inject.resources.annotations.Parser;
+import com.adelean.inject.resources.annotations.SupportedTypes;
 import com.google.gson.Gson;
 
 /**

@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 
 import org.apiguardian.api.API;
 import org.yaml.snakeyaml.Yaml;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.Parser;
-import com.adelean.inject.resources.junit.jupiter.core.annotations.SupportedTypes;
+import com.adelean.inject.resources.annotations.Parser;
+import com.adelean.inject.resources.annotations.SupportedTypes;
 
 /**
  * Annotates field or method of a test class or of a tests advice class (see {@link TestsAdvice}) that defines

@@ -470,6 +470,5 @@ class TestsWithJson {
 
 - [ ] XML support
 - [ ] Caching for parsed resources
-- [ ] Spring support
 - [ ] CSV support
 

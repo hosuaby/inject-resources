@@ -2,10 +2,10 @@ package com.adelean.inject.resources.junit.jupiter.binary;
 
 import static com.adelean.inject.resources.core.InjectResources.resource;
 
+import com.adelean.inject.resources.commons.AnnotationSupport;
 import com.adelean.inject.resources.core.ResourceAsByteArray;
 import com.adelean.inject.resources.junit.jupiter.GivenBinaryResource;
 import com.adelean.inject.resources.junit.jupiter.core.ResourceResolver;
-import com.adelean.inject.resources.junit.jupiter.core.helpers.Annotations;
 
 public final class BinaryResourceResolver extends ResourceResolver<GivenBinaryResource, ResourceAsByteArray> {
     protected BinaryResourceResolver(Class<?> testClass) {
@@ -14,7 +14,7 @@ public final class BinaryResourceResolver extends ResourceResolver<GivenBinaryRe
 
     @Override
     public ResourceAsByteArray resolve(GivenBinaryResource resourceAnnotation) {
-        String path = Annotations.getFrom(resourceAnnotation);
+        String path = AnnotationSupport.getFrom(resourceAnnotation);
 
         return resource()
                 .onClassLoaderOf(testClass)

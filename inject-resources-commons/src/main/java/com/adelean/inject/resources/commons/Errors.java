@@ -17,7 +17,7 @@ public final class Errors {
     public static String typesToString(Class<?>... types) {
         return Stream
                 .of(types)
-                .map(type -> String.format("\t- %s\n", type.getName()))
-                .collect(Collectors.joining());
+                .map(type -> String.format("\t- %s", type.getName()))
+                .collect(Collectors.joining("\n"));
     }
 }
