@@ -102,9 +102,9 @@ def GSON_VERSION = '2.8.0'
 dependencies {
     compile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
-    compile project(':inject-resources-commons')
 
     compileOnly project(':inject-resources-core')
+    compileOnly project(':inject-resources-commons')
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     compileOnly group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
@@ -120,6 +120,7 @@ dependencies {
 
     testImplementation project(':test-commons')
     testImplementation project(':inject-resources-core')
+    testImplementation project(':inject-resources-commons')
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
