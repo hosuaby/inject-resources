@@ -24,6 +24,7 @@ allprojects {
 def coveredProjectsPaths = [
         ':inject-resources-core',
         ':inject-resources-commons',
+        ':inject-resources-spring',
         ':inject-resources-junit-jupiter',
         ':inject-resources-junit-vintage'
 ]
