@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class Annotations {
+    private static final String ERR_INVALID_ANNOTATIONS =
+            "%s '%s' annotated with @%s has other invalid annotations:\n%s";
+
     public static final Collection<Class<? extends Annotation>> RESOURCE_ANNOTATIONS =
             AnnotationSupport.allResourceAnnotations(EnableResourceInjection.class);
 
@@ -53,6 +56,33 @@ public final class Annotations {
         }
 
         return foundAnnotation;
+    }
+
+    public static void assertNoOtherAnnotations(AnnotatedElement annotatedElement, Annotation resourceAnnotation) {
+        if (annotatedElement.getDeclaredAnnotations().length > 1) {
+            String target = null;
+            String targetName = null;
+
+            if (annotatedElement instanceof Field) {
+                target = "Field";
+                targetName = ((Field) annotatedElement).getName();
+            } else if (annotatedElement instanceof Method) {
+                target = "Method";
+                targetName = ((Method) annotatedElement).getName();
+            } else if (annotatedElement instanceof Parameter) {
+                target = "Parameter";
+                targetName = ((Parameter) annotatedElement).getName();
+            }
+
+            String invalidAnnotations = annotationsToString(invalidAnnotations(annotatedElement, resourceAnnotation));
+
+            throw new BeanCreationException(String.format(
+                    ERR_INVALID_ANNOTATIONS,
+                    target,
+                    targetName,
+                    resourceAnnotation.annotationType().getSimpleName(),
+                    invalidAnnotations));
+        }
     }
 
     public static Annotation[] invalidAnnotations(AnnotatedElement annotatedElement, Annotation resourceAnnotation) {

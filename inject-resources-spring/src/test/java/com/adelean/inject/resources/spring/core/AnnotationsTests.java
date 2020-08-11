@@ -12,8 +12,10 @@ import static java.util.Collections.emptyMap;
 import static java.util.Collections.singletonMap;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.reflections8.ReflectionUtils.getAnnotations;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.AnnotatedElement;
 
 public class AnnotationsTests {
 
@@ -61,6 +63,43 @@ public class AnnotationsTests {
     }
 
     @Test
+    @DisplayName("Test assert no other annotations")
+    public void testAssertNoOtherAnnotations() throws Exception {
+
+        /* Given */
+        var validField = AssertsTests.TestClass.class.getDeclaredField("validField");
+        var invalidField = AssertsTests.TestClass.class.getDeclaredField("invalidField");
+        var invalidParameter = AssertsTests.TestClass.class.getDeclaredConstructor(String.class).getParameters()[0];
+        var invalidSetter = AssertsTests.TestClass.class.getDeclaredMethod("invalidSetter", String.class);
+
+        /* When */
+        ThrowableAssert.ThrowingCallable assertValidField = () -> Annotations.assertNoOtherAnnotations(
+                validField, resourceAnnotation(validField));
+        ThrowableAssert.ThrowingCallable assertInvalidField = () -> Annotations.assertNoOtherAnnotations(
+                invalidField, resourceAnnotation(invalidField));
+        ThrowableAssert.ThrowingCallable assertInvalidParameter = () -> Annotations.assertNoOtherAnnotations(
+                invalidParameter, resourceAnnotation(invalidParameter));
+        ThrowableAssert.ThrowingCallable assertInvalidSetter = () -> Annotations.assertNoOtherAnnotations(
+                invalidSetter, resourceAnnotation(invalidSetter));
+
+        /* Then */
+        assertThatCode(assertValidField)
+                .doesNotThrowAnyException();
+        assertThatCode(assertInvalidField)
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Field 'invalidField' annotated with @TextResource has other invalid annotations:\n"
+                        + "\t- @Autowired");
+        assertThatCode(assertInvalidParameter)
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Parameter 'arg0' annotated with @TextResource has other invalid annotations:\n"
+                        + "\t- @Autowired");
+        assertThatCode(assertInvalidSetter)
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Method 'invalidSetter' annotated with @TextResource has other invalid annotations:\n"
+                        + "\t- @Autowired");
+    }
+
+    @Test
     @DisplayName("Test get invalid annotations")
     public void testInvalidAnnotations() throws Exception {
 
@@ -99,6 +138,15 @@ public class AnnotationsTests {
                 .isNotEmpty()
                 .isNotBlank()
                 .isEqualTo("\t- @Autowired\n\t- @BinaryResource\n\t- @TextResource");
+    }
+
+    @SuppressWarnings("unchecked")
+    static Annotation resourceAnnotation(AnnotatedElement annotatedElement) {
+        return getAnnotations(annotatedElement)
+                .stream()
+                .filter(annotation -> annotation instanceof TextResource)
+                .findAny()
+                .orElse(null);
     }
 
     static class TestClass {

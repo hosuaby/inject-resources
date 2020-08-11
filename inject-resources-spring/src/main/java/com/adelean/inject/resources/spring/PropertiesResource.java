@@ -12,6 +12,16 @@ import java.lang.annotation.Target;
 import java.util.Properties;
 
 /**
+ * Annotates beans field, constructor argument or setter method that must be injected with content of properties
+ * resource file with path {@code 'from'}.
+ *
+ * <p>Example:</p>
+ *
+ * <pre>
+ * &#64;PropertiesResource("/com/adelean/junit/jupiter/db.properties")
+ * private Properties dbProperties;
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 @Target({ ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD })
@@ -21,7 +31,19 @@ import java.util.Properties;
 @Extends(TextResource.class)
 @SupportedTypes(Properties.class)
 public @interface PropertiesResource {
+
+    /**
+     * @return Alias for {@link #from()}.
+     */
     String value() default "";
+
+    /**
+     * @return Absolute path to requested properties resource file.
+     */
     String from() default "";
+
+    /**
+     * @return Encoding charset of resource file.
+     */
     String charset() default "UTF-8";
 }

@@ -2,7 +2,6 @@ package com.adelean.inject.resources.spring.beans;
 
 import com.adelean.inject.resources.spring.core.AbstractResourceInjectedElement;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -15,12 +14,9 @@ import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.util.stream.Stream;
 
-import static com.adelean.inject.resources.commons.FieldAsserts.assertSupportedType;
 import static com.adelean.inject.resources.spring.core.AbstractResourceInjectedElement.injectorForResource;
-import static com.adelean.inject.resources.spring.core.Annotations.annotationsToString;
+import static com.adelean.inject.resources.spring.core.Annotations.assertNoOtherAnnotations;
 import static com.adelean.inject.resources.spring.core.Annotations.findSingleResourceAnnotation;
-import static com.adelean.inject.resources.spring.core.Annotations.invalidAnnotations;
-import static com.adelean.inject.resources.spring.core.Asserts.assertNoOtherAnnotations;
 
 public class InjectedResourcesBeanFactoryPostProcessor implements BeanFactoryPostProcessor, ApplicationContextAware {
     private ApplicationContext applicationContext;

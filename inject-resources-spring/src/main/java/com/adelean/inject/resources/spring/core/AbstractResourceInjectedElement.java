@@ -22,7 +22,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 import static com.adelean.inject.resources.commons.FieldAsserts.assertSupportedType;
-import static com.adelean.inject.resources.spring.core.Asserts.assertNoOtherAnnotations;
+import static com.adelean.inject.resources.spring.core.Annotations.assertNoOtherAnnotations;
 import static java.util.stream.Collectors.toMap;
 
 public abstract class AbstractResourceInjectedElement<A extends Annotation> extends InjectionMetadata.InjectedElement {

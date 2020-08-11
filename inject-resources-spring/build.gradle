@@ -34,7 +34,8 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 def JUNIT_VERSION = '5.6.0'
 
 dependencies {
-    compileOnly project(':inject-resources-core')
+    compile project(':inject-resources-core')
+
     compileOnly project(':inject-resources-commons')
     compileOnly group: 'org.springframework', name: 'spring-context'
     compileOnly group: 'org.yaml', name: 'snakeyaml', version: '1.26'

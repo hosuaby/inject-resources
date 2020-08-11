@@ -2,7 +2,7 @@
  * This package provides exposed API of {@link com.adelean.inject.resources.junit.vintage.GivenResource} JUnit4
  * (Vintage) extension.
  *
- * This extension consist of set of JUnit rules that can be used to get content of resources in tests easily.
+ * <p>This extension consist of set of JUnit rules that can be used to get content of resources in tests easily.
  *
  * <h2>Available resource rules:</h2>
  * <ul>

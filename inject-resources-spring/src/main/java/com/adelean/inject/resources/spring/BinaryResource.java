@@ -10,6 +10,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Annotates beans field, constructor argument or setter method that must be injected with content of binary resource
+ * file with path {@code 'from'}.
+ *
+ * <p>Example:</p>
+ *
+ * <pre>
+ * &#64;BinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
+ * private byte[] fibonacciInstanceField;
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 @Target({ ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD })
@@ -18,6 +28,14 @@ import java.lang.annotation.Target;
 @Resource
 @SupportedTypes(byte[].class)
 public @interface BinaryResource {
+
+    /**
+     * @return Alias for {@link #from()}.
+     */
     String value() default "";
+
+    /**
+     * @return Absolute path to requested binary resource file.
+     */
     String from() default "";
 }

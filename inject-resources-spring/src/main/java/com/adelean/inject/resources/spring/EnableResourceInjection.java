@@ -10,6 +10,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Enables resource content injection.
+ *
+ * <p>Usage:</p>
+ *
+ * <pre>
+ * &#64;Configuration
+ * &#64;EnableResourceInjection
+ * public class MyConfig {
+ * }
+ * </pre>
+ *
  * @author Alexei KLENIN
  */
 @Target(ElementType.TYPE)
