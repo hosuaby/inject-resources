@@ -56,12 +56,19 @@ repositories {
 Library composed of following modules:
 
 - <<inject-resources-core>>
+- <<inject-resources-spring>>
 - <<inject-resources-junit-jupiter>>
+- <<inject-resources-junit-vintage>>
 
 [[inject-resources-core]]
 == Java DSL
 
 include::inject-resources-core/index.adoc[]
+
+[[inject-resources-spring]]
+== Spring module
+
+include::inject-resources-spring/index.adoc[]
 
 [[inject-resources-junit-jupiter]]
 == JUnit Jupiter extension

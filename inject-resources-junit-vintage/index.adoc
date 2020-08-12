@@ -1,3 +1,4 @@
+
 `@InjectResources` JUnit 4 (Vintage) extension simplifies access to content of resources in your JUnit tests.
 
 === Dependency
@@ -153,8 +154,9 @@ _JSON Lines_ (one _JSON_ document per line) respectively. They rely on popular l
 content into multiple Java types like `Map<String, Object>`, `JsonNode` (for _Jackson_) & `JsonElement` (for _GSON_) or
 to Java POJO.
 
-In order to use those rules _Jackson_ (modules `jackson-core` & `jackson-databind`) or _Gson_
-(module `com.google.code.gson:gson`) must be present on Classpath.
+In order to use those rules https://github.com/FasterXML/jackson[Jackson] (modules `jackson-core` & `jackson-databind`)
+or https://github.com/google/gson/blob/master/UserGuide.md[GSON] (module `com.google.code.gson:gson`) must be present on
+Classpath.
 
 `json()` and `jsonLines()` rule builders require parser object provided using method `parseWith(Object parser)`.
 
@@ -184,7 +186,8 @@ Rules `YamlResource` and `YamlDocumentsResource` can be used to parse content of
 _YAML documents_ (multiple YAML documents in the same file separated by three hyphens ---). `org.yaml:snakeyaml` must be
 present on Classpath in order to use those rules.
 
-`yaml()` and `yamlDocument()` rule builders requires to specify `Yaml` parser object using method
+`yaml()` and `yamlDocument()` rule builders requires to specify `org.yaml.snakeyaml.Yaml`
+(https://bitbucket.org/asomov/snakeyaml/wiki/Documentation[Snakeyaml]) parser object using method
 `parseWith(Yaml yaml)`.
 
 Example:

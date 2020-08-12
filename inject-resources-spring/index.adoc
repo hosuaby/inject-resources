@@ -1,0 +1,301 @@
+`@InjectResources` module for convenient resource injection in your Spring application.
+
+This module is alternative to
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/io/ResourceLoader.html[ResourceLoader]
+and https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/util/ResourceUtils.html[ResourceUtils]
+from Spring.
+
+=== Dependency
+
+Add `inject-resources-spring` to your project.
+
+Using Maven:
+
+[source, xml, subs="+attributes"]
+----
+<dependency>
+    <groupId>com.adelean</groupId>
+    <artifactId>inject-resources-spring</artifactId>
+    <version>{project-version}</version>
+</dependency>
+----
+
+Using Gradle:
+
+[source, groovy, subs="+attributes"]
+----
+compile group: 'com.adelean', name: 'inject-resources-spring', version: '{project-version}'
+----
+
+=== Enabling resource injection
+
+To enable resource injection annotation any spring configuration with `@EnableResourceInjection`.
+
+Example:
+
+[source, java]
+----
+ @Configuration
+ @EnableResourceInjection
+ public class MyConfig {
+ }
+----
+
+Then you can use use resource annotations to inject content of resources into your beans:
+
+[source, java]
+----
+@Component
+public class MyBean {
+
+    @BinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
+    private byte[] fibonacciInstanceField;
+
+    @Autowired
+    public MyBean(
+            @TextResource("/com/adelean/junit/jupiter/resource.txt")
+            String text) {
+        // ...
+    }
+
+    @JsonResource(from = "/com/adelean/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper")
+    public void setParsedJson(Person parsedJson) {
+        // ...
+    }
+}
+----
+
+=== Resource annotations
+
+Resource annotations can annotate beans field, constructor argument or setter method that must be injected with content
+of resource.
+
+The following sections present those available resource annotations and their usage.
+
+==== Binary resources
+
+Given a resource `/com/adelean/junit/jupiter/fibonacci.bin` with binary content:
+
+[source, text]
+----
+1 1 2 3 5 8 13 21 34 55 89
+----
+
+Inject the content of that resource using annotation `@BinaryResource`:
+
+[source, java]
+----
+@Component
+class MyBean {
+
+    @BinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
+    private byte[] fibonacci;
+}
+----
+
+==== Text resources
+
+Assuming there is a resource `/com/adelean/junit/jupiter/resource.txt` containing
+
+[source, text]
+----
+The quick brown fox jumps over the lazy dog.
+----
+
+Content of that resource can be injected using annotation `@TextResource`:
+
+[source, java]
+----
+@Component
+class MyBean {
+
+    @TextResource("/com/adelean/junit/jupiter/resource.txt")
+    private String instanceField;
+}
+----
+
+==== Properties resources
+
+Given a properties resource `/com/adelean/junit/jupiter/db.properties` with content:
+
+[source, properties]
+----
+db.user=hosuaby
+db.password=password
+db.url=localhost
+----
+
+These properties can be injected using annotation `@PropertiesResource`:
+
+[source, java]
+----
+@Component
+class MyBean {
+
+    @PropertiesResource("/com/adelean/junit/jupiter/db.properties")
+    private Properties dbProperties;
+}
+----
+
+==== JSON and JSON Lines resources
+
+Annotations `JsonResource` and `JsonLinesResource` can be used to load and parse content of resources in formats _JSON_
+and  _JSON Lines_ (one _JSON_ document per line) respectively. They rely on popular libraries, _Jackson_ or _Gson_ to
+parse content into multiple Java types like `Map<String, Object>`, `JsonNode` (for _Jackson_) & `JsonElement`
+(for _GSON_) or to Java POJO.
+
+In order to use those annotations bean of type `com.fasterxml.jackson.databind.ObjectMapper` from
+https://github.com/FasterXML/jackson[Jackson] or `com.google.gson.Gson` from
+https://github.com/google/gson/blob/master/UserGuide.md[GSON] must be present in application context.
+
+`JsonResource` and `JsonLinesResource` have a property `parserBean` that allow to specify the name of used parser bean
+in case where there are multiple `ObjectMapper` or `Gson` beans in context. If value of that property is empty, the
+first found or primary bean if those types is used.
+
+===== Example with Jackson
+
+[source, java]
+----
+ @Configuration
+ @EnableResourceInjection
+ public class JacksonConfig {
+
+    @Bean
+    @Primary
+    public ObjectMapper defaultObjectMapper() {
+        return new ObjectMapper();
+    }
+
+    @Bean
+    public ObjectMapper logsObjectMapper() {
+        return new ObjectMapper()
+                .registerModule(new JavaTimeModule());
+    }
+ }
+----
+
+[source, java]
+----
+@Component
+public class MyBean {
+
+    /* JSON resources */
+    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    static Map<String, Object> jsonAsMap;
+
+    @JsonResource(from = "/com/adelean/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper")
+    JsonNode jsonNode;
+
+    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    Person spongeBob;
+
+    /* JSONL resources */
+    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsObjectMapper")
+    private Log[] logsAsArray;
+
+    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsObjectMapper")
+    private Collection<Log> logsAsCollection;
+}
+----
+
+===== Example with Gson
+
+[source, java]
+----
+@Configuration
+@EnableResourceInjection
+public class GsonConfig {
+
+    @Bean
+    @Primary
+    public Gson defaultGson() {
+        return new Gson();
+    }
+
+    @Bean
+    public Gson logsGson() {
+        return new GsonBuilder()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
+                .create();
+    }
+}
+----
+
+[source, java]
+----
+@Component
+public class MyBean {
+
+    /* JSON resources */
+    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    private static Map<String, Object> jsonAsMap;
+
+    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    protected JsonElement jsonElement;
+
+    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    Person spongeBob;
+
+    /* JSONL resources */
+    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsGson")
+    private Log[] logsAsArray;
+
+    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsGson")
+    private Collection<Log> logsAsCollection;
+}
+----
+
+==== YAML and YAML documents resources
+
+Annotations `YamlResource` and `YamlDocumentsResource` can be used to parse content of resources in formats _YAML_ and
+_YAML documents_ (multiple YAML documents in the same file separated by three hyphens ---). Bean of type
+`org.yaml.snakeyaml.Yaml` from https://bitbucket.org/asomov/snakeyaml/wiki/Documentation[Snakeyaml] must be present in
+application context.
+
+Example:
+
+[source, java]
+----
+@Configuration
+@EnableResourceInjection
+public class YamlConfig {
+
+    @Bean
+    @Primary
+    public Yaml defaultYaml() {
+        return new Yaml();
+    }
+
+    @Bean("log-parser")
+    public Yaml logYaml() {
+        return new Yaml(new Constructor(Log.class));
+    }
+}
+----
+
+[source, java]
+----
+@Component
+public class MyBean {
+
+    /* YAML resources */
+    @YamlResource("/com/adelean/junit/jupiter/receipt.yml")
+    Map<String, Object> receipt;
+
+    @YamlResource("/com/adelean/junit/jupiter/sponge-bob.yaml")
+    Person spongeBob;
+
+    /* YAML documents resources */
+    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/stacktrace.yaml", yamlBean = "defaultYaml")
+    List<Map<String, Object>> stacktraceAsList;
+
+    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/stacktrace.yaml", yamlBean = "defaultYaml")
+    Map<String, Object>[] stacktraceAsArray;
+
+    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yamlBean = "log-parser")
+    Log[] logsAsArray;
+
+    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yamlBean = "log-parser")
+    Collection<Log> logsAsCollection;
+}
+----
