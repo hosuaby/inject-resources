@@ -466,10 +466,3 @@ class TestsWithJson {
     Collection<Log> logsAsCollection;
 }
 ```
-
-## What's coming next
-
-- [ ] XML support
-- [ ] Caching for parsed resources
-- [ ] CSV support
-
