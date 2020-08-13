@@ -3,10 +3,10 @@
 [![Build Status](https://travis-ci.org/hosuaby/inject-resources.svg?branch=master)](https://travis-ci.org/hosuaby/inject-resources)
 [![Coverage Status](https://coveralls.io/repos/github/hosuaby/inject-resources/badge.svg?branch=master)](https://coveralls.io/github/hosuaby/inject-resources?branch=master)
 [![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg)](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
-[![User guide](https://img.shields.io/badge/User%20guide-0.1.1--beta-red)](https://hosuaby.github.io/inject-resources/0.1.1-beta/asciidoc/)
-[![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.1.1--beta-orange)](https://javadoc.io/doc/com.adelean/inject-resources-core/0.1.1-beta)
-[![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.1.1--beta-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter/0.1.1-beta)
-[![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.1.1--beta-yellow)](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage/0.1.1-beta)
+[![User guide](https://img.shields.io/badge/User%20guide-0.1.0-red)](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/)
+[![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.1.0-orange)](https://javadoc.io/doc/com.adelean/inject-resources-core/0.1.0)
+[![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.1.0-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter/0.1.0)
+[![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.1.0-yellow)](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage/0.1.0)
 
 A convenient way to have resources content in your tests.
 
@@ -91,7 +91,7 @@ Include library into your project (with Maven):
 <dependency>
     <groupId>com.adelean</groupId>
     <artifactId>inject-resources-core</artifactId>
-    <version>0.1.1-beta</version>
+    <version>0.1.0</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -99,7 +99,7 @@ Include library into your project (with Maven):
 or with Gradle:
 
 ```groovy
-testCompile group: 'com.adelean', name: 'inject-resources-core', version: '0.1.1-beta'
+testCompile group: 'com.adelean', name: 'inject-resources-core', version: '0.1.0'
 ```
 
 For tests with *JUnit 5* you also need (Maven):
@@ -108,7 +108,7 @@ For tests with *JUnit 5* you also need (Maven):
 <dependency>
     <groupId>com.adelean</groupId>
     <artifactId>inject-resources-junit-jupiter</artifactId>
-    <version>0.1.1-beta</version>
+    <version>0.1.0</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -116,7 +116,7 @@ For tests with *JUnit 5* you also need (Maven):
 or with Gradle:
 
 ```groovy
-testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', version: '0.1.1-beta'
+testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', version: '0.1.0'
 ```
 
 ## Usage
