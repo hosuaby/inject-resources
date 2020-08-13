@@ -5,6 +5,7 @@
 [![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg)](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
 [![User guide](https://img.shields.io/badge/User%20guide-0.1.0-red)](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/)
 [![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.1.0-orange)](https://javadoc.io/doc/com.adelean/inject-resources-core/0.1.0)
+[![Spring Javadoc](https://img.shields.io/badge/Spring%20Javadoc-0.1.0-green)](https://javadoc.io/doc/com.adelean/inject-resources-spring/0.1.0)
 [![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.1.0-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter/0.1.0)
 [![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.1.0-yellow)](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage/0.1.0)
 
