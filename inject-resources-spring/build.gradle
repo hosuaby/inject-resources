@@ -21,6 +21,11 @@ jacocoTestReport {
     }
 }
 
+jar {
+    from project.sourceSets.main.output
+    from project(':inject-resources-commons').sourceSets.main.output
+}
+
 task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier = 'sources'
     from sourceSets.main.allSource
