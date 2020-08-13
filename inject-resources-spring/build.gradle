@@ -31,6 +31,66 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = project.name
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = '@InjectResources Spring'
+                description = '@InjectResources Spring module'
+                url = 'https://github.com/hosuaby/inject-resources'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'hosuaby'
+                        name = 'Alexei KLENIN'
+                        email = 'alexei.klenin@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com:hosuaby/inject-resources.git'
+                    developerConnection = 'scm:git:git@github.com:hosuaby/inject-resources.git'
+                    url = 'https://github.com/hosuaby/inject-resources'
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_API_KEY')
+    pkg {
+        repo = 'InjectResources'
+        name = 'InjectResources'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/hosuaby/inject-resources'
+        version {
+            name = project.version
+            released  = new Date()
+            vcsTag = 'v' + project.version
+        }
+    }
+    publications = ['mavenJava']
+    publish = true
+}
+
 def JUNIT_VERSION = '5.6.0'
 
 dependencies {
