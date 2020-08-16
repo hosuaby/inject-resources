@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Copy of some methods from {@code org.junit.platform.commons.util.AnnotationUtils}.
@@ -14,6 +15,10 @@ import java.util.Set;
  */
 final class AnnotationUtils {
     private AnnotationUtils() {
+    }
+
+    public static Predicate<Annotation> withAnnotationType(Class<? extends Annotation> annotationType) {
+        return annotation -> annotation.annotationType().equals(annotationType);
     }
 
     static <A extends Annotation> Optional<A> findAnnotation(AnnotatedElement element, Class<A> annotationType) {

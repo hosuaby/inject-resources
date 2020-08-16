@@ -6,6 +6,8 @@ import com.adelean.inject.resources.annotations.Parser;
 import com.adelean.inject.resources.annotations.Resource;
 import com.adelean.inject.resources.annotations.WithPath;
 import com.adelean.inject.resources.core.helpers.StringUtils;
+import org.reflections.ReflectionUtils;
+import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -17,16 +19,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.adelean.inject.resources.commons.AnnotationUtils.withAnnotationType;
 import static com.adelean.inject.resources.commons.Errors.internalError;
 import static java.util.stream.Collectors.toList;
 import static org.reflections.ReflectionUtils.withName;
 import static org.reflections.ReflectionUtils.withReturnType;
-
-import org.reflections.ReflectionUtils;
-import org.reflections.Reflections;
 
 public final class AnnotationSupport {
     private static final String ERR_ANNOTATION_NOT_EXTENDS = "@%s missing @Extends(%s.class)";
@@ -93,8 +94,14 @@ public final class AnnotationSupport {
     static boolean isAnnotationExtends(
             Class<? extends Annotation> annotationType,
             Class<? extends Annotation> annotationSuperType) {
-        List<Class<? extends Annotation>> extendedAnnotationTypes = AnnotationUtils
-                .findAnnotation(annotationType, Extends.class)
+//        ReflectionUtils
+//                .getAnnotations(annotationType, withAnnotationType(Extends.class))
+
+        List<Class<? extends Annotation>> extendedAnnotationTypes = ReflectionUtils
+                .getAnnotations(annotationType, withAnnotationType(Extends.class))
+                .stream()
+                .findAny()
+                .map(annotation -> (Extends) annotation)
                 .map(Extends::value)
                 .map(Arrays::asList)
                 .orElseGet(Collections::emptyList);
@@ -148,24 +155,26 @@ public final class AnnotationSupport {
                 .isEmpty();
     }
 
+    @SuppressWarnings("unchecked")
     public static Collection<Class<? extends Annotation>> allResourceAnnotations(Class<?> baseClass) {
         return new Reflections(baseClass.getPackage().getName(), baseClass.getClassLoader())
                 .getSubTypesOf(Annotation.class)
                 .stream()
-                .filter(clazz -> AnnotationUtils
-                        .findAnnotation(clazz, Resource.class)
-                        .isPresent())
+                .filter(clazz -> !ReflectionUtils
+                        .getAnnotations(clazz, withAnnotationType(Resource.class))
+                        .isEmpty())
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .collect(toList());
     }
 
+    @SuppressWarnings("unchecked")
     public static Collection<Class<? extends Annotation>> allParserAnnotations(Class<?> baseClass) {
         return new Reflections(baseClass.getPackage().getName(), baseClass.getClassLoader())
                 .getSubTypesOf(Annotation.class)
                 .stream()
-                .filter(clazz -> AnnotationUtils
-                        .findAnnotation(clazz, Parser.class)
-                        .isPresent())
+                .filter(clazz -> !ReflectionUtils
+                        .getAnnotations(clazz, withAnnotationType(Parser.class))
+                        .isEmpty())
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .collect(toList());
     }
