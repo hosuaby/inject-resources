@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 import com.adelean.inject.resources.junit.vintage.json.JsonResource;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;

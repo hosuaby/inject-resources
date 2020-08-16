@@ -1,8 +1,8 @@
 package com.adelean.inject.resources.junit.jupiter;
 
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
-import com.adelean.junit.jupiter.resources.data.gson.LocalDateTimeDeserializer;
-import com.adelean.junit.jupiter.resources.data.gson.Log;
+import com.adelean.resources.data.LogSeverity;
+import com.adelean.resources.data.gson.LocalDateTimeDeserializer;
+import com.adelean.resources.data.gson.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.DisplayName;

@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
-import com.adelean.junit.jupiter.resources.data.snakeyaml.Log;
+import com.adelean.resources.data.LogSeverity;
+import com.adelean.resources.data.snakeyaml.Log;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.Yaml;

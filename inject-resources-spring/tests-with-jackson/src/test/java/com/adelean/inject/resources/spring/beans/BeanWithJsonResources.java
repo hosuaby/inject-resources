@@ -1,7 +1,7 @@
 package com.adelean.inject.resources.spring.beans;
 
 import com.adelean.inject.resources.spring.JsonResource;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

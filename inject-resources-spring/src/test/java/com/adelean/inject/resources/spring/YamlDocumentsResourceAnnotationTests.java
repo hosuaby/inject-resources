@@ -15,8 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.adelean.inject.resources.spring.beans.BeanWithYamlDocumentsResources;
 import com.adelean.inject.resources.spring.beans.TestConfig;
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
-import com.adelean.junit.jupiter.resources.data.snakeyaml.Log;
+import com.adelean.resources.data.LogSeverity;
+import com.adelean.resources.data.snakeyaml.Log;
 import com.tngtech.archunit.thirdparty.com.google.common.collect.ImmutableMap;
 
 @ExtendWith(SpringExtension.class)

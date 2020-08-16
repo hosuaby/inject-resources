@@ -1,4 +1,4 @@
-package com.adelean.junit.jupiter.resources.data.gson;
+package com.adelean.resources.data.gson;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

@@ -4,8 +4,8 @@ import static com.adelean.inject.resources.junit.vintage.GivenResource.givenReso
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.adelean.inject.resources.junit.vintage.json.JsonLinesResource;
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
-import com.adelean.junit.jupiter.resources.data.jackson.Log;
+import com.adelean.resources.data.LogSeverity;
+import com.adelean.resources.data.jackson.Log;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.Rule;

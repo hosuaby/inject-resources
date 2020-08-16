@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 import com.adelean.inject.resources.junit.vintage.yaml.YamlResource;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Rule;
 import org.junit.Test;

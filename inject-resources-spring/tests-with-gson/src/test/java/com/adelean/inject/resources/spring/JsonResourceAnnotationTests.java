@@ -7,7 +7,7 @@ import static org.assertj.core.api.InstanceOfAssertFactories.type;
 import assertj.json.gson.JsonAssertions;
 import com.adelean.inject.resources.spring.beans.BeanWithJsonResources;
 import com.adelean.inject.resources.spring.beans.TestConfig;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.google.common.collect.ImmutableMap;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.BeforeEach;

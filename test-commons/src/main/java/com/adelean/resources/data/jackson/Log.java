@@ -1,9 +1,9 @@
-package com.adelean.junit.jupiter.resources.data.jackson;
+package com.adelean.resources.data.jackson;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
+import com.adelean.resources.data.LogSeverity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

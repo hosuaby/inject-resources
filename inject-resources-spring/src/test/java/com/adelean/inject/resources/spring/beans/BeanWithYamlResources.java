@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 import com.adelean.inject.resources.spring.YamlResource;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 
 @Component
 public class BeanWithYamlResources {

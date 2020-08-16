@@ -1,6 +1,6 @@
-package com.adelean.junit.jupiter.resources.data.snakeyaml;
+package com.adelean.resources.data.snakeyaml;
 
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
+import com.adelean.resources.data.LogSeverity;
 
 import java.util.Date;
 import java.util.Objects;

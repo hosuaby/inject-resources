@@ -4,9 +4,9 @@ import static com.adelean.inject.resources.junit.vintage.GivenResource.givenReso
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.adelean.inject.resources.junit.vintage.json.JsonLinesResource;
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
-import com.adelean.junit.jupiter.resources.data.gson.LocalDateTimeDeserializer;
-import com.adelean.junit.jupiter.resources.data.gson.Log;
+import com.adelean.resources.data.LogSeverity;
+import com.adelean.resources.data.gson.LocalDateTimeDeserializer;
+import com.adelean.resources.data.gson.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.Rule;

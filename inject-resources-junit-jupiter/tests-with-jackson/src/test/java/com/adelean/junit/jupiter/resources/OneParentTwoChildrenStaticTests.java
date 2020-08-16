@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.adelean.inject.resources.junit.jupiter.GivenJsonResource;
 import com.adelean.inject.resources.junit.jupiter.TestWithResources;
 import com.adelean.inject.resources.junit.jupiter.WithJacksonMapper;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OneParentTwoChildrenStaticTests {

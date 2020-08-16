@@ -12,7 +12,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.Yaml;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.google.common.collect.ImmutableMap;
 
 @TestWithResources

@@ -2,8 +2,8 @@ package com.adelean.junit.jupiter.resources;
 
 import com.adelean.inject.resources.junit.jupiter.GivenJsonLinesResource;
 import com.adelean.inject.resources.junit.jupiter.TestWithResources;
-import com.adelean.junit.jupiter.resources.data.jackson.Log;
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
+import com.adelean.resources.data.jackson.Log;
+import com.adelean.resources.data.LogSeverity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

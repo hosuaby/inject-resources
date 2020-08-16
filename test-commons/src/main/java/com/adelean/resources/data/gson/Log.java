@@ -1,6 +1,6 @@
-package com.adelean.junit.jupiter.resources.data.gson;
+package com.adelean.resources.data.gson;
 
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
+import com.adelean.resources.data.LogSeverity;
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;

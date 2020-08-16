@@ -4,8 +4,8 @@ import static com.adelean.inject.resources.junit.vintage.GivenResource.givenReso
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.adelean.inject.resources.junit.vintage.yaml.YamlDocumentsResource;
-import com.adelean.junit.jupiter.resources.data.LogSeverity;
-import com.adelean.junit.jupiter.resources.data.snakeyaml.Log;
+import com.adelean.resources.data.LogSeverity;
+import com.adelean.resources.data.snakeyaml.Log;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Rule;
 import org.junit.Test;

@@ -3,7 +3,7 @@ package com.adelean.inject.resources.spring.beans;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import com.adelean.inject.resources.spring.EnableResourceInjection;
-import com.adelean.junit.jupiter.resources.data.snakeyaml.Log;
+import com.adelean.resources.data.snakeyaml.Log;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

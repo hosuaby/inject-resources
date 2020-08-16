@@ -7,7 +7,7 @@ import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 import assertj.json.gson.JsonAssertions;
 import com.adelean.inject.resources.junit.vintage.json.JsonResource;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

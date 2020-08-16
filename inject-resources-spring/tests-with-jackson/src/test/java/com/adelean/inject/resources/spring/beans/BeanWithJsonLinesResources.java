@@ -1,7 +1,7 @@
 package com.adelean.inject.resources.spring.beans;
 
 import com.adelean.inject.resources.spring.JsonLinesResource;
-import com.adelean.junit.jupiter.resources.data.jackson.Log;
+import com.adelean.resources.data.jackson.Log;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;

@@ -5,7 +5,7 @@ import com.adelean.inject.resources.junit.vintage.GivenResource;
 import com.adelean.inject.resources.junit.vintage.JsonLinesResourceRuleJacksonTests;
 import com.adelean.inject.resources.junit.vintage.TextResourceRuleTests;
 import com.adelean.inject.resources.junit.vintage.YamlResourceRuleTests;
-import com.adelean.junit.jupiter.resources.data.jackson.Log;
+import com.adelean.resources.data.jackson.Log;
 import io.leangen.geantyref.TypeToken;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.Before;

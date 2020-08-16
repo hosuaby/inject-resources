@@ -1,7 +1,7 @@
 package com.adelean.inject.resources.junit.jupiter;
 
 import assertj.json.gson.JsonAssertions;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

@@ -18,7 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.adelean.inject.resources.spring.beans.BeanWithYamlResources;
 import com.adelean.inject.resources.spring.beans.TestConfig;
-import com.adelean.junit.jupiter.resources.data.Person;
+import com.adelean.resources.data.Person;
 import com.tngtech.archunit.thirdparty.com.google.common.collect.ImmutableMap;
 
 @ExtendWith(SpringExtension.class)

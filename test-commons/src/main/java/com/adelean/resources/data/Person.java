@@ -1,4 +1,4 @@
-package com.adelean.junit.jupiter.resources.data;
+package com.adelean.resources.data;
 
 public class Person {
     private String firstName;
