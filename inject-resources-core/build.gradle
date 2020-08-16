@@ -98,6 +98,8 @@ def GSON_VERSION = '2.8.0'
 dependencies {
     compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: JUNIT_VERSION
+
     testImplementation project(':test-commons')
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: JUNIT_VERSION

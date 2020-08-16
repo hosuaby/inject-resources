@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class StringUtilsTests {
 
@@ -25,70 +27,39 @@ public class StringUtilsTests {
                 .isEqualTo("Parameter");
     }
 
-    @Test
     @DisplayName("Test isNotBlank")
-    public void testIsNotBlank() {
-
-        /* Given */
-        String str1 = "";
-        String str2 = "   ";
-        String str3 = "blank";
-        String str4 = " not blank  ";
-
-        /* Then */
-        assertThat(StringUtils.isNotBlank(str1))
-                .isFalse();
-        assertThat(StringUtils.isNotBlank(str2))
-                .isFalse();
-        assertThat(StringUtils.isNotBlank(str3))
-                .isTrue();
-        assertThat(StringUtils.isNotBlank(str4))
-                .isTrue();
+    @ParameterizedTest(name = "\"{0}\" -> {1}")
+    @CsvSource(value = {
+            "'', false",
+            "'   ', false",
+            "'blank ', true",
+            "' not blank   ', true"})
+    public void testIsNotBlank(String str, boolean isNotBlank) {
+        assertThat(StringUtils.isNotBlank(str))
+                .isEqualTo(isNotBlank);
     }
 
-    @Test
     @DisplayName("Test isBlank")
-    public void testIsBlank() {
-
-        /* Given */
-        String str1 = "";
-        String str2 = "   ";
-        String str3 = "blank";
-        String str4 = " not blank  ";
-
-        /* Then */
-        assertThat(StringUtils.isBlank(str1))
-                .isTrue();
-        assertThat(StringUtils.isBlank(str2))
-                .isTrue();
-        assertThat(StringUtils.isBlank(str3))
-                .isFalse();
-        assertThat(StringUtils.isBlank(str4))
-                .isFalse();
+    @ParameterizedTest(name = "\"{0}\" -> {1}")
+    @CsvSource(value = {
+            "'', true",
+            "'   ', true",
+            "'blank ', false",
+            "' not blank   ', false"})
+    public void testIsBlank(String str, boolean isBlank) {
+        assertThat(StringUtils.isBlank(str))
+                .isEqualTo(isBlank);
     }
 
-    @Test
     @DisplayName("Test blankToNull")
-    public void testBlankToNull() {
-
-        /* Given */
-        String str1 = "";
-        String str2 = "   ";
-        String str3 = "blank";
-        String str4 = " not blank  ";
-
-        /* Then */
-        assertThat(StringUtils.blankToNull(str1))
-                .isNull();
-        assertThat(StringUtils.blankToNull(str2))
-                .isNull();
-        assertThat(StringUtils.blankToNull(str3))
-                .isNotNull()
-                .isNotBlank()
-                .isEqualTo(str3);
-        assertThat(StringUtils.blankToNull(str4))
-                .isNotNull()
-                .isNotBlank()
-                .isEqualTo(str4);
+    @ParameterizedTest(name = "\"{0}\" -> {1}")
+    @CsvSource(nullValues = "null", value = {
+            "'', null",
+            "'   ', null",
+            "'blank ', 'blank '",
+            "' not blank   ', ' not blank   '"})
+    public void testBlankToNull(String input, String output) {
+        assertThat(StringUtils.blankToNull(input))
+                .isEqualTo(output);
     }
 }
