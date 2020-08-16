@@ -6,8 +6,6 @@ import com.adelean.inject.resources.annotations.Parser;
 import com.adelean.inject.resources.annotations.Resource;
 import com.adelean.inject.resources.annotations.WithPath;
 import com.adelean.inject.resources.core.helpers.StringUtils;
-import org.reflections8.ReflectionUtils;
-import org.reflections8.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -24,8 +22,11 @@ import java.util.stream.Stream;
 
 import static com.adelean.inject.resources.commons.Errors.internalError;
 import static java.util.stream.Collectors.toList;
-import static org.reflections8.ReflectionUtils.withName;
-import static org.reflections8.ReflectionUtils.withReturnType;
+import static org.reflections.ReflectionUtils.withName;
+import static org.reflections.ReflectionUtils.withReturnType;
+
+import org.reflections.ReflectionUtils;
+import org.reflections.Reflections;
 
 public final class AnnotationSupport {
     private static final String ERR_ANNOTATION_NOT_EXTENDS = "@%s missing @Extends(%s.class)";

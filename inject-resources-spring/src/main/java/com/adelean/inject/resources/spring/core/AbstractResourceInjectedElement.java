@@ -2,7 +2,7 @@ package com.adelean.inject.resources.spring.core;
 
 import com.adelean.inject.resources.spring.EnableResourceInjection;
 import org.jetbrains.annotations.NotNull;
-import org.reflections8.Reflections;
+import org.reflections.Reflections;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.context.ApplicationContext;

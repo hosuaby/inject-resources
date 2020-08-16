@@ -108,7 +108,7 @@ dependencies {
 
     compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
-    implementation group: 'net.oneandone.reflections8', name: 'reflections8', version: '0.11.7'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
 
     compileOnly project(':inject-resources-core')
     compileOnly project(':inject-resources-commons')

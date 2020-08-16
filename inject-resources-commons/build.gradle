@@ -31,7 +31,7 @@ dependencies {
     compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
     compileOnly project(':inject-resources-core')
-    compileOnly group: 'net.oneandone.reflections8', name: 'reflections8', version: '0.11.7'
+    compileOnly group: 'org.reflections', name: 'reflections', version: '0.9.12'
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     compileOnly group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
@@ -46,7 +46,7 @@ dependencies {
 
     testImplementation project(':inject-resources-core')
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
-    testImplementation group: 'net.oneandone.reflections8', name: 'reflections8', version: '0.11.7'
+    testImplementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
 }
 
 test {

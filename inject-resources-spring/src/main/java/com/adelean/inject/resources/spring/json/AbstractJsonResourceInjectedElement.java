@@ -6,13 +6,14 @@ import static com.adelean.inject.resources.commons.ClasspathSupport.isGsonPresen
 import static com.adelean.inject.resources.commons.ClasspathSupport.isJackson2Present;
 
 import com.adelean.inject.resources.spring.core.AbstractResourceInjectedElement;
-import org.reflections8.ReflectionUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.Nullable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Member;
+
+import org.reflections.ReflectionUtils;
 
 abstract class AbstractJsonResourceInjectedElement<A extends Annotation>
         extends AbstractResourceInjectedElement<A> {
