@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -94,9 +93,8 @@ public final class AnnotationSupport {
     static boolean isAnnotationExtends(
             Class<? extends Annotation> annotationType,
             Class<? extends Annotation> annotationSuperType) {
-//        ReflectionUtils
-//                .getAnnotations(annotationType, withAnnotationType(Extends.class))
 
+        @SuppressWarnings("unchecked")
         List<Class<? extends Annotation>> extendedAnnotationTypes = ReflectionUtils
                 .getAnnotations(annotationType, withAnnotationType(Extends.class))
                 .stream()
@@ -161,7 +159,7 @@ public final class AnnotationSupport {
                 .getSubTypesOf(Annotation.class)
                 .stream()
                 .filter(clazz -> !ReflectionUtils
-                        .getAnnotations(clazz, withAnnotationType(Resource.class))
+                        .getAllAnnotations(clazz, withAnnotationType(Resource.class))
                         .isEmpty())
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .collect(toList());
@@ -173,7 +171,7 @@ public final class AnnotationSupport {
                 .getSubTypesOf(Annotation.class)
                 .stream()
                 .filter(clazz -> !ReflectionUtils
-                        .getAnnotations(clazz, withAnnotationType(Parser.class))
+                        .getAllAnnotations(clazz, withAnnotationType(Parser.class))
                         .isEmpty())
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
                 .collect(toList());
