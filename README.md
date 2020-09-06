@@ -9,11 +9,11 @@
 [![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.1.0-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter/0.1.0)
 [![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.1.0-yellow)](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage/0.1.0)
 
-Load content of resource files in Java is harder that it must be. Great libraries like
+*Reading content of resource files in Java is harder that it should be*. Great libraries like
 [Guava](https://github.com/google/guava) or [Spring](https://github.com/spring-projects/spring-framework) made it much
-easier, but it's time to make another step forward. Use `@InjectResources` is the easiest and convenient way to load
-ans parse content of resources without boilerplate code to open/close streams and exception handling. This library
-composed of [inject-resources-core](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-core),
+easier, but it's time to make another step forward. Use `@InjectResources` is the easiest and most convenient way to load
+and parse content of resources without boilerplate code that opens/closes streams and handles I/O exception. This library
+made of [inject-resources-core](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-core),
 fluid Java DSL, and of extensions for
 [Spring](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-spring),
 [JUnit5](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-junit-jupiter) and
