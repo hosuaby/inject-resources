@@ -1,8 +1,8 @@
-`@InjectResources` Java DSL help to load and parse resources in convenient and fluid way.
+`@InjectResources` fluid Java DSL helps to load and parse the resources conveniently.
 
 === Dependency
 
-Add `inject-resources-core` to your project.
+Add `inject-resources-core` dependency to your project.
 
 Using Maven:
 
@@ -15,7 +15,7 @@ Using Maven:
 </dependency>
 ----
 
-Using Gradle:
+Or using Gradle:
 
 [source, groovy, subs="+attributes"]
 ----
@@ -33,17 +33,16 @@ var text = resource()
 
 ==== Entry point
 
-Method `InjectResources#resource` is an entry point of Java DSL. It's recommended to import this
-method statically:
+Method `InjectResources#resource` is an entry point of Java DSL. It's recommended to import this method statically:
 
 [source, java]
 ----
 import static com.adelean.inject.resources.core.InjectResources.resource;
 ----
 
-==== Choosing classloader
+==== Choosing the classloader
 
-To choose classloader used to load the resource it's possing to use `resource().onClassLoader(classLoader)` or
+To choose a classloader used to load a single resource it's possible to use `resource().onClassLoader(classLoader)` or
 `resource().onClassLoaderOf(clazz)`.
 
 Example:
@@ -63,16 +62,16 @@ var text = resource()
         .text();
 ----
 
-We can omit the choice of classloader with `resource().withPath(path)`. In that case context classloader
+We can omit the choice of a classloader with `resource().withPath(path)`. In that case the context classloader
 `Thread.currentThread().getContextClassLoader()` is used.
 
 ==== Specifying path to resource
 
-Method `withPath(path)` allows to define the path to requested resource. The next three notations are equivalents:
+Method `withPath(path)` allows to define the path to the requested resource. The next three notations are equivalents:
 
 [source, java]
 ----
-// There notations are equivalents
+// There notations are equivalent
 resource().withPath("/com/adelean/junit/jupiter/resource.txt");
 resource().withPath("/com/adelean/junit/jupiter", "resource.txt");
 resource().withPath("com", "adelean", "junit", "jupiter", "resource.txt");
@@ -80,7 +79,7 @@ resource().withPath("com", "adelean", "junit", "jupiter", "resource.txt");
 
 ==== Read text content
 
-Content of text resource can be read as `String` using method `text()`:
+Content of a text resource can be read as `String` using method `text()`:
 
 [source, java]
 ----
@@ -92,7 +91,7 @@ var text = resource().withPath("resource.txt").text(StandardCharsets.UTF_8);
 
 ==== Read binary content
 
-Content of binary resource can be read as `byte[]` using method `bytes()`:
+Content of a binary resource can be read as `byte[]` using method `bytes()`:
 
 [source, java]
 ----
@@ -101,17 +100,15 @@ var fibonacci = resource().withPath("fibonacci.bin").bytes();
 
 ==== Parsing of resource content
 
-In order to parse resources content, need to get one of the provided wrappers around that resource. Wrapper can be
-obtained by calling one of the following methods:
+In order to parse resources content, need to get one of provided wrappers around that resource. Wrapper can be obtained by calling one of the those methods:
 
 - `asInputStream()` - returns wrapper around resource represented as an `InputStream`.
 - `asByteArray()` - resource as bytes array.
-- `asReader()` - resource as `Reader`. Also can be `asReader(Charset charset)`.
-- `asLines()` - resource as stream of text lines. Also can be `asLines(Charset charset)`.
-- `asText()` - resource as text. Also can be `asText(Charset charset)`.
+- `asReader()` - resource as `Reader`. Can also be `asReader(Charset charset)`.
+- `asLines()` - resource as a stream of text lines. Can also be `asLines(Charset charset)`.
+- `asText()` - resource as text. Can also be `asText(Charset charset)`.
 
-Those wrappers (except those returned by `asLines()`) expose four methods that can can be used to process content of
-resource:
+Those wrappers (except those returned by `asLines()`) expose four methods that can be used to process content of a resource:
 
 - `parse(Function<I, O> parsingFunction)` - parses content of resource using `parsingFunction`.
 - `parseChecked(ThrowingFunction<I, O> parsingFunction)` - parses content of resource using `parsingFunction` that may
@@ -122,8 +119,8 @@ resource:
 
 ===== Ignoring uncaught exceptions
 
-Two new functional interfaces are provided by library: `ThrowingFunction` and `ThrowingConsumer`. They similar to
-interfaces `Function` and `Consumer` from `java.util.function` but they are able to capture lambdas that may throw an
+Two new functional interfaces are provided by the library: `ThrowingFunction` and `ThrowingConsumer`. They are similar to
+interfaces `Function` and `Consumer` from `java.util.function` but they are able to capture lambdas that may throw a
 checked exception. Example:
 
 [source, java]
@@ -149,7 +146,7 @@ var dbConnection = resource()
 
 ===== Read resource line by line
 
-Resource wrapper returned by method `asLines()` able to process text resource file line by line. It's practical to parse
+The resource wrapper returned by method `asLines()` able to process text resource file line by line. It's practical to parse
 resources in line based formats, like CSV. Example:
 
 [source, java]

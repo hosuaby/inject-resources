@@ -7,7 +7,7 @@ from Spring.
 
 === Dependency
 
-Add `inject-resources-spring` to your project.
+Add `inject-resources-spring` dependency to your project.
 
 Using Maven:
 
@@ -20,7 +20,7 @@ Using Maven:
 </dependency>
 ----
 
-Using Gradle:
+Or using Gradle:
 
 [source, groovy, subs="+attributes"]
 ----
@@ -41,34 +41,37 @@ Example:
  }
 ----
 
-Then you can use use resource annotations to inject content of resources into your beans:
+Then you can use resource annotations to inject content of resources into your beans:
 
 [source, java]
 ----
 @Component
 public class MyBean {
 
-    @BinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
+    @BinaryResource("/com/adelean/junit/jupiter/fibonacci.bin") <1>
     private byte[] fibonacciInstanceField;
 
     @Autowired
     public MyBean(
-            @TextResource("/com/adelean/junit/jupiter/resource.txt")
+            @TextResource("/com/adelean/junit/jupiter/resource.txt") <2>
             String text) {
         // ...
     }
 
-    @JsonResource(from = "/com/adelean/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper")
+    @JsonResource(from = "/com/adelean/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper") <3>
     public void setParsedJson(Person parsedJson) {
         // ...
     }
 }
 ----
+<1> Injects binary content into instance field
+<2> Injects text content into constructor argument
+<3> Injects JSON parsed as POJO into setter
 
 === Resource annotations
 
 Resource annotations can annotate beans field, constructor argument or setter method that must be injected with content
-of resource.
+of resource file.
 
 The following sections present those available resource annotations and their usage.
 
@@ -148,9 +151,9 @@ In order to use those annotations bean of type `com.fasterxml.jackson.databind.O
 https://github.com/FasterXML/jackson[Jackson] or `com.google.gson.Gson` from
 https://github.com/google/gson/blob/master/UserGuide.md[GSON] must be present in application context.
 
-`JsonResource` and `JsonLinesResource` have a property `parserBean` that allow to specify the name of used parser bean
+`JsonResource` and `JsonLinesResource` have a property `parserBean` that allows to specify the name of used parser bean
 in case where there are multiple `ObjectMapper` or `Gson` beans in context. If value of that property is empty, the
-first found or primary bean if those types is used.
+first found or primary bean if those types are used.
 
 ===== Example with Jackson
 

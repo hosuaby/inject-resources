@@ -2,7 +2,7 @@
 
 === Dependency
 
-Add `inject-resources-core` and `inject-resources-junit-jupiter` to your project.
+Add `inject-resources-core` and `inject-resources-junit-jupiter` dependencies to your project.
 
 Using Maven:
 
@@ -23,7 +23,7 @@ Using Maven:
 </dependency>
 ----
 
-Using Gradle:
+Or using Gradle:
 
 [source, groovy, subs="+attributes"]
 ----
@@ -33,7 +33,7 @@ testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', versio
 
 === Test extension
 
-In order to use this plugin we need to add extension to the test class:
+In order to use this plugin, we need to add extension to the test class:
 
 [source, java]
 ----
@@ -53,22 +53,22 @@ methods. Injected fields must be non-private and non-final.
 @TestWithResources
 class InjectResourcesTests {
 
-    // Inject into static class field
-    @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
+    @GivenTextResource("/com/adelean/junit/jupiter/resource.txt") <1>
     static String classField;
 
-    // Inject into instance field
-    @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
+    @GivenTextResource("/com/adelean/junit/jupiter/resource.txt") <2>
     String instanceField;
 
-    // Inject into test parameter
     @Test
     public void testWithResources(
-            @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
+            @GivenTextResource("/com/adelean/junit/jupiter/resource.txt") <3>
             String testParameter) {
     }
 }
 ----
+<1> Inject into static class field
+<2> Inject into instance field
+<3> Inject into test parameter
 
 === Load binary resource
 
@@ -157,14 +157,14 @@ class InjectPropertiesResourcesTests {
 
 === Load and parse JSON
 
-Library simplifies loading and parsing of _JSON_ & _JSONL_ (JSON Lines) files. Native support for
+This library simplifies loading and parsing of _JSON_ & _JSONL_ (JSON Lines) files. Native support for
 https://github.com/FasterXML/jackson[Jackson] and https://github.com/google/gson/blob/master/UserGuide.md[GSON]
 gives ability to parse _JSON_ content into `Map<String, Object>`, `JsonNode` (for _Jackson_) & `JsonElement`
 (for _GSON_) or to Java POJO.
 
 Use annotation `@GivenJsonResource` for _JSON_ and `@GivenJsonLinesResource` for _JSONL_.
 
-In order to parse _JSON/JSONL_ we need to declare a parser. Parsers, are fields or functions that are annotated with
+In order to parse _JSON/JSONL_ we need to declare a parser. Parsers are fields or functions that are annotated with
 `@With*` annotations.
 
 [source, java]
@@ -178,11 +178,11 @@ ObjectMapper objectMapper = new ObjectMapper();
 Gson gson = new Gson();
 ----
 
-Following sub-sections explain how to parse _JSON/JSONL_ with _Jackson_ or _GSON_ in details.
+Following subsections explain how to parse _JSON/JSONL_ with _Jackson_ or _GSON_ in detail.
 
 ==== Jackson
 
-In order to parse resources with _Jackson_ both `jackson-core` & `jackson-databind` must be present on Classpath.
+In order to parse resources with _Jackson_ both `jackson-core` & `jackson-databind` must be present on the Classpath.
 
 To specify which `ObjectMapper` is used to parse _JSON_ use annotation `@WithJacksonMapper`:
 
@@ -309,7 +309,7 @@ class TestsWithYaml {
 }
 ----
 
-`Yaml` object must be configured to be able parse documents from multi-document _YAML_ into POJO:
+`Yaml` object must be configured to be able to parse documents from multi-document _YAML_ into POJO:
 
 [source, java]
 ----
@@ -369,8 +369,8 @@ class TestsWithNamedParser {
 
 ==== Parser scopes
 
-By default, parsers are scoped to test class where they were defined. If a test class inherit from another class,
-parsers declared in super-class can be used in subclass:
+By default, parsers are scoped to test class where they were defined. If a test class inherits from another class,
+parsers defined in superclass can be used in subclass:
 
 [source, java]
 ----
@@ -393,7 +393,7 @@ class TestsSubclass extends SuperClassWithParser {
 
 ==== Tests advice
 
-It is possible to define a parser that can be used by all tests on classpath by creating a `public` `final` class
+It is possible to define a parser that can be used by all tests on the Classpath by creating a `public` `final` class
 annotated with `@TestsAdvice`:
 
 [source, java]

@@ -3,7 +3,7 @@
 
 === Dependency
 
-Add `inject-resources-core` and `inject-resources-junit-vintage` to your project.
+Add `inject-resources-core` and `inject-resources-junit-vintage` dependencies to your project.
 
 Using Maven:
 
@@ -24,7 +24,7 @@ Using Maven:
 </dependency>
 ----
 
-Using Gradle:
+Or using Gradle:
 
 [source, groovy, subs="+attributes"]
 ----
@@ -34,7 +34,7 @@ testCompile group: 'com.adelean', name: 'inject-resources-junit-vintage', versio
 
 === Resource rules
 
-Library `inject-resources-junit-vintage` provides set of rules that simplify access to content of resources. Those rules
+This library `inject-resources-junit-vintage` provides set of rules that simplify access to content of resources. Those rules
 are accessible through static method `GivenResource.givenResource()`. It's recommended to statically import this method
 in test classes and use it as chained builder for resource rules.
 
@@ -54,7 +54,7 @@ public JsonResource<Person> spongeBob = givenResource()
         .parseWith(new ObjectMapper());
 ----
 
-Following sub-sections show rules for different types of resources.
+Following subsections show rules for different types of resources.
 
 ==== Binary resource rule
 
