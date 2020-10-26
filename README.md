@@ -12,7 +12,7 @@
 *Reading content of resource files in Java is harder that it should be*. Great libraries like
 [Guava](https://github.com/google/guava) or [Spring](https://github.com/spring-projects/spring-framework) made it much
 easier, but it's time to make another step forward. Use `@InjectResources` is the easiest and most convenient way to load
-and parse content of resources without boilerplate code that opens/closes streams and handles I/O exception. This library
+and parse content of resources without boilerplate code that opens/closes streams and handles I/O exceptions. This library
 made of [inject-resources-core](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-core),
 fluid Java DSL, and of extensions for
 [Spring](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-spring),
