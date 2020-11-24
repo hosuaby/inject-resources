@@ -20,7 +20,20 @@ fluid Java DSL, and of extensions for
 [JUnit4](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-junit-vintage) that allow to do
 that with simple annotations.
 
-## Example with Spring
+## Examples
+
+### Core
+
+```java
+var text = resource()
+        .onClassLoaderOf(this.getClass())
+        .withPath("/com/adelean/junit/jupiter", "resource.txt")
+        .text();
+```
+
+Check [Core](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-core) user guide for more information and examples.
+
+### With Spring
 
 ```java
 @Component
@@ -31,6 +44,57 @@ public class MyBean {
     private String text;
 }
 ```
+
+Check [Spring extension](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-spring) user guide for more information and examples.
+
+### With JUnit
+
+#### JUnit5
+
+```java
+@TestWithResources
+class InjectTextResourcesTests {
+
+    @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
+    String instanceField;
+
+    @Test
+    public void testInjectTextIntoStringInstanceField() {
+        assertThat(instanceField)
+                .isEqualTo("The quick brown fox jumps over the lazy dog.");
+    }
+}
+```
+
+Check [JUnit5 extension](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-junit-jupiter) user guide for more information and examples.
+
+#### JUnit4
+
+```java
+class MyTestClass {
+
+    @Rule
+    public ResourceRule<String> textResource = givenResource()
+            .text("/com/adelean/junit/jupiter/resource.txt")
+            .withCharset(StandardCharsets.UTF_8);
+
+    @Test
+    public void testWithTextResource() {
+        assertThat(textResource.get())
+                .isEqualTo("The quick brown fox jumps over the lazy dog.");
+    }
+}
+```
+
+Check [JUnit4 extension](https://hosuaby.github.io/inject-resources/0.1.0/asciidoc/#inject-resources-junit-vintage) user guide for more information and examples.
+
+## Supported formats
+
+- Binary
+- Text
+- Java properties
+- JSON & JSON Lines
+- YAML & YAML Documents
 
 ## News
 
