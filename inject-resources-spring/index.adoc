@@ -5,6 +5,10 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 and https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/util/ResourceUtils.html[ResourceUtils]
 from Spring.
 
+=== Repository
+
+include::../repo.adoc[]
+
 === Dependency
 
 Add `inject-resources-spring` dependency to your project.

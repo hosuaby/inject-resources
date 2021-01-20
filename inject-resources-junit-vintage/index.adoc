@@ -1,5 +1,8 @@
-
 `@InjectResources` JUnit 4 (Vintage) extension simplifies access to content of resources in your JUnit tests.
+
+=== Repository
+
+include::../repo.adoc[]
 
 === Dependency
 

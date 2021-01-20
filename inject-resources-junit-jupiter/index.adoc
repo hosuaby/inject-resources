@@ -1,5 +1,9 @@
 `@InjectResources` JUnit Jupiter extension gives ability to inject content of resources into JUnit5 tests.
 
+=== Repository
+
+include::../repo.adoc[]
+
 === Dependency
 
 Add `inject-resources-core` and `inject-resources-junit-jupiter` dependencies to your project.

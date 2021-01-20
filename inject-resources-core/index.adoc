@@ -1,5 +1,9 @@
 `@InjectResources` fluid Java DSL helps to load and parse the resources conveniently.
 
+=== Repository
+
+include::../repo.adoc[]
+
 === Dependency
 
 Add `inject-resources-core` dependency to your project.
