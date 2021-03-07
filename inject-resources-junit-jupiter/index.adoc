@@ -1,9 +1,5 @@
 `@InjectResources` JUnit Jupiter extension gives ability to inject content of resources into JUnit5 tests.
 
-=== Repository
-
-include::../repo.adoc[]
-
 === Dependency
 
 Add `inject-resources-core` and `inject-resources-junit-jupiter` dependencies to your project.
@@ -13,14 +9,14 @@ Using Maven:
 [source, xml, subs="+attributes"]
 ----
 <dependency>
-    <groupId>com.adelean</groupId>
+    <groupId>io.hosuaby</groupId>
     <artifactId>inject-resources-core</artifactId>
     <version>{project-version}</version>
     <scope>test</scope>
 </dependency>
 
 <dependency>
-    <groupId>com.adelean</groupId>
+    <groupId>io.hosuaby</groupId>
     <artifactId>inject-resources-junit-jupiter</artifactId>
     <version>{project-version}</version>
     <scope>test</scope>
@@ -31,8 +27,8 @@ Or using Gradle:
 
 [source, groovy, subs="+attributes"]
 ----
-testCompile group: 'com.adelean', name: 'inject-resources-core', version: '{project-version}'
-testCompile group: 'com.adelean', name: 'inject-resources-junit-jupiter', version: '{project-version}'
+testCompile group: 'io.hosuaby', name: 'inject-resources-core', version: '{project-version}'
+testCompile group: 'io.hosuaby', name: 'inject-resources-junit-jupiter', version: '{project-version}'
 ----
 
 === Test extension

@@ -5,10 +5,6 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 and https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/util/ResourceUtils.html[ResourceUtils]
 from Spring.
 
-=== Repository
-
-include::../repo.adoc[]
-
 === Dependency
 
 Add `inject-resources-spring` dependency to your project.
@@ -18,7 +14,7 @@ Using Maven:
 [source, xml, subs="+attributes"]
 ----
 <dependency>
-    <groupId>com.adelean</groupId>
+    <groupId>io.hosuaby</groupId>
     <artifactId>inject-resources-spring</artifactId>
     <version>{project-version}</version>
 </dependency>
@@ -28,7 +24,7 @@ Or using Gradle:
 
 [source, groovy, subs="+attributes"]
 ----
-compile group: 'com.adelean', name: 'inject-resources-spring', version: '{project-version}'
+compile group: 'io.hosuaby', name: 'inject-resources-spring', version: '{project-version}'
 ----
 
 === Enabling resource injection

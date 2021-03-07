@@ -21,10 +21,6 @@ opening and closing of input streams and handles exceptions.
 
 Java 8+ is required in order to use this library.
 
-== Repository
-
-include::repo.adoc[]
-
 == Modules
 
 Library composed of following modules:
