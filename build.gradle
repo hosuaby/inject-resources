@@ -8,7 +8,7 @@ plugins {
 }
 
 allprojects {
-    group 'com.adelean'
+    group 'io.hosuaby'
     version '0.2.0-SNAPSHOT'
 
     repositories {
