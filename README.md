@@ -4,10 +4,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/hosuaby/inject-resources/badge.svg?branch=master)](https://coveralls.io/github/hosuaby/inject-resources?branch=master)
 [![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg)](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
 [![User guide](https://img.shields.io/badge/User%20guide-0.2.0-red)](https://hosuaby.github.io/inject-resources/0.2.0/asciidoc/)
-[![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.2.0-orange)](https://javadoc.io/doc/com.adelean/inject-resources-core/0.2.0)
-[![Spring Javadoc](https://img.shields.io/badge/Spring%20Javadoc-0.2.0-green)](https://javadoc.io/doc/com.adelean/inject-resources-spring/0.2.0)
-[![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.2.0-blueviolet)](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter/0.2.0)
-[![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.2.0-yellow)](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage/0.2.0)
+[![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.2.0-orange)](https://javadoc.io/doc/io.hosuaby/inject-resources-core/0.2.0)
+[![Spring Javadoc](https://img.shields.io/badge/Spring%20Javadoc-0.2.0-green)](https://javadoc.io/doc/io.hosuaby/inject-resources-spring/0.2.0)
+[![JUnit Jupiter Javadoc](https://img.shields.io/badge/JUnit%20Jupiter%20Javadoc-0.2.0-blueviolet)](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-jupiter/0.2.0)
+[![JUnit 4 Javadoc](https://img.shields.io/badge/JUnit%204%20Javadoc-0.2.0-yellow)](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-vintage/0.2.0)
 
 *Reading content of resource files in Java is harder that it should be*. Great libraries like
 [Guava](https://github.com/google/guava) or [Spring](https://github.com/spring-projects/spring-framework) made it much
@@ -114,7 +114,7 @@ Support files in formats: binary, text, java properties and JSON.
 
 ### Javadoc
 
-- [Core](https://javadoc.io/doc/com.adelean/inject-resources-core/0.2.0),
-- [Spring extension](https://javadoc.io/doc/com.adelean/inject-resources-spring/0.2.0),
-- [JUnit5 extension](https://javadoc.io/doc/com.adelean/inject-resources-junit-jupiter/0.2.0),
-- [JUnit4 extension](https://javadoc.io/doc/com.adelean/inject-resources-junit-vintage/0.2.0)
+- [Core](https://javadoc.io/doc/io.hosuaby/inject-resources-core/0.2.0),
+- [Spring extension](https://javadoc.io/doc/io.hosuaby/inject-resources-spring/0.2.0),
+- [JUnit5 extension](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-jupiter/0.2.0),
+- [JUnit4 extension](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-vintage/0.2.0)
