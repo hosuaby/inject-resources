@@ -1,0 +1,28 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        env:
+            jdk_version: 13
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup JDK ${{ env.jdk_version }}
+              uses: actions/setup-java@v1
+              with:
+                  java-version: ${{ env.jdk_version }}
+
+            - name: Build
+              run: ./gradlew clean build
+
+            - name: Publish release
+              if: startsWith(github.ref, 'refs/tags/v')
+              run: ./gradlew bintrayUpload
+
+            - name: Report coverage
+              if: github.ref == 'ref/head/master'
+              run: ./gradlew test jacocoTestReport jacocoRootReport coveralls
