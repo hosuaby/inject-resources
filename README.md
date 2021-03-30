@@ -1,8 +1,8 @@
 # @InjectResources
 
-[![Build Status](https://travis-ci.org/hosuaby/inject-resources.svg?branch=master)](https://travis-ci.org/hosuaby/inject-resources)
+[![CI](https://github.com/hosuaby/inject-resources/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/hosuaby/inject-resources/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/hosuaby/inject-resources/badge.svg?branch=master)](https://coveralls.io/github/hosuaby/inject-resources?branch=master)
-[![Download](https://api.bintray.com/packages/hosuaby/InjectResources/InjectResources/images/download.svg)](https://bintray.com/hosuaby/InjectResources/InjectResources/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.hosuaby/inject-resources-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.hosuaby/inject-resources-core)
 [![User guide](https://img.shields.io/badge/User%20guide-0.2.0-red)](https://hosuaby.github.io/inject-resources/0.2.0/asciidoc/)
 [![Core Javadoc](https://img.shields.io/badge/Core%20Javadoc-0.2.0-orange)](https://javadoc.io/doc/io.hosuaby/inject-resources-core/0.2.0)
 [![Spring Javadoc](https://img.shields.io/badge/Spring%20Javadoc-0.2.0-green)](https://javadoc.io/doc/io.hosuaby/inject-resources-spring/0.2.0)
