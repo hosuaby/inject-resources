@@ -148,25 +148,23 @@ public final class AnnotationSupport {
                 .isEmpty();
     }
 
+    @SuppressWarnings("unchecked")
     public static Collection<Class<? extends Annotation>> allResourceAnnotations(Class<?> baseClass) {
         return new Reflections(baseClass.getPackage().getName(), baseClass.getClassLoader())
-                .getSubTypesOf(Annotation.class)
+                .getTypesAnnotatedWith(Resource.class)
                 .stream()
-                .filter(clazz -> AnnotationUtils
-                        .findAnnotation(clazz, Resource.class)
-                        .isPresent())
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
+                .map(clazz -> (Class<? extends Annotation>) clazz)
                 .collect(toList());
     }
 
+    @SuppressWarnings("unchecked")
     public static Collection<Class<? extends Annotation>> allParserAnnotations(Class<?> baseClass) {
         return new Reflections(baseClass.getPackage().getName(), baseClass.getClassLoader())
-                .getSubTypesOf(Annotation.class)
+                .getTypesAnnotatedWith(Parser.class)
                 .stream()
-                .filter(clazz -> AnnotationUtils
-                        .findAnnotation(clazz, Parser.class)
-                        .isPresent())
                 .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
+                .map(clazz -> (Class<? extends Annotation>) clazz)
                 .collect(toList());
     }
 }

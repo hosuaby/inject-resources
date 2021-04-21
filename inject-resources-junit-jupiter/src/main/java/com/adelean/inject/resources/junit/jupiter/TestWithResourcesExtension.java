@@ -14,21 +14,22 @@ import org.junit.jupiter.api.extension.ParameterResolver;
 import org.junit.platform.commons.support.AnnotationSupport;
 import org.junit.platform.commons.support.HierarchyTraversalMode;
 import org.junit.platform.commons.support.ReflectionSupport;
+import org.reflections.ReflectionUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.adelean.inject.resources.commons.MethodAsserts.assertNotConstructor;
 import static com.adelean.inject.resources.commons.MethodAsserts.assertNotStaticMethod;
 import static com.adelean.inject.resources.junit.jupiter.core.Annotations.PARSER_ANNOTATIONS;
 import static com.adelean.inject.resources.junit.jupiter.core.Annotations.RESOURCE_ANNOTATIONS;
-import static java.util.stream.Collectors.toList;
+import static org.reflections.ReflectionUtils.withAnnotation;
 
 public class TestWithResourcesExtension implements BeforeAllCallback, BeforeEachCallback, ParameterResolver {
 
@@ -143,17 +144,15 @@ public class TestWithResourcesExtension implements BeforeAllCallback, BeforeEach
 
     private void provideParsers(TestContext testContext) {
         for (Class<? extends Annotation> annotationType : PARSER_ANNOTATIONS) {
-            List<Field> providingFields = AnnotationSupport.findAnnotatedFields(
+            Set<Field> providingFields = ReflectionUtils.getAllFields(
                     testContext.getTestClass(),
-                    annotationType,
-                    testContext.memberSelector(),
-                    HierarchyTraversalMode.TOP_DOWN);
+                    withAnnotation(annotationType),
+                    testContext.memberSelector());
 
-            List<Method> providingMethods =
-                    AnnotationSupport.findAnnotatedMethods(testContext.getTestClass(), annotationType, HierarchyTraversalMode.TOP_DOWN)
-                            .stream()
-                            .filter(testContext.memberSelector())
-                            .collect(toList());
+            Set<Method> providingMethods = ReflectionUtils.getAllMethods(
+                    testContext.getTestClass(),
+                    withAnnotation(annotationType),
+                    testContext.memberSelector());
 
             if (!providingFields.isEmpty() || !providingMethods.isEmpty()) {
                 AbstractParserProvider<? extends Annotation, ?, ?> parserProvider = AbstractParserProvider
@@ -173,15 +172,13 @@ public class TestWithResourcesExtension implements BeforeAllCallback, BeforeEach
         InjectionContext injectionContext = new InjectionContext(context);
 
         for (Class<? extends Annotation> annotationType : PARSER_ANNOTATIONS) {
-            List<Field> providingFields = AnnotationSupport.findAnnotatedFields(
+            Set<Field> providingFields = ReflectionUtils.getAllFields(
                     adviceInstance.getClass(),
-                    annotationType,
-                    anyField -> true,
-                    HierarchyTraversalMode.TOP_DOWN);
+                    withAnnotation(annotationType));
 
-            List<Method> providingMethods = new ArrayList<>(
-                    AnnotationSupport.findAnnotatedMethods(
-                            adviceInstance.getClass(), annotationType, HierarchyTraversalMode.TOP_DOWN));
+            Set<Method> providingMethods = ReflectionUtils.getAllMethods(
+                    adviceInstance.getClass(),
+                    withAnnotation(annotationType));
 
             if (!providingFields.isEmpty() || !providingMethods.isEmpty()) {
                 AbstractParserProvider<? extends Annotation, ?, ?> parserProvider = AbstractParserProvider

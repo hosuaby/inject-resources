@@ -1,16 +1,16 @@
 package com.adelean.inject.resources.junit.jupiter.core;
 
 import com.adelean.inject.resources.commons.AnnotationSupport;
-import com.adelean.inject.resources.commons.ClassSupport;
+import com.adelean.inject.resources.commons.FieldAsserts;
+import com.adelean.inject.resources.commons.MethodAsserts;
 import com.adelean.inject.resources.core.Parsable;
 import com.adelean.inject.resources.junit.jupiter.TestWithResourcesExtension;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
-import com.adelean.inject.resources.commons.FieldAsserts;
-import com.adelean.inject.resources.commons.MethodAsserts;
 import org.jetbrains.annotations.Nullable;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.junit.platform.commons.support.ReflectionSupport;
 import org.junit.platform.commons.util.ReflectionUtils;
+import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -113,11 +113,8 @@ public abstract class AbstractParserProvider<
     public static Map<
             Class<? extends Annotation>,
             Class<? extends AbstractParserProvider<?, ?, ?>>> allParserProviders() {
-        return ReflectionSupport
-                .findAllClassesInPackage(
-                        TestWithResourcesExtension.class.getPackage().getName(),
-                        clazz -> ClassSupport.isSubclass(clazz, AbstractParserProvider.class),
-                        any -> true)
+        return new Reflections(TestWithResourcesExtension.class.getPackage().getName(), AbstractParserProvider.class)
+                .getSubTypesOf(AbstractParserProvider.class)
                 .stream()
                 .filter(ModifierSupport::isPublic)
                 .map(clazz -> (Class<? extends AbstractParserProvider<?, ?, ?>>) clazz)
