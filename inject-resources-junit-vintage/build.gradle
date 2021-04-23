@@ -80,15 +80,15 @@ publishing {
         maven {
             url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
             credentials {
-                username SONATYPE_USERNAME
-                password SONATYPE_PASSWORD
+                username System.getenv('SONATYPE_USERNAME')
+                password System.getenv('SONATYPE_PASSWORD')
             }
         }
     }
 }
 
 signing {
-    def signingKey = findProperty('SIGNING_KEY')
+    def signingKey = System.getenv('SIGNING_KEY')
     useInMemoryPgpKeys(signingKey, '')
     sign publishing.publications.mavenJava
 }
