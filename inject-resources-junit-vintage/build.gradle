@@ -1,8 +1,8 @@
 plugins {
     id 'java-library'
+    id 'signing'
     id 'maven-publish'
     id 'jacoco'
-    id 'com.jfrog.bintray' version '1.8.5'
 }
 
 compileJava {
@@ -76,24 +76,21 @@ publishing {
             }
         }
     }
-}
-
-bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_API_KEY')
-    pkg {
-        repo = 'InjectResources'
-        name = 'InjectResources'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/hosuaby/inject-resources'
-        version {
-            name = project.version
-            released  = new Date()
-            vcsTag = 'v' + project.version
+    repositories {
+        maven {
+            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username SONATYPE_USERNAME
+                password SONATYPE_PASSWORD
+            }
         }
     }
-    publications = ['mavenJava']
-    publish = true
+}
+
+signing {
+    def signingKey = findProperty('SIGNING_KEY')
+    useInMemoryPgpKeys(signingKey, '')
+    sign publishing.publications.mavenJava
 }
 
 def JACKSON_VERSION = '2.10.3'
