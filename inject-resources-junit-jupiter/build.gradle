@@ -93,7 +93,7 @@ signing {
     sign publishing.publications.mavenJava
 }
 
-def JUNIT_VERSION = '5.6.0'
+def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
 def JACKSON_VERSION = '2.10.3'
 def GSON_VERSION = '2.8.0'
 

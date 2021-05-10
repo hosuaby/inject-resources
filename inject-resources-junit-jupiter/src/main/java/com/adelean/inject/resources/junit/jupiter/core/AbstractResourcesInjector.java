@@ -1,12 +1,11 @@
 package com.adelean.inject.resources.junit.jupiter.core;
 
-import com.adelean.inject.resources.commons.ClassSupport;
 import com.adelean.inject.resources.junit.jupiter.TestWithResourcesExtension;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
 import org.jetbrains.annotations.Nullable;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.junit.platform.commons.support.ReflectionSupport;
 import org.junit.platform.commons.util.ReflectionUtils;
+import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -91,11 +90,10 @@ public abstract class AbstractResourcesInjector<A extends Annotation> {
     public static Map<
             Class<? extends Annotation>,
             Class<? extends AbstractResourcesInjector<? extends Annotation>>> allInjectors() {
-        return ReflectionSupport
-                .findAllClassesInPackage(
-                        TestWithResourcesExtension.class.getPackage().getName(),
-                        clazz -> ClassSupport.isSubclass(clazz, AbstractResourcesInjector.class),
-                        any -> true)
+        return new Reflections(
+                    TestWithResourcesExtension.class.getPackage().getName(),
+                    TestWithResourcesExtension.class.getClassLoader())
+                .getSubTypesOf(AbstractResourcesInjector.class)
                 .stream()
                 .filter(ModifierSupport::isPublic)
                 .map(clazz -> (Class<? extends AbstractResourcesInjector<? extends Annotation>>) clazz)
