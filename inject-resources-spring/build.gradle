@@ -94,13 +94,14 @@ signing {
 }
 
 def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
+def SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '1.28'
 
 dependencies {
     compile project(':inject-resources-core')
 
     compileOnly project(':inject-resources-commons')
     compileOnly group: 'org.springframework', name: 'spring-context'
-    compileOnly group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+    compileOnly group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
 
     implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
 
@@ -114,7 +115,7 @@ dependencies {
     testImplementation project(':test-commons')
     testImplementation project(':inject-resources-core')
     testImplementation project(':inject-resources-commons')
-    testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+    testImplementation group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
     testImplementation group: 'com.tngtech.archunit', name: 'archunit', version: '0.14.1'
 }

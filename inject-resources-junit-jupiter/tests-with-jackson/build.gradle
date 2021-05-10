@@ -20,7 +20,7 @@ jacocoTestReport {
 }
 
 def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
-def JACKSON_VERSION = '2.10.3'
+def JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.10.5'
 
 dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION

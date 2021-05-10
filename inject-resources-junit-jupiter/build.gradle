@@ -94,8 +94,9 @@ signing {
 }
 
 def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
-def JACKSON_VERSION = '2.10.3'
-def GSON_VERSION = '2.8.0'
+def JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.10.5'
+def GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
+def SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '1.28'
 
 dependencies {
     'org.junit:junit-bom:pom:5.6.0'
@@ -112,7 +113,7 @@ dependencies {
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     compileOnly group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
-    compileOnly group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+    compileOnly group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
@@ -128,7 +129,7 @@ dependencies {
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
-    testImplementation group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+    testImplementation group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
 }
 
 test {

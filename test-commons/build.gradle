@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-def JACKSON_VERSION = '2.10.3'
-def GSON_VERSION = '2.8.0'
+def JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.10.5'
+def GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
 
 dependencies {
     compileOnly group: 'org.assertj', name: 'assertj-core', version: '3.14.0'

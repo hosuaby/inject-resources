@@ -20,7 +20,7 @@ jacocoTestReport {
 }
 
 def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
-def GSON_VERSION = '2.8.0'
+def GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
 
 dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
