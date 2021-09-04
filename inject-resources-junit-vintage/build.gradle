@@ -93,10 +93,10 @@ def GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
 def SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '1.28'
 
 dependencies {
+    compile project(':inject-resources-core')
     compile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
-    compileOnly project(':inject-resources-core')
     compileOnly project(':inject-resources-commons')
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION

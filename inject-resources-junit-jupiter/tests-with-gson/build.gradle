@@ -27,7 +27,6 @@ dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
     testCompile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
 
-    testImplementation project(':inject-resources-core')
     testImplementation project(':inject-resources-commons')
     testImplementation project(':inject-resources-junit-jupiter')
     testImplementation project(':test-commons')
