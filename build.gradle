@@ -1,3 +1,5 @@
+import org.gradle.api.attributes.java.TargetJvmVersion
+
 plugins {
     id 'base'
     id 'java'
@@ -35,6 +37,29 @@ def publishedProjectsPaths = [
 
 def publishedProjects = subprojects.findAll { subproject ->
     publishedProjectsPaths.contains(subproject.path)
+}
+
+configure(publishedProjects) {
+    def javaVersion = JavaVersion.VERSION_1_8
+    Integer javaMajorVersion = Integer.parseInt(javaVersion.getMajorVersion())
+
+    compileJava {
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+    }
+
+    configurations {
+        runtimeElements {
+            attributes {
+                attribute TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, javaMajorVersion
+            }
+        }
+        apiElements {
+            attributes {
+                attribute TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, javaMajorVersion
+            }
+        }
+    }
 }
 
 task jacocoMerge(type: JacocoMerge) {
