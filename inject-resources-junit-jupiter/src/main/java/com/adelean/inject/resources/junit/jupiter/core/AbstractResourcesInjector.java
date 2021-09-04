@@ -1,22 +1,33 @@
 package com.adelean.inject.resources.junit.jupiter.core;
 
-import com.adelean.inject.resources.junit.jupiter.TestWithResourcesExtension;
+import com.adelean.inject.resources.junit.jupiter.GivenBinaryResource;
+import com.adelean.inject.resources.junit.jupiter.GivenJsonLinesResource;
+import com.adelean.inject.resources.junit.jupiter.GivenJsonResource;
+import com.adelean.inject.resources.junit.jupiter.GivenPropertiesResource;
+import com.adelean.inject.resources.junit.jupiter.GivenTextResource;
+import com.adelean.inject.resources.junit.jupiter.GivenYamlDocumentsResource;
+import com.adelean.inject.resources.junit.jupiter.GivenYamlResource;
+import com.adelean.inject.resources.junit.jupiter.binary.BinaryResourcesInjector;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
+import com.adelean.inject.resources.junit.jupiter.json.JsonLinesResourcesInjector;
+import com.adelean.inject.resources.junit.jupiter.json.JsonResourcesInjector;
+import com.adelean.inject.resources.junit.jupiter.properties.PropertiesResourcesInjector;
+import com.adelean.inject.resources.junit.jupiter.text.TextResourcesInjector;
+import com.adelean.inject.resources.junit.jupiter.yaml.YamlDocumentsResourcesInjector;
+import com.adelean.inject.resources.junit.jupiter.yaml.YamlResourcesInjector;
 import org.jetbrains.annotations.Nullable;
-import org.junit.platform.commons.support.ModifierSupport;
 import org.junit.platform.commons.util.ReflectionUtils;
-import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Parameter;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.adelean.inject.resources.commons.FieldAsserts.assertNonPrivate;
 import static com.adelean.inject.resources.commons.FieldAsserts.assertSupportedType;
-import static java.util.stream.Collectors.toMap;
 import static org.junit.platform.commons.util.ReflectionUtils.makeAccessible;
 
 public abstract class AbstractResourcesInjector<A extends Annotation> {
@@ -86,20 +97,20 @@ public abstract class AbstractResourcesInjector<A extends Annotation> {
 
     abstract public Object valueToInject(Type valueType, A resourceAnnotation);
 
-    @SuppressWarnings("unchecked")
     public static Map<
             Class<? extends Annotation>,
             Class<? extends AbstractResourcesInjector<? extends Annotation>>> allInjectors() {
-        return new Reflections(
-                    TestWithResourcesExtension.class.getPackage().getName(),
-                    TestWithResourcesExtension.class.getClassLoader())
-                .getSubTypesOf(AbstractResourcesInjector.class)
-                .stream()
-                .filter(ModifierSupport::isPublic)
-                .map(clazz -> (Class<? extends AbstractResourcesInjector<? extends Annotation>>) clazz)
-                .collect(toMap(
-                        injectorClass -> (Class<? extends Annotation>)
-                                ((ParameterizedType) injectorClass.getGenericSuperclass()).getActualTypeArguments()[0],
-                        injectorClass -> injectorClass));
+        Map<Class<? extends Annotation>, Class<? extends AbstractResourcesInjector<? extends Annotation>>> injectors =
+                new HashMap<>();
+
+        injectors.put(GivenBinaryResource.class, BinaryResourcesInjector.class);
+        injectors.put(GivenTextResource.class, TextResourcesInjector.class);
+        injectors.put(GivenPropertiesResource.class, PropertiesResourcesInjector.class);
+        injectors.put(GivenJsonResource.class, JsonResourcesInjector.class);
+        injectors.put(GivenJsonLinesResource.class, JsonLinesResourcesInjector.class);
+        injectors.put(GivenYamlResource.class, YamlResourcesInjector.class);
+        injectors.put(GivenYamlDocumentsResource.class, YamlDocumentsResourcesInjector.class);
+
+        return Collections.unmodifiableMap(injectors);
     }
 }

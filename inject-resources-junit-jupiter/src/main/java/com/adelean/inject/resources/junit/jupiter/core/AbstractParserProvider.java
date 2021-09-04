@@ -4,22 +4,25 @@ import com.adelean.inject.resources.commons.AnnotationSupport;
 import com.adelean.inject.resources.commons.FieldAsserts;
 import com.adelean.inject.resources.commons.MethodAsserts;
 import com.adelean.inject.resources.core.Parsable;
-import com.adelean.inject.resources.junit.jupiter.TestWithResourcesExtension;
+import com.adelean.inject.resources.junit.jupiter.WithGson;
+import com.adelean.inject.resources.junit.jupiter.WithJacksonMapper;
+import com.adelean.inject.resources.junit.jupiter.WithSnakeYaml;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
+import com.adelean.inject.resources.junit.jupiter.json.GsonProvider;
+import com.adelean.inject.resources.junit.jupiter.json.JacksonMapperProvider;
+import com.adelean.inject.resources.junit.jupiter.yaml.SnakeYamlProvider;
 import org.jetbrains.annotations.Nullable;
-import org.junit.platform.commons.support.ModifierSupport;
 import org.junit.platform.commons.support.ReflectionSupport;
 import org.junit.platform.commons.util.ReflectionUtils;
-import org.reflections.Reflections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
-import static java.util.stream.Collectors.toMap;
 import static org.junit.platform.commons.util.ReflectionUtils.makeAccessible;
 
 public abstract class AbstractParserProvider<
@@ -109,34 +112,15 @@ public abstract class AbstractParserProvider<
 
     protected abstract P createParser(A parserAnnotation, R parser);
 
-    @SuppressWarnings("unchecked")
     public static Map<
             Class<? extends Annotation>,
             Class<? extends AbstractParserProvider<?, ?, ?>>> allParserProviders() {
-        return new Reflections(TestWithResourcesExtension.class.getPackage().getName(), AbstractParserProvider.class)
-                .getSubTypesOf(AbstractParserProvider.class)
-                .stream()
-                .filter(ModifierSupport::isPublic)
-                .map(clazz -> (Class<? extends AbstractParserProvider<?, ?, ?>>) clazz)
-                .filter(AbstractParserProvider::isLoadable)
-                .collect(toMap(
-                        AbstractParserProvider::extractParserAnnotationArg,
-                        providerClass -> providerClass));
-    }
+        Map<Class<? extends Annotation>, Class<? extends AbstractParserProvider<?, ?, ?>>> providers = new HashMap<>();
 
-    static boolean isLoadable(Class<? extends AbstractParserProvider<?, ?, ?>> providerClass) {
-        try {
-            providerClass.getGenericSuperclass();
-            return true;
-        } catch (TypeNotPresentException missingDependencyException) {
-            return false;
-        }
-    }
+        providers.put(WithJacksonMapper.class, JacksonMapperProvider.class);
+        providers.put(WithGson.class, GsonProvider.class);
+        providers.put(WithSnakeYaml.class, SnakeYamlProvider.class);
 
-    @SuppressWarnings("unchecked")
-    static Class<? extends Annotation> extractParserAnnotationArg(
-            Class<? extends AbstractParserProvider<?, ?, ?>> providerClass) {
-        return (Class<? extends Annotation>)
-                ((ParameterizedType) providerClass.getGenericSuperclass()).getActualTypeArguments()[0];
+        return Collections.unmodifiableMap(providers);
     }
 }

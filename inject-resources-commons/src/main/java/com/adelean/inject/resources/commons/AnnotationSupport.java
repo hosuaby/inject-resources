@@ -2,17 +2,14 @@ package com.adelean.inject.resources.commons;
 
 import com.adelean.inject.resources.annotations.Extends;
 import com.adelean.inject.resources.annotations.Named;
-import com.adelean.inject.resources.annotations.Parser;
-import com.adelean.inject.resources.annotations.Resource;
 import com.adelean.inject.resources.annotations.WithPath;
 import com.adelean.inject.resources.core.helpers.StringUtils;
+import org.reflections.ReflectionUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +18,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.adelean.inject.resources.commons.Errors.internalError;
-import static java.util.stream.Collectors.toList;
 import static org.reflections.ReflectionUtils.withName;
 import static org.reflections.ReflectionUtils.withReturnType;
-
-import org.reflections.ReflectionUtils;
-import org.reflections.Reflections;
 
 public final class AnnotationSupport {
     private static final String ERR_ANNOTATION_NOT_EXTENDS = "@%s missing @Extends(%s.class)";
@@ -146,25 +139,5 @@ public final class AnnotationSupport {
         return !ReflectionUtils
                 .getMethods(clazz, withName(method.getName()), withReturnType(method.getReturnType()))
                 .isEmpty();
-    }
-
-    @SuppressWarnings("unchecked")
-    public static Collection<Class<? extends Annotation>> allResourceAnnotations(Class<?> baseClass) {
-        return new Reflections(baseClass.getPackage().getName(), baseClass.getClassLoader())
-                .getTypesAnnotatedWith(Resource.class)
-                .stream()
-                .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
-                .map(clazz -> (Class<? extends Annotation>) clazz)
-                .collect(toList());
-    }
-
-    @SuppressWarnings("unchecked")
-    public static Collection<Class<? extends Annotation>> allParserAnnotations(Class<?> baseClass) {
-        return new Reflections(baseClass.getPackage().getName(), baseClass.getClassLoader())
-                .getTypesAnnotatedWith(Parser.class)
-                .stream()
-                .filter(clazz -> Modifier.isPublic(clazz.getModifiers()))
-                .map(clazz -> (Class<? extends Annotation>) clazz)
-                .collect(toList());
     }
 }

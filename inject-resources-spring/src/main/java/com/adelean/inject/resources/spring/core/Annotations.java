@@ -1,7 +1,12 @@
 package com.adelean.inject.resources.spring.core;
 
-import com.adelean.inject.resources.commons.AnnotationSupport;
-import com.adelean.inject.resources.spring.EnableResourceInjection;
+import com.adelean.inject.resources.spring.BinaryResource;
+import com.adelean.inject.resources.spring.JsonLinesResource;
+import com.adelean.inject.resources.spring.JsonResource;
+import com.adelean.inject.resources.spring.PropertiesResource;
+import com.adelean.inject.resources.spring.TextResource;
+import com.adelean.inject.resources.spring.YamlDocumentsResource;
+import com.adelean.inject.resources.spring.YamlResource;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.Nullable;
@@ -11,6 +16,7 @@ import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,8 +25,14 @@ public final class Annotations {
     private static final String ERR_INVALID_ANNOTATIONS =
             "%s '%s' annotated with @%s has other invalid annotations:\n%s";
 
-    public static final Collection<Class<? extends Annotation>> RESOURCE_ANNOTATIONS =
-            AnnotationSupport.allResourceAnnotations(EnableResourceInjection.class);
+    public static final Collection<Class<? extends Annotation>> RESOURCE_ANNOTATIONS = Arrays.asList(
+            BinaryResource.class,
+            TextResource.class,
+            PropertiesResource.class,
+            JsonResource.class,
+            JsonLinesResource.class,
+            YamlResource.class,
+            YamlDocumentsResource.class);
 
     private Annotations() {
     }

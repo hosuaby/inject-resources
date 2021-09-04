@@ -14,15 +14,14 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class PluginArchitectureTests {
     private static final Pattern RESOURCE_ANNOTATION_NAME_PATTERN = Pattern.compile("^Given\\w+Resource$");
     private static final Pattern PARSER_ANNOTATION_NAME_PATTERN = Pattern.compile("^With\\w+$");
-    private static final String ERR_WRONG_NAME =
-            "%s annotation @%s does not follow the name pattern [%s].";
+    private static final String ERR_WRONG_NAME = "%s annotation @%s does not follow the name pattern [%s].";
 
     @Test
     @DisplayName("Test that resource annotations implemented properly")
     public void testResourceAnnotations() {
 
         /* Given */
-        Collection<Class<? extends Annotation>> allResourceAnnotations = Annotations.allResourceAnnotations();
+        Collection<Class<? extends Annotation>> allResourceAnnotations = Annotations.RESOURCE_ANNOTATIONS;
 
         /* When */
         for (Class<? extends Annotation> annotationType : allResourceAnnotations) {
@@ -38,7 +37,7 @@ public class PluginArchitectureTests {
     public void testParserAnnotations() {
 
         /* Given */
-        Collection<Class<? extends Annotation>> allParserAnnotations = Annotations.allParserAnnotations();
+        Collection<Class<? extends Annotation>> allParserAnnotations = Annotations.PARSER_ANNOTATIONS;
 
         /* When */
         for (Class<? extends Annotation> annotationType : allParserAnnotations) {
