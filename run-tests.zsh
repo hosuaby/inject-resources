@@ -23,10 +23,10 @@ function print_result() {
   echo "\t${color}${version} ${mark}${NC}"
 }
 
-junit_versions=( "5.6.3" "5.7.1" "5.8.0-M1" )
-jackson_versions=( "2.10.5" "2.11.4" "2.12.3" )
-gson_versions=( "2.8.6" )
-snakeyaml_versions=( "1.28" )
+junit_versions=( "5.6.3" "5.7.1" "5.8.0-RC1" )
+jackson_versions=( "2.10.5" "2.11.4" "2.12.5" "2.13.0-rc2" )
+gson_versions=( "2.8.8" )
+snakeyaml_versions=( "1.29" )
 
 for junit_version in $junit_versions; do
   echo "Tests with JUnit ${junit_version}:"
