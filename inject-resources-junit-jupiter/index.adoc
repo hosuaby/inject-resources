@@ -2,19 +2,12 @@
 
 === Dependency
 
-Add `inject-resources-core` and `inject-resources-junit-jupiter` dependencies to your project.
+Add `inject-resources-junit-jupiter` dependency to your project.
 
 Using Maven:
 
 [source, xml, subs="+attributes"]
 ----
-<dependency>
-    <groupId>io.hosuaby</groupId>
-    <artifactId>inject-resources-core</artifactId>
-    <version>{project-version}</version>
-    <scope>test</scope>
-</dependency>
-
 <dependency>
     <groupId>io.hosuaby</groupId>
     <artifactId>inject-resources-junit-jupiter</artifactId>
@@ -27,7 +20,6 @@ Or using Gradle:
 
 [source, groovy, subs="+attributes"]
 ----
-testCompile group: 'io.hosuaby', name: 'inject-resources-core', version: '{project-version}'
 testCompile group: 'io.hosuaby', name: 'inject-resources-junit-jupiter', version: '{project-version}'
 ----
 
