@@ -21,6 +21,22 @@ allprojects {
 
     apply plugin: 'java'
     apply plugin: 'jacoco'
+
+    ext {
+        JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
+        JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.10.5'
+        GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
+        SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '1.28'
+    }
+}
+
+configure(subprojects.findAll {it.path != ':inject-resources-junit-vintage'}) {
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+    }
 }
 
 def publishedProjectsPaths = [
@@ -48,6 +64,10 @@ configure(publishedProjects) {
         targetCompatibility = javaVersion
     }
 
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_11
+    }
+
     configurations {
         runtimeElements {
             attributes {
@@ -58,6 +78,23 @@ configure(publishedProjects) {
             attributes {
                 attribute TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, javaMajorVersion
             }
+        }
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        archiveClassifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        archiveClassifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = true
+            html.enabled = true
         }
     }
 }

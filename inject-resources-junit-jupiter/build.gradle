@@ -2,33 +2,11 @@ plugins {
     id 'java-library'
     id 'signing'
     id 'maven-publish'
-    id 'jacoco'
-}
-
-compileTestJava {
-    sourceCompatibility = JavaVersion.VERSION_11
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
 }
 
 jar {
     from project.sourceSets.main.output
     from project(':inject-resources-commons').sourceSets.main.output
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier = 'javadoc'
-    from javadoc.destinationDir
 }
 
 publishing {
@@ -88,11 +66,6 @@ signing {
     sign publishing.publications.mavenJava
 }
 
-def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
-def JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.10.5'
-def GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
-def SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '1.28'
-
 dependencies {
     'org.junit:junit-bom:pom:5.6.0'
 
@@ -125,11 +98,4 @@ dependencies {
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
     testImplementation group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
 }

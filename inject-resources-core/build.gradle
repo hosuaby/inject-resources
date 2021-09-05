@@ -1,29 +1,6 @@
 plugins {
-    id 'java'
     id 'signing'
     id 'maven-publish'
-    id 'jacoco'
-}
-
-compileTestJava {
-    sourceCompatibility = JavaVersion.VERSION_11
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier = 'javadoc'
-    from javadoc.destinationDir
 }
 
 publishing {
@@ -83,10 +60,6 @@ signing {
     sign publishing.publications.mavenJava
 }
 
-def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
-def JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.10.5'
-def GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
-
 dependencies {
     compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
@@ -103,11 +76,4 @@ dependencies {
     testImplementation group: 'de.siegmar', name: 'fastcsv', version: '1.0.3'
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
 }
