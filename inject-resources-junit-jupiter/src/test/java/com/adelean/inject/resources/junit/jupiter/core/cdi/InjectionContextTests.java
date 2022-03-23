@@ -15,7 +15,6 @@ import org.junit.jupiter.engine.execution.ExtensionValuesStore;
 import org.junit.jupiter.engine.execution.NamespaceAwareStore;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
 
 @DisplayName("Test InjectionContext")
 @ExtendWith(MockitoExtension.class)

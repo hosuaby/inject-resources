@@ -44,7 +44,7 @@ public class TestWithResourcesExtension implements BeforeAllCallback, BeforeEach
 
         if (!isNestedTestClassContext(context)) {
             TestsAdviceProcessor
-                    .findAdviceClass()
+                    .findAdviceClass(testContext.packageForAdviceScan())
                     .map(ReflectionSupport::newInstance)
                     .ifPresent(adviceInstance -> provideParsersFromAdvice(adviceInstance, context));
         }

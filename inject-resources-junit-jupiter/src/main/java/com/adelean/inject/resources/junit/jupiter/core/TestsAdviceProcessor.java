@@ -32,10 +32,10 @@ public final class TestsAdviceProcessor {
     private static final String ERR_TESTS_ADVICE_INVALID_CONSTRUCTOR = "Class %s annotated with @TestsAdvice doesn't "
             + "have a public constructor without arguments! " + MSG_TESTS_ADVICE_SPEC;
 
-    public static Optional<Class<?>> findAdviceClass() {
+    public static Optional<Class<?>> findAdviceClass(String packageName) {
         Reflections reflections = new Reflections(
                 new ConfigurationBuilder()
-                        .setUrls(ClasspathHelper.forJavaClassPath()));
+                        .setUrls(ClasspathHelper.forPackage(packageName)));
 
         Set<Class<?>> advices = reflections.getTypesAnnotatedWith(TestsAdvice.class);
 

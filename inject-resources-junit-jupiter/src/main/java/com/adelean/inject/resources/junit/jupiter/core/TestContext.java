@@ -3,6 +3,8 @@ package com.adelean.inject.resources.junit.jupiter.core;
 import java.lang.reflect.Member;
 import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -10,6 +12,8 @@ import org.junit.platform.commons.support.ModifierSupport;
 import com.adelean.inject.resources.junit.jupiter.core.cdi.InjectionContext;
 
 public final class TestContext {
+    private static final int SCAN_PACKAGE_DEPT = 3;
+
     private final Class<?> testClass;
 
     @Nullable
@@ -35,6 +39,14 @@ public final class TestContext {
 
     public Class<?> getTestClass() {
         return testClass;
+    }
+
+    public String packageForAdviceScan() {
+        final String[] tokens = testClass.getPackage().getName().split("\\.");
+        return Stream
+                .of(tokens)
+                .limit(SCAN_PACKAGE_DEPT)
+                .collect(Collectors.joining("."));
     }
 
     @Nullable
