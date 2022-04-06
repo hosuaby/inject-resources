@@ -75,7 +75,7 @@ dependencies {
     compile project(':inject-resources-core')
     compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
-    implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
 
     compileOnly project(':inject-resources-commons')
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION

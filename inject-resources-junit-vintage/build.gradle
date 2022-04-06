@@ -77,7 +77,7 @@ dependencies {
     compileOnly group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
     compileOnly group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
 
-    implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
 
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
     testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '3.4.1'
