@@ -13,8 +13,6 @@ import org.springframework.lang.Nullable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Member;
 
-import org.reflections.ReflectionUtils;
-
 abstract class AbstractJsonResourceInjectedElement<A extends Annotation>
         extends AbstractResourceInjectedElement<A> {
     private static final String ERR_NO_PARSER_BEAN =
@@ -36,7 +34,8 @@ abstract class AbstractJsonResourceInjectedElement<A extends Annotation>
             parser = applicationContext.getBean(parserBeanName);
         } else {
             if (isJackson2Present()) {
-                Class<?> jacksonMapperClass = ReflectionUtils.forName(JACKSON_MAPPER_CLASS_NAME);
+                Class<?> jacksonMapperClass = AbstractResourceInjectedElement.REFLECTIONS
+                        .forClass(JACKSON_MAPPER_CLASS_NAME);
                 try {
                     parser = applicationContext.getBean(jacksonMapperClass);
                 } catch (Exception ignored) {
@@ -44,7 +43,7 @@ abstract class AbstractJsonResourceInjectedElement<A extends Annotation>
             }
 
             if (parser == null && isGsonPresent()) {
-                Class<?> gsonClass = ReflectionUtils.forName(GSON_CLASS_NAME);
+                Class<?> gsonClass = AbstractResourceInjectedElement.REFLECTIONS.forClass(GSON_CLASS_NAME);
                 try {
                     parser = applicationContext.getBean(gsonClass);
                 } catch (Exception ignored) {

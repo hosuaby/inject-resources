@@ -3,6 +3,7 @@ package com.adelean.inject.resources.spring.core;
 import com.adelean.inject.resources.spring.EnableResourceInjection;
 import org.jetbrains.annotations.NotNull;
 import org.reflections.Reflections;
+import org.reflections.util.ConfigurationBuilder;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.context.ApplicationContext;
@@ -26,9 +27,9 @@ import static com.adelean.inject.resources.spring.core.Annotations.assertNoOther
 import static java.util.stream.Collectors.toMap;
 
 public abstract class AbstractResourceInjectedElement<A extends Annotation> extends InjectionMetadata.InjectedElement {
-    private static final Reflections REFLECTIONS = new Reflections(
-            EnableResourceInjection.class.getPackage().getName(),
-            EnableResourceInjection.class.getClassLoader());
+    public static final Reflections REFLECTIONS = new Reflections(new ConfigurationBuilder()
+            .forPackage(EnableResourceInjection.class.getPackage().getName())
+            .setClassLoaders(new ClassLoader[]{ EnableResourceInjection.class.getClassLoader() }));
 
     private static final Map<
             Class<? extends Annotation>,
