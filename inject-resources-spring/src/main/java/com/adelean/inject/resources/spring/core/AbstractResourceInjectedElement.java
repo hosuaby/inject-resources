@@ -27,7 +27,7 @@ import static com.adelean.inject.resources.spring.core.Annotations.assertNoOther
 import static java.util.stream.Collectors.toMap;
 
 public abstract class AbstractResourceInjectedElement<A extends Annotation> extends InjectionMetadata.InjectedElement {
-    public static final Reflections REFLECTIONS = new Reflections(new ConfigurationBuilder()
+    protected static final Reflections REFLECTIONS = new Reflections(new ConfigurationBuilder()
             .forPackage(EnableResourceInjection.class.getPackage().getName())
             .setClassLoaders(new ClassLoader[]{ EnableResourceInjection.class.getClassLoader() }));
 
