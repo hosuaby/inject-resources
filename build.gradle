@@ -1,3 +1,4 @@
+
 import org.gradle.api.attributes.java.TargetJvmVersion
 
 plugins {
@@ -16,7 +17,6 @@ allprojects {
     repositories {
         mavenCentral()
         mavenLocal()
-        jcenter()
     }
 
     apply plugin: 'java'
