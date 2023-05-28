@@ -6,7 +6,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.InjectionMetadata;
-import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
+import org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.BridgeMethodResolver;
@@ -23,8 +23,7 @@ import static com.adelean.inject.resources.spring.core.AbstractResourceInjectedE
 import static com.adelean.inject.resources.spring.core.Annotations.RESOURCE_ANNOTATIONS;
 
 public class InjectedResourcesAnnotationBeanPostProcessor
-        extends InstantiationAwareBeanPostProcessorAdapter
-        implements ApplicationContextAware {
+        implements SmartInstantiationAwareBeanPostProcessor, ApplicationContextAware {
     private ApplicationContext applicationContext;
 
     @Override
