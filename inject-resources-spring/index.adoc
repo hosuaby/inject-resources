@@ -271,7 +271,7 @@ public class YamlConfig {
 
     @Bean("log-parser")
     public Yaml logYaml() {
-        return new Yaml(new Constructor(Log.class));
+        return new Yaml(new Constructor(Log.class, new LoaderOptions()));
     }
 }
 ----

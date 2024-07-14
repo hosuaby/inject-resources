@@ -197,6 +197,6 @@ class MyTestClass {
     @Rule
     public YamlDocumentsResource<Log[]> logsAsArray = givenResource()
             .yamlDocuments("/com/adelean/junit/jupiter/logs.yml")
-            .parseWith(new Yaml(new Constructor(Log.class)));
+            .parseWith(new Yaml(new Constructor(Log.class, new LoaderOptions())));
 }
 ----

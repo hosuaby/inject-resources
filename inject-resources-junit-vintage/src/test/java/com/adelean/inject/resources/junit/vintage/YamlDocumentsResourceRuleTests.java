@@ -9,6 +9,7 @@ import com.adelean.resources.data.snakeyaml.Log;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Rule;
 import org.junit.Test;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 
 public class YamlDocumentsResourceRuleTests {
     private static final Yaml yaml = new Yaml();
-    private static final Yaml logParser = new Yaml(new Constructor(Log.class));
+    private static final Yaml logParser = new Yaml(new Constructor(Log.class, new LoaderOptions()));
 
     @Rule
     public YamlDocumentsResource<List<Map<String, Object>>> stacktraceAsList = givenResource()

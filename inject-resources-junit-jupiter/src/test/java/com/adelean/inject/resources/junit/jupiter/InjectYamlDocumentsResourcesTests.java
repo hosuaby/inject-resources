@@ -13,6 +13,7 @@ import com.adelean.resources.data.LogSeverity;
 import com.adelean.resources.data.snakeyaml.Log;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import com.google.common.collect.ImmutableMap;
@@ -25,7 +26,7 @@ public class InjectYamlDocumentsResourcesTests {
     Yaml yaml = new Yaml();
 
     @WithSnakeYaml("log-parser")
-    Yaml logParser = new Yaml(new Constructor(Log.class));
+    Yaml logParser = new Yaml(new Constructor(Log.class, new LoaderOptions()));
 
     @GivenYamlDocumentsResource(from = "/com/adelean/junit/jupiter/stacktrace.yaml", yaml = "default")
     List<Map<String, Object>> stacktraceAsList;

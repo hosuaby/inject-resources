@@ -310,7 +310,7 @@ class TestsWithYaml {
 
     /* Assuming we have defined class Log */
     @WithSnakeYaml("log-parser")
-    Yaml logParser = new Yaml(new Constructor(Log.class));
+    Yaml logParser = new Yaml(new Constructor(Log.class, new LoaderOptions()));
 
     @GivenYamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yaml = "log-parser")
     Log[] logsAsArray;
