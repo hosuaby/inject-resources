@@ -69,11 +69,10 @@ signing {
 dependencies {
     'org.junit:junit-bom:pom:5.6.0'
 
+    api project(':inject-resources-core')
     api group: 'org.apiguardian', name: 'apiguardian-api', version: '1.1.0'
+    api group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
     api group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: JUNIT_VERSION
-
-    compile project(':inject-resources-core')
-    compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
 
@@ -83,17 +82,19 @@ dependencies {
     compileOnly group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
     compileOnly group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
 
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
-    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.3.3'
-    testCompile group: 'io.leangen.geantyref', name: 'geantyref', version: '1.3.11'
-    testCompile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
-
     testImplementation project(':test-commons')
     testImplementation project(':inject-resources-core')
     testImplementation project(':inject-resources-commons')
+
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.3.3'
+    testImplementation group: 'io.leangen.geantyref', name: 'geantyref', version: '1.3.11'
+    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
+    testImplementation group: 'com.github.zafarkhaja', name: 'java-semver', version: '0.10.2'
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION

@@ -1,20 +1,20 @@
 package com.adelean.inject.resources.junit.jupiter.core.cdi;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doReturn;
-
-import java.util.Optional;
-
+import com.adelean.inject.resources.junit.jupiter.core.JUnitJupiterHelpers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.engine.execution.ExtensionValuesStore;
 import org.junit.jupiter.engine.execution.NamespaceAwareStore;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doReturn;
 
 @DisplayName("Test InjectionContext")
 @ExtendWith(MockitoExtension.class)
@@ -27,9 +27,7 @@ public class InjectionContextTests {
 
     @BeforeEach
     public void init() {
-        ExtensionValuesStore extensionValuesStore = new ExtensionValuesStore(null);
-        NamespaceAwareStore store = new NamespaceAwareStore(extensionValuesStore, InjectionContext.NAMESPACE);
-
+        NamespaceAwareStore store = JUnitJupiterHelpers.store();
         doReturn(store)
                 .when(contextMock)
                 .getStore(eq(InjectionContext.NAMESPACE));
