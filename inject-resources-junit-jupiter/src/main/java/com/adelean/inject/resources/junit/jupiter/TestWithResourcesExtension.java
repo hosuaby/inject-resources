@@ -40,7 +40,6 @@ public class TestWithResourcesExtension implements BeforeAllCallback, BeforeEach
     @Override
     public void beforeAll(ExtensionContext context) {
         TestContext testContext = TestContext.ofClass(context.getRequiredTestClass(), context);
-        inject(testContext);
 
         if (!isNestedTestClassContext(context)) {
             TestsAdviceProcessor
@@ -48,6 +47,8 @@ public class TestWithResourcesExtension implements BeforeAllCallback, BeforeEach
                     .map(ReflectionSupport::newInstance)
                     .ifPresent(adviceInstance -> provideParsersFromAdvice(adviceInstance, context));
         }
+
+        inject(testContext);
     }
 
     static boolean isNestedTestClassContext(ExtensionContext context) {

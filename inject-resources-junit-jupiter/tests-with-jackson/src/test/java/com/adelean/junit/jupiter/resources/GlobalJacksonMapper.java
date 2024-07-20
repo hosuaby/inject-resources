@@ -9,7 +9,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 public final class GlobalJacksonMapper {
 
     @WithJacksonMapper
-    ObjectMapper objectMapper() {
+    ObjectMapper defaultObjectMapper() {
+        return new ObjectMapper();
+    }
+
+    @WithJacksonMapper("log-parser")
+    ObjectMapper logParser() {
         return new ObjectMapper().registerModule(new JavaTimeModule());
     }
 }
