@@ -114,14 +114,14 @@ Support files in formats: binary, text, java properties and JSON.
 ## Documentation
 
 ### User guides
-- [Core](https://hosuaby.github.io/inject-resources/0.3.2/asciidoc/#inject-resources-core),
-- [Spring extension](https://hosuaby.github.io/inject-resources/0.3.2/asciidoc/#inject-resources-spring),
-- [JUnit5 extension](https://hosuaby.github.io/inject-resources/0.3.2/asciidoc/#inject-resources-junit-jupiter),
-- [JUnit4 extension](https://hosuaby.github.io/inject-resources/0.3.2/asciidoc/#inject-resources-junit-vintage)
+- [Core](https://hosuaby.github.io/inject-resources/0.3.4/asciidoc/#inject-resources-core),
+- [Spring extension](https://hosuaby.github.io/inject-resources/0.3.4/asciidoc/#inject-resources-spring),
+- [JUnit5 extension](https://hosuaby.github.io/inject-resources/0.3.4/asciidoc/#inject-resources-junit-jupiter),
+- [JUnit4 extension](https://hosuaby.github.io/inject-resources/0.3.4/asciidoc/#inject-resources-junit-vintage)
 
 ### Javadoc
 
-- [Core](https://javadoc.io/doc/io.hosuaby/inject-resources-core/0.3.2),
-- [Spring extension](https://javadoc.io/doc/io.hosuaby/inject-resources-spring/0.3.2),
-- [JUnit5 extension](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-jupiter/0.3.2),
-- [JUnit4 extension](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-vintage/0.3.2)
+- [Core](https://javadoc.io/doc/io.hosuaby/inject-resources-core/0.3.4),
+- [Spring extension](https://javadoc.io/doc/io.hosuaby/inject-resources-spring/0.3.4),
+- [JUnit5 extension](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-jupiter/0.3.4),
+- [JUnit4 extension](https://javadoc.io/doc/io.hosuaby/inject-resources-junit-vintage/0.3.4)
