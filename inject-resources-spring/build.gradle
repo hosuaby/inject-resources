@@ -1,6 +1,5 @@
 plugins {
     id 'java-library'
-    id 'signing'
     id 'maven-publish'
 }
 
@@ -49,21 +48,6 @@ publishing {
             }
         }
     }
-    repositories {
-        maven {
-            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-            credentials {
-                username System.getenv('SONATYPE_USERNAME')
-                password System.getenv('SONATYPE_PASSWORD')
-            }
-        }
-    }
-}
-
-signing {
-    def signingKey = System.getenv('SIGNING_KEY')
-    useInMemoryPgpKeys(signingKey, '')
-    sign publishing.publications.mavenJava
 }
 
 dependencies {

@@ -4,6 +4,7 @@ import org.gradle.api.attributes.java.TargetJvmVersion
 plugins {
     id 'base'
     id 'java'
+    id 'signing'
     id 'maven-publish'
     id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.10.1'
@@ -30,7 +31,7 @@ allprojects {
     }
 }
 
-configure(subprojects.findAll {it.path != ':inject-resources-junit-vintage'}) {
+configure(subprojects.findAll { it.path != ':inject-resources-junit-vintage' }) {
     test {
         useJUnitPlatform()
         testLogging {
@@ -39,7 +40,7 @@ configure(subprojects.findAll {it.path != ':inject-resources-junit-vintage'}) {
     }
 }
 
-def publishedProjectsPaths = [
+def coveredProjectsPaths = [
         ':inject-resources-core',
         ':inject-resources-commons',
         ':inject-resources-spring',
@@ -51,11 +52,11 @@ def publishedProjectsPaths = [
         ':inject-resources-junit-vintage'
 ]
 
-def publishedProjects = subprojects.findAll { subproject ->
-    publishedProjectsPaths.contains(subproject.path)
+def coveredProjects = subprojects.findAll { subproject ->
+    coveredProjectsPaths.contains(subproject.path)
 }
 
-configure(publishedProjects) {
+configure(coveredProjects) {
     def javaVersion = JavaVersion.VERSION_1_8
     Integer javaMajorVersion = Integer.parseInt(javaVersion.getMajorVersion())
 
@@ -81,6 +82,26 @@ configure(publishedProjects) {
         }
     }
 
+    jacocoTestReport {
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+    }
+}
+
+def publishedProjectsPaths = [
+        ':inject-resources-core',
+        ':inject-resources-spring',
+        ':inject-resources-junit-jupiter',
+        ':inject-resources-junit-vintage'
+]
+
+def publishedProjects = subprojects.findAll { subproject ->
+    publishedProjectsPaths.contains(subproject.path)
+}
+
+configure(publishedProjects) {
     task sourcesJar(type: Jar, dependsOn: classes) {
         archiveClassifier = 'sources'
         from sourceSets.main.allSource
@@ -91,26 +112,47 @@ configure(publishedProjects) {
         from javadoc.destinationDir
     }
 
-    jacocoTestReport {
-        reports {
-            xml.enabled = true
-            html.enabled = true
+    publishing {
+        repositories {
+            maven {
+                url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username System.getenv('SONATYPE_USERNAME')
+                    password System.getenv('SONATYPE_PASSWORD')
+                }
+            }
         }
+    }
+
+    signing {
+        required { !gradle.taskGraph.hasTask('publishToMavenLocal') }
+        def signingKey = System.getenv('SIGNING_KEY')
+        useInMemoryPgpKeys(signingKey, '')
     }
 }
 
 task jacocoMerge(type: JacocoMerge) {
-    publishedProjects.each { subproject ->
+    coveredProjects.each { subproject ->
         executionData subproject.tasks.withType(Test)
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        archiveClassifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        archiveClassifier = 'javadoc'
+        from javadoc.destinationDir
     }
 }
 
 task jacocoRootReport(type: JacocoReport) {
-    dependsOn publishedProjects.jacocoTestReport, project.jacocoMerge
+    dependsOn coveredProjects.jacocoTestReport, project.jacocoMerge
 
-    additionalSourceDirs.from(files(publishedProjects.sourceSets.main.allSource.srcDirs))
-    sourceDirectories.from(files(publishedProjects.sourceSets.main.allSource.srcDirs))
-    classDirectories.from(files(publishedProjects.sourceSets.main.output))
+    additionalSourceDirs.from(files(coveredProjects.sourceSets.main.allSource.srcDirs))
+    sourceDirectories.from(files(coveredProjects.sourceSets.main.allSource.srcDirs))
+    classDirectories.from(files(coveredProjects.sourceSets.main.output))
 
     executionData(jacocoMerge.destinationFile)
 
@@ -121,7 +163,7 @@ task jacocoRootReport(type: JacocoReport) {
 }
 
 coveralls {
-    sourceDirs = publishedProjects.sourceSets.main.allSource.srcDirs.flatten()
+    sourceDirs = coveredProjects.sourceSets.main.allSource.srcDirs.flatten()
     jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
 }
 
