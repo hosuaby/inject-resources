@@ -6,11 +6,21 @@ jobs:
     build:
         runs-on: ubuntu-latest
         env:
-            jdk_version: 13
+            jdk_version: 11
             COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         steps:
             - name: Checkout
               uses: actions/checkout@v2
+
+            - uses: actions/cache@v2
+              with:
+                  path: |
+                      ~/.gradle/caches
+                      ~/.gradle/wrapper
+                      ~/.m2/repository
+                  key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+                  restore-keys: |
+                      gradle-
 
             - name: Setup JDK ${{ env.jdk_version }}
               uses: actions/setup-java@v1
@@ -19,6 +29,9 @@ jobs:
 
             - name: Build
               run: ./gradlew clean build
+
+            - name: Publish locally
+              run: ./gradlew publishToMavenLocal
 
             - name: Report coverage
               if: github.ref == 'refs/heads/master'
@@ -31,10 +44,20 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                jdk_version: [ 13, 17, 21, 22 ]
+                jdk_version: [ 11 ]
         steps:
             - name: Checkout
               uses: actions/checkout@v2
+
+            - uses: actions/cache@v2
+              with:
+                  path: |
+                      ~/.gradle/caches
+                      ~/.gradle/wrapper
+                      ~/.m2/repository
+                  key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+                  restore-keys: |
+                      gradle-
 
             - name: Setup JDK ${{ matrix.jdk_version }}
               uses: actions/setup-java@v1

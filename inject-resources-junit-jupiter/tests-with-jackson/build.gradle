@@ -11,15 +11,17 @@ jacocoTestReport {
 }
 
 dependencies {
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
-    testCompile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: JACKSON_VERSION
-    testCompile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
-
-    testImplementation project(':inject-resources-commons')
-    testImplementation project(':inject-resources-junit-jupiter')
+    testImplementation(group: 'io.hosuaby', name: 'inject-resources-junit-jupiter', version: project.version) {
+        exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api'
+    }
     testImplementation project(':test-commons')
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: JUNIT_VERSION
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
+    testImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
+    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
 }

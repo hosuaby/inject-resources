@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.platform.commons.util.ReflectionUtils.makeAccessible;
+import static com.adelean.inject.resources.junit.jupiter.core.Reflections.makeAccessibleMethod;
 
 public abstract class AbstractParserProvider<
         A extends Annotation, R, P extends ResourceParser<? extends Parsable<?>, ?>> {
@@ -75,7 +75,7 @@ public abstract class AbstractParserProvider<
 
         try {
             @SuppressWarnings("unchecked")
-            R parser = (R) makeAccessible(method).invoke(target);
+            R parser = (R) makeAccessibleMethod(method).invoke(target);
 
             String parserName = parserNameFromMethod(method, parserAnnotation);
             P parserBean = createParser(parserAnnotation, parser);

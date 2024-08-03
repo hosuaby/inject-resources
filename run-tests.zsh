@@ -23,7 +23,7 @@ function print_result() {
   echo "\t${color}${version} ${mark}${NC}"
 }
 
-junit_versions=( "5.6.3" "5.7.1" "5.8.0" "5.9.3" "5.10.3" "5.11.0-M2" )
+junit_versions=( "5.6.3" "5.7.1" "5.8.0" "5.9.3" "5.10.3" "5.11.0-RC1" )
 jackson_versions=( "2.10.5" "2.11.4" "2.12.5" "2.13.5" "2.14.3" "2.15.4" "2.16.2" "2.17.2" )
 gson_versions=( "2.8.9" "2.9.1" "2.10.1" "2.11.0" )
 snakeyaml_versions=( "1.33" "2.2" )
@@ -34,7 +34,7 @@ for junit_version in $junit_versions; do
   echo "Tests with JUnit ${junit_version}:"
 
   printf "\tRun tests with JUnit %s...\n" "${junit_version}"
-  ./gradlew clean build -DJUNIT_VERSION="${junit_version}" &> /dev/null
+  ./gradlew test -DINTEGRATION_TESTS=true -DJUNIT_VERSION="${junit_version}" &> /dev/null
   res=$?
   result=$(( $result + $res ))
   print_result "$junit_version" $res
@@ -44,7 +44,7 @@ for jackson_version in $jackson_versions; do
   echo "Tests with Jackson ${jackson_version}:"
 
   printf "\tRun tests with Jackson %s...\n" "${jackson_version}"
-  ./gradlew clean build -DJACKSON_VERSION="${jackson_version}" &> /dev/null
+  ./gradlew test -DINTEGRATION_TESTS=true -DJACKSON_VERSION="${jackson_version}" &> /dev/null
   res=$?
   result=$(( $result + $res ))
   print_result "$jackson_version" $res
@@ -54,7 +54,7 @@ for gson_version in $gson_versions; do
   echo "Tests with GSON ${gson_version}:"
 
   printf "\tRun tests with GSON %s...\n" "${gson_version}"
-  ./gradlew clean build -DGSON_VERSION="${gson_version}" &> /dev/null
+  ./gradlew test -DINTEGRATION_TESTS=true -DGSON_VERSION="${gson_version}" &> /dev/null
   res=$?
   result=$(( $result + $res ))
   print_result "$gson_version" $res
@@ -64,7 +64,7 @@ for snakeyaml_version in $snakeyaml_versions; do
   echo "Tests with Snakeyaml ${snakeyaml_version}:"
 
   printf "\tRun tests with Snakeyaml %s...\n" "${snakeyaml_version}"
-  ./gradlew clean build -DSNAKE_YAML_VERSION="${snakeyaml_version}" &> /dev/null
+  ./gradlew test -DINTEGRATION_TESTS=true -DSNAKE_YAML_VERSION="${snakeyaml_version}" &> /dev/null
   res=$?
   result=$(( $result + $res ))
   print_result "$snakeyaml_version" $res

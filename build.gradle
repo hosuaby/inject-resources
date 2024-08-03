@@ -24,10 +24,16 @@ allprojects {
     apply plugin: 'jacoco'
 
     ext {
-        JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.11.0-M2'
+        INTEGRATION_TESTS = System.getProperty('INTEGRATION_TESTS')
+
+        JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.11.0-RC1'
         JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.17.2'
         GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.11.0'
         SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '2.2'
+
+        SONATYPE_USERNAME = System.getenv('SONATYPE_USERNAME')
+        SONATYPE_PASSWORD = System.getenv('SONATYPE_PASSWORD')
+        SIGNING_KEY = System.getenv('SIGNING_KEY')
     }
 }
 
@@ -90,6 +96,25 @@ configure(coveredProjects) {
     }
 }
 
+def integrationTestsProjectsPaths = [
+        ':inject-resources-junit-jupiter:tests-with-jackson',
+        ':inject-resources-junit-jupiter:tests-with-gson'
+]
+
+def integrationTestsProjects = subprojects.findAll { subproject ->
+    integrationTestsProjectsPaths.contains(subproject.path)
+}
+
+configure(integrationTestsProjects) {
+    compileTestJava {
+        onlyIf { INTEGRATION_TESTS }
+    }
+
+    test {
+        onlyIf { INTEGRATION_TESTS }
+    }
+}
+
 def publishedProjectsPaths = [
         ':inject-resources-core',
         ':inject-resources-spring',
@@ -117,8 +142,8 @@ configure(publishedProjects) {
             maven {
                 url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
                 credentials {
-                    username System.getenv('SONATYPE_USERNAME')
-                    password System.getenv('SONATYPE_PASSWORD')
+                    username SONATYPE_USERNAME
+                    password SONATYPE_PASSWORD
                 }
             }
         }
@@ -126,8 +151,7 @@ configure(publishedProjects) {
 
     signing {
         required { !gradle.taskGraph.hasTask('publishToMavenLocal') }
-        def signingKey = System.getenv('SIGNING_KEY')
-        useInMemoryPgpKeys(signingKey, '')
+        useInMemoryPgpKeys(SIGNING_KEY, '')
     }
 }
 

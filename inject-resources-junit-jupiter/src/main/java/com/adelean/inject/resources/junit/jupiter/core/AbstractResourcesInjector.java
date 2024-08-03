@@ -16,7 +16,6 @@ import com.adelean.inject.resources.junit.jupiter.text.TextResourcesInjector;
 import com.adelean.inject.resources.junit.jupiter.yaml.YamlDocumentsResourcesInjector;
 import com.adelean.inject.resources.junit.jupiter.yaml.YamlResourcesInjector;
 import org.jetbrains.annotations.Nullable;
-import org.junit.platform.commons.util.ReflectionUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -28,7 +27,8 @@ import java.util.Map;
 
 import static com.adelean.inject.resources.commons.FieldAsserts.assertNonPrivate;
 import static com.adelean.inject.resources.commons.FieldAsserts.assertSupportedType;
-import static org.junit.platform.commons.util.ReflectionUtils.makeAccessible;
+import static com.adelean.inject.resources.junit.jupiter.core.Reflections.getDefaultConstructor;
+import static com.adelean.inject.resources.junit.jupiter.core.Reflections.makeAccessibleField;
 
 public abstract class AbstractResourcesInjector<A extends Annotation> {
     public static final Map<
@@ -63,8 +63,7 @@ public abstract class AbstractResourcesInjector<A extends Annotation> {
                 INJECTORS.get(annotationType);
 
         try {
-            return ReflectionUtils
-                    .getDeclaredConstructor(injectorClass)
+            return getDefaultConstructor(injectorClass)
                     .newInstance(injectionContext, testInstance, testClass);
         } catch (Exception instantiationException) {
             throw new RuntimeException(instantiationException);
@@ -79,7 +78,7 @@ public abstract class AbstractResourcesInjector<A extends Annotation> {
         Object valueToInject = valueToInject(valueType, resourceAnnotation);
 
         try {
-            makeAccessible(field)
+            makeAccessibleField(field)
                     .set(testInstance, valueToInject);
         } catch (IllegalAccessException makeAccessibleException) {
             throw new RuntimeException(makeAccessibleException);
