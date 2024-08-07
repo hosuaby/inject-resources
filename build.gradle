@@ -31,8 +31,6 @@ allprojects {
         GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.11.0'
         SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '2.2'
 
-        SONATYPE_USERNAME = System.getenv('SONATYPE_USERNAME')
-        SONATYPE_PASSWORD = System.getenv('SONATYPE_PASSWORD')
         SIGNING_KEY = System.getenv('SIGNING_KEY')
     }
 }
@@ -135,18 +133,6 @@ configure(publishedProjects) {
     task javadocJar(type: Jar, dependsOn: javadoc) {
         archiveClassifier = 'javadoc'
         from javadoc.destinationDir
-    }
-
-    publishing {
-        repositories {
-            maven {
-                url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-                credentials {
-                    username SONATYPE_USERNAME
-                    password SONATYPE_PASSWORD
-                }
-            }
-        }
     }
 
     signing {
