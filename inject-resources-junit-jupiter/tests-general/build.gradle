@@ -1,0 +1,26 @@
+jacocoTestReport {
+    def sourceSets = parent.sourceSets
+
+    sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
+    classDirectories.from files(sourceSets.main.output)
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+dependencies {
+    testImplementation(group: 'io.hosuaby', name: 'inject-resources-junit-jupiter', version: project.version) {
+        exclude group: 'org.junit.jupiter', module: 'junit-jupiter-api'
+    }
+    testImplementation project(':test-commons')
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: JUNIT_VERSION
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
+    testImplementation group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
+}

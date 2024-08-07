@@ -1,19 +1,22 @@
-package com.adelean.inject.resources.junit.jupiter;
+package com.adelean.junit.jupiter.resources;
 
-import static org.assertj.core.api.Assertions.as;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.type;
+import com.adelean.inject.resources.junit.jupiter.GivenYamlResource;
+import com.adelean.inject.resources.junit.jupiter.TestWithResources;
+import com.adelean.inject.resources.junit.jupiter.WithSnakeYaml;
+import com.adelean.resources.data.Person;
+import com.google.common.collect.ImmutableMap;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.yaml.snakeyaml.Yaml;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Map;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.yaml.snakeyaml.Yaml;
-import com.adelean.resources.data.Person;
-import com.google.common.collect.ImmutableMap;
+import static org.assertj.core.api.Assertions.as;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 @TestWithResources
 @DisplayName("@GivenYamlResource")

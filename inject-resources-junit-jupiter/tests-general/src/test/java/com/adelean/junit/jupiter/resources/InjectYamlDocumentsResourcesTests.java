@@ -1,6 +1,16 @@
-package com.adelean.inject.resources.junit.jupiter;
+package com.adelean.junit.jupiter.resources;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.adelean.inject.resources.junit.jupiter.GivenYamlDocumentsResource;
+import com.adelean.inject.resources.junit.jupiter.TestWithResources;
+import com.adelean.inject.resources.junit.jupiter.WithSnakeYaml;
+import com.adelean.resources.data.LogSeverity;
+import com.adelean.resources.data.snakeyaml.Log;
+import com.google.common.collect.ImmutableMap;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.yaml.snakeyaml.LoaderOptions;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -9,14 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.adelean.resources.data.LogSeverity;
-import com.adelean.resources.data.snakeyaml.Log;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.yaml.snakeyaml.LoaderOptions;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-import com.google.common.collect.ImmutableMap;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @TestWithResources
 @DisplayName("@GivenYamlDocumentsResource")

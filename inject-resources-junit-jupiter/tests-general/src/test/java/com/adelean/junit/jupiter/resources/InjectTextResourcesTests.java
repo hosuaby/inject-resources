@@ -1,5 +1,7 @@
-package com.adelean.inject.resources.junit.jupiter;
+package com.adelean.junit.jupiter.resources;
 
+import com.adelean.inject.resources.junit.jupiter.GivenTextResource;
+import com.adelean.inject.resources.junit.jupiter.TestWithResources;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

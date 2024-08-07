@@ -1,9 +1,11 @@
-package com.adelean.inject.resources.junit.jupiter;
+package com.adelean.junit.jupiter.resources;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import com.adelean.inject.resources.junit.jupiter.GivenBinaryResource;
+import com.adelean.inject.resources.junit.jupiter.TestWithResources;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @TestWithResources
 @DisplayName("@GivenBinaryResource")
