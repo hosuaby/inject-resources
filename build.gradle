@@ -52,7 +52,8 @@ def coveredProjectsPaths = [
         ':inject-resources-junit-jupiter:tests-general',
         ':inject-resources-junit-jupiter:tests-with-jackson',
         ':inject-resources-junit-jupiter:tests-with-gson',
-        ':inject-resources-junit-vintage'
+        ':inject-resources-junit-vintage',
+        ':inject-resources-junit-vintage:tests-general'
 ]
 
 def coveredProjects = subprojects.findAll { subproject ->
@@ -94,8 +95,10 @@ configure(coveredProjects) {
 }
 
 def integrationTestsProjectsPaths = [
+        ':inject-resources-junit-jupiter:tests-general',
         ':inject-resources-junit-jupiter:tests-with-jackson',
-        ':inject-resources-junit-jupiter:tests-with-gson'
+        ':inject-resources-junit-jupiter:tests-with-gson',
+        ':inject-resources-junit-vintage:tests-general'
 ]
 
 def integrationTestsProjects = subprojects.findAll { subproject ->

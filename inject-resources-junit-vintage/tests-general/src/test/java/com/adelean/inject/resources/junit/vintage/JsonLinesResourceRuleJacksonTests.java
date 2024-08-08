@@ -1,8 +1,5 @@
 package com.adelean.inject.resources.junit.vintage;
 
-import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.adelean.inject.resources.junit.vintage.json.JsonLinesResource;
 import com.adelean.resources.data.LogSeverity;
 import com.adelean.resources.data.jackson.Log;
@@ -14,6 +11,9 @@ import org.junit.Test;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Collection;
+
+import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class JsonLinesResourceRuleJacksonTests {
     private static final ObjectMapper objectMapper = new ObjectMapper()

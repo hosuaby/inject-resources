@@ -1,10 +1,5 @@
 package com.adelean.inject.resources.junit.vintage;
 
-import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
-import static org.assertj.core.api.Assertions.as;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.type;
-
 import com.adelean.inject.resources.junit.vintage.yaml.YamlResource;
 import com.adelean.resources.data.Person;
 import com.google.common.collect.ImmutableMap;
@@ -16,6 +11,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Map;
+
+import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
+import static org.assertj.core.api.Assertions.as;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 public class YamlResourceRuleTests {
     private static Yaml yaml = new Yaml();

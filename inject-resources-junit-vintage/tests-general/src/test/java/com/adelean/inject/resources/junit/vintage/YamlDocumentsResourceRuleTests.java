@@ -1,8 +1,5 @@
 package com.adelean.inject.resources.junit.vintage;
 
-import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.adelean.inject.resources.junit.vintage.yaml.YamlDocumentsResource;
 import com.adelean.resources.data.LogSeverity;
 import com.adelean.resources.data.snakeyaml.Log;
@@ -19,6 +16,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class YamlDocumentsResourceRuleTests {
     private static final Yaml yaml = new Yaml();

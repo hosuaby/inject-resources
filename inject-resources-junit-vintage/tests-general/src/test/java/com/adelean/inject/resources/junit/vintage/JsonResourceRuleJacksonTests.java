@@ -1,51 +1,53 @@
 package com.adelean.inject.resources.junit.vintage;
 
+import com.adelean.inject.resources.junit.vintage.json.JsonResource;
+import com.adelean.resources.data.Person;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
+import org.assertj.core.api.InstanceOfAssertFactories;
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.junit.Test;
+
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
+
 import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
 import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
-import assertj.json.gson.JsonAssertions;
-import com.adelean.inject.resources.junit.vintage.json.JsonResource;
-import com.adelean.resources.data.Person;
-import com.google.common.collect.ImmutableMap;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import org.assertj.core.api.InstanceOfAssertFactories;
-import org.junit.Rule;
-import org.junit.Test;
+public class JsonResourceRuleJacksonTests {
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
-import java.util.List;
-import java.util.Map;
-
-public class JsonResourceRuleGsonTests {
-    private static final Gson gson = new Gson();
-
-    @Rule
-    public JsonResource<Map<String, Object>> jsonAsMap = givenResource()
+    @ClassRule
+    public static JsonResource<Map<String, Object>> jsonAsMap = givenResource()
             .json("/com/adelean/junit/jupiter/sponge-bob.json")
-            .parseWith(gson);
+            .parseWith(objectMapper);
 
-    @Rule
-    public JsonResource<JsonElement> jsonElement = givenResource()
+    @ClassRule
+    public static JsonResource<JsonNode> jsonNode = givenResource()
             .json("/com/adelean/junit/jupiter/sponge-bob.json")
-            .parseWith(gson);
+            .parseWith(objectMapper);
 
     @Rule
     public JsonResource<Person> spongeBob = givenResource()
             .json("/com/adelean/junit/jupiter/sponge-bob.json")
-            .parseWith(gson);
+            .withCharset(StandardCharsets.UTF_8)
+            .parseWith(objectMapper);
 
     @Rule
     public JsonResource<List<Map<String, ?>>> velibAsList = givenResource()
             .json("/com/adelean/junit/jupiter/velib.json")
-            .parseWith(gson);
-
+            .parseWith(objectMapper)
+            .withCharset(StandardCharsets.UTF_8);
 
     @Rule
     public JsonResource<Map<String, ?>[]> velibAsArray = givenResource()
             .json("/com/adelean/junit/jupiter/velib.json")
-            .parseWith(gson);
+            .parseWith(objectMapper);
 
     @Test
     public void testLoadJsonIntoMap() {
@@ -56,7 +58,7 @@ public class JsonResourceRuleGsonTests {
                 .containsEntry("firstName", "Bob")
                 .containsEntry("lastName", "Square Pants")
                 .containsEntry("email", "sponge.bob@bikinibottom.io")
-                .containsEntry("age", 22.0d)
+                .containsEntry("age", 22)
                 .hasEntrySatisfying("address", address -> assertThat(address)
                         .isNotNull()
                         .asInstanceOf(InstanceOfAssertFactories.MAP)
@@ -64,50 +66,15 @@ public class JsonResourceRuleGsonTests {
                         .hasSize(3)
                         .containsEntry("address1", "ananas house")
                         .containsEntry("city", "Bikini Bottom")
-                        .containsEntry("zipcode", 10101.0d));
+                        .containsEntry("zipcode", 10101));
     }
 
     @Test
-    public void testLoadJsonIntoJsonElement() {
-        JsonElement actual = jsonElement.get();
-        JsonAssertions
-                .assertThat(actual)
-                .isNotNull();
-        JsonAssertions
-                .assertThat(actual)
-                .hasField("firstName")
-                .asString()
-                .isEqualTo("Bob");
-        JsonAssertions
-                .assertThat(actual)
-                .hasField("lastName")
-                .asString()
-                .isEqualTo("Square Pants");
-        JsonAssertions
-                .assertThat(actual)
-                .hasField("email")
-                .asString()
-                .isEqualTo("sponge.bob@bikinibottom.io");
-        JsonAssertions
-                .assertThat(actual)
-                .hasField("age")
-                .asInt()
-                .isEqualTo(22);
-        JsonAssertions
-                .assertThat(actual)
-                .hasPath("address", "address1")
-                .asString()
-                .isEqualTo("ananas house");
-        JsonAssertions
-                .assertThat(actual)
-                .hasPath("address", "city")
-                .asString()
-                .isEqualTo("Bikini Bottom");
-        JsonAssertions
-                .assertThat(actual)
-                .hasPath("address", "zipcode")
-                .asInt()
-                .isEqualTo(10101);
+    public void testLoadJsonIntoJsonNode() {
+        assertThat(jsonNode.get())
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(5);
     }
 
     @Test
@@ -135,11 +102,11 @@ public class JsonResourceRuleGsonTests {
                         ImmutableMap.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
-                                "capacity", 30.0),
+                                "capacity", 30),
                         ImmutableMap.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
-                                "capacity", 23.0));
+                                "capacity", 23));
     }
 
     @Test
@@ -152,10 +119,10 @@ public class JsonResourceRuleGsonTests {
                         ImmutableMap.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
-                                "capacity", 30.0),
+                                "capacity", 30),
                         ImmutableMap.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
-                                "capacity", 23.0));
+                                "capacity", 23));
     }
 }

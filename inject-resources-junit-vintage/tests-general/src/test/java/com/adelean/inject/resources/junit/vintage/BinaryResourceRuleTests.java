@@ -1,12 +1,12 @@
 package com.adelean.inject.resources.junit.vintage;
 
-import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.adelean.inject.resources.junit.vintage.core.ResourceRule;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BinaryResourceRuleTests {
 

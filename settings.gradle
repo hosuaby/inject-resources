@@ -9,5 +9,5 @@ include 'inject-resources-junit-jupiter:tests-general'
 include 'inject-resources-junit-jupiter:tests-with-jackson'
 include 'inject-resources-junit-jupiter:tests-with-gson'
 include 'inject-resources-junit-vintage'
+include 'inject-resources-junit-vintage:tests-general'
 include 'test-commons'
-
