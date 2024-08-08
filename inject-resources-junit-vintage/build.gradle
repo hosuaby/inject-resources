@@ -61,9 +61,8 @@ publishing {
 }
 
 signing {
-    required { !gradle.taskGraph.hasTask('publishToMavenLocal') }
-    def signingKey = System.getenv('SIGNING_KEY')
-    useInMemoryPgpKeys(signingKey, '')
+    required { gradle.taskGraph.hasTask('publish') }
+    useInMemoryPgpKeys(SIGNING_KEY, '')
     sign publishing.publications.mavenJava
 }
 
