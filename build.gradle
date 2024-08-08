@@ -1,4 +1,3 @@
-
 import org.gradle.api.attributes.java.TargetJvmVersion
 
 plugins {
@@ -30,8 +29,6 @@ allprojects {
         JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.17.2'
         GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.11.0'
         SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '2.2'
-
-        SIGNING_KEY = System.getenv('SIGNING_KEY')
     }
 }
 
@@ -133,11 +130,6 @@ configure(publishedProjects) {
     task javadocJar(type: Jar, dependsOn: javadoc) {
         archiveClassifier = 'javadoc'
         from javadoc.destinationDir
-    }
-
-    signing {
-        required { !gradle.taskGraph.hasTask('publishToMavenLocal') }
-        useInMemoryPgpKeys(SIGNING_KEY, '')
     }
 }
 

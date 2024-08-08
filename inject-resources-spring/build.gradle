@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'signing'
     id 'maven-publish'
 }
 
@@ -57,6 +58,13 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    required { !gradle.taskGraph.hasTask('publishToMavenLocal') }
+    def signingKey = System.getenv('SIGNING_KEY')
+    useInMemoryPgpKeys(signingKey, '')
+    sign publishing.publications.mavenJava
 }
 
 dependencies {
