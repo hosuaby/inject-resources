@@ -20,7 +20,6 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: JUNIT_VERSION
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
-    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
     testImplementation group: 'com.fatboyindustrial.gson-javatime-serialisers', name: 'gson-javatime-serialisers', version: '1.1.1'
 }

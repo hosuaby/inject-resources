@@ -7,7 +7,6 @@ import static org.assertj.core.api.InstanceOfAssertFactories.type;
 import com.adelean.inject.resources.spring.beans.BeanWithJsonResources;
 import com.adelean.inject.resources.spring.beans.TestConfig;
 import com.adelean.resources.data.Person;
-import com.google.common.collect.ImmutableMap;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +15,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Map;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestConfig.class)
@@ -85,11 +86,11 @@ public class JsonResourceAnnotationTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
                                 "capacity", 30),
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
                                 "capacity", 23));
@@ -103,11 +104,11 @@ public class JsonResourceAnnotationTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
                                 "capacity", 30),
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
                                 "capacity", 23));

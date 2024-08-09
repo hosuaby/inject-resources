@@ -21,6 +21,5 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
     testImplementation group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
-    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
 }

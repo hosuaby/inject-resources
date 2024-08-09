@@ -4,7 +4,6 @@ import com.adelean.inject.resources.junit.jupiter.GivenYamlResource;
 import com.adelean.inject.resources.junit.jupiter.TestWithResources;
 import com.adelean.inject.resources.junit.jupiter.WithSnakeYaml;
 import com.adelean.resources.data.Person;
-import com.google.common.collect.ImmutableMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.Yaml;
@@ -58,12 +57,12 @@ public class InjectYamlResourcesTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "part_no", "A4786",
                                 "descrip", "Water Bucket (Filled)",
                                 "price", 1.47,
                                 "quantity", 4),
-                        ImmutableMap.of(
+                        Map.of(
                                 "part_no", "E1628",
                                 "descrip", "High Heeled \"Ruby\" Slippers",
                                 "size", 8,

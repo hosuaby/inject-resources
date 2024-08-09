@@ -3,7 +3,6 @@ package com.adelean.inject.resources.junit.vintage;
 import com.adelean.inject.resources.junit.vintage.yaml.YamlDocumentsResource;
 import com.adelean.resources.data.LogSeverity;
 import com.adelean.resources.data.snakeyaml.Log;
-import com.google.common.collect.ImmutableMap;
 import org.junit.Rule;
 import org.junit.Test;
 import org.yaml.snakeyaml.LoaderOptions;
@@ -91,11 +90,11 @@ public class YamlDocumentsResourceRuleTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "TopClass.py",
                                 "line", 23,
                                 "code", "x = MoreObject(\"345\\n\")\n"),
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "MoreClass.py",
                                 "line", 58,
                                 "code", "foo = bar"));
@@ -148,11 +147,11 @@ public class YamlDocumentsResourceRuleTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "TopClass.py",
                                 "line", 23,
                                 "code", "x = MoreObject(\"345\\n\")\n"),
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "MoreClass.py",
                                 "line", 58,
                                 "code", "foo = bar"));

@@ -8,7 +8,6 @@ import com.adelean.resources.data.Person;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ImmutableMap;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -103,11 +102,11 @@ public class InjectJsonResourcesTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
                                 "capacity", 30),
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
                                 "capacity", 23));
@@ -121,11 +120,11 @@ public class InjectJsonResourcesTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
                                 "capacity", 30),
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
                                 "capacity", 23));

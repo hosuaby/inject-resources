@@ -21,6 +21,5 @@ dependencies {
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
     testImplementation group: 'com.fatboyindustrial.gson-javatime-serialisers', name: 'gson-javatime-serialisers', version: '1.1.1'
 }

@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Optional;
 
 import com.adelean.inject.resources.annotations.Extends;
@@ -18,7 +19,6 @@ import com.adelean.inject.resources.annotations.Named;
 import com.adelean.inject.resources.annotations.Parser;
 import com.adelean.inject.resources.annotations.Resource;
 import com.adelean.inject.resources.annotations.WithPath;
-import com.google.common.collect.ImmutableMap;
 import io.leangen.geantyref.AnnotationFormatException;
 
 public class AnnotationSupportTests {
@@ -64,7 +64,7 @@ public class AnnotationSupportTests {
     public void testGetFrom_fromAndValueDefined() throws AnnotationFormatException {
 
         /* Given */
-        var annotation = annotation(GivenBinaryResource.class, ImmutableMap.of(
+        var annotation = annotation(GivenBinaryResource.class, Map.of(
                 "from", "/path/to/resource1",
                 "value", "/path/to/resource2"));
 

@@ -2,7 +2,6 @@ package com.adelean.inject.resources.junit.vintage;
 
 import com.adelean.inject.resources.junit.vintage.yaml.YamlResource;
 import com.adelean.resources.data.Person;
-import com.google.common.collect.ImmutableMap;
 import org.junit.Rule;
 import org.junit.Test;
 import org.yaml.snakeyaml.Yaml;
@@ -57,12 +56,12 @@ public class YamlResourceRuleTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "part_no", "A4786",
                                 "descrip", "Water Bucket (Filled)",
                                 "price", 1.47,
                                 "quantity", 4),
-                        ImmutableMap.of(
+                        Map.of(
                                 "part_no", "E1628",
                                 "descrip", "High Heeled \"Ruby\" Slippers",
                                 "size", 8,

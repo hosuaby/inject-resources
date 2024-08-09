@@ -5,7 +5,6 @@ import com.adelean.inject.resources.junit.jupiter.TestWithResources;
 import com.adelean.inject.resources.junit.jupiter.WithSnakeYaml;
 import com.adelean.resources.data.LogSeverity;
 import com.adelean.resources.data.snakeyaml.Log;
-import com.google.common.collect.ImmutableMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.yaml.snakeyaml.LoaderOptions;
@@ -90,11 +89,11 @@ public class InjectYamlDocumentsResourcesTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "TopClass.py",
                                 "line", 23,
                                 "code", "x = MoreObject(\"345\\n\")\n"),
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "MoreClass.py",
                                 "line", 58,
                                 "code", "foo = bar"));
@@ -147,11 +146,11 @@ public class InjectYamlDocumentsResourcesTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "TopClass.py",
                                 "line", 23,
                                 "code", "x = MoreObject(\"345\\n\")\n"),
-                        ImmutableMap.of(
+                        Map.of(
                                 "file", "MoreClass.py",
                                 "line", 58,
                                 "code", "foo = bar"));

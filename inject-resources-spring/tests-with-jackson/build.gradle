@@ -23,5 +23,4 @@ dependencies {
     testImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: JACKSON_VERSION
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
 }

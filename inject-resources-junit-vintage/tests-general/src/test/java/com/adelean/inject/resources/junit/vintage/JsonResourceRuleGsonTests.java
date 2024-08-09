@@ -3,7 +3,6 @@ package com.adelean.inject.resources.junit.vintage;
 import assertj.json.gson.JsonAssertions;
 import com.adelean.inject.resources.junit.vintage.json.JsonResource;
 import com.adelean.resources.data.Person;
-import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import org.assertj.core.api.InstanceOfAssertFactories;
@@ -132,11 +131,11 @@ public class JsonResourceRuleGsonTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
                                 "capacity", 30.0),
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
                                 "capacity", 23.0));
@@ -149,11 +148,11 @@ public class JsonResourceRuleGsonTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Mairie du 12ème",
                                 "nom_arrondissement_communes", "Paris",
                                 "capacity", 30.0),
-                        ImmutableMap.of(
+                        Map.of(
                                 "name", "Charles Frérot - Albert Guilpin",
                                 "nom_arrondissement_communes", "Gentilly",
                                 "capacity", 23.0));
