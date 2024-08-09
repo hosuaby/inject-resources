@@ -5,7 +5,12 @@ import com.adelean.inject.resources.spring.TextResource;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.AnnotatedElement;
 
 import static io.leangen.geantyref.TypeFactory.annotation;
 import static java.util.Collections.emptyMap;
@@ -14,10 +19,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.reflections.ReflectionUtils.getAnnotations;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.AnnotatedElement;
-
 public class AnnotationsTests {
+
+    @DisplayName("Test isResourceAnnotation")
+    @ParameterizedTest(name = "\"{0}\" -> {1}")
+    @CsvSource({
+            "com.adelean.inject.resources.spring.BinaryResource, true",
+            "com.adelean.inject.resources.spring.TextResource, true",
+            "com.adelean.inject.resources.spring.PropertiesResource, true",
+            "com.adelean.inject.resources.spring.JsonResource, true",
+            "com.adelean.inject.resources.spring.JsonLinesResource, true",
+            "com.adelean.inject.resources.spring.YamlResource, true",
+            "com.adelean.inject.resources.spring.YamlDocumentsResource, true",
+            "com.adelean.inject.resources.spring.EnableResourceInjection, false",
+            "La vie est belle!, false",
+    })
+    public void testIsResourceAnnotation(String annotationTypeName, boolean expected) {
+
+        /* When */
+        boolean result = Annotations.isResourceAnnotation(annotationTypeName);
+
+        /* Then */
+        assertThat(result)
+                .isEqualTo(expected);
+    }
 
     @Test
     @DisplayName("Test find single resource annotation")
@@ -46,8 +71,11 @@ public class AnnotationsTests {
         /* Then */
         assertThat(binaryResourceAnnotation)
                 .isNotNull()
-                .isInstanceOf(BinaryResource.class)
-                .hasFieldOrPropertyWithValue("value", "/com/adelean/junit/jupiter/fibonacci.bin");
+                .isInstanceOf(BinaryResource.class);
+        assertThat(((BinaryResource) binaryResourceAnnotation).value())
+                .isNotNull()
+                .isNotEmpty()
+                .isEqualTo("/com/adelean/junit/jupiter/fibonacci.bin");
         assertThat(noResourceAnnotation)
                 .isNull();
 

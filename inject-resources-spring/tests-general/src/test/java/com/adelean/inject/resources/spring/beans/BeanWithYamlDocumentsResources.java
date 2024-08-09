@@ -2,6 +2,7 @@ package com.adelean.inject.resources.spring.beans;
 
 import com.adelean.inject.resources.spring.YamlDocumentsResource;
 import com.adelean.resources.data.snakeyaml.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -23,6 +24,15 @@ public class BeanWithYamlDocumentsResources {
     @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yamlBean = "log-parser")
     Collection<Log> logsAsCollection;
 
+    final List<Map<String, Object>> yamlDocumentsAutowiredInConstructor;
+
+    @Autowired
+    public BeanWithYamlDocumentsResources(
+            @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/stacktrace.yaml", yamlBean = "defaultYaml")
+            List<Map<String, Object>> yamlDocumentsAutowiredArgument) {
+        this.yamlDocumentsAutowiredInConstructor = yamlDocumentsAutowiredArgument;
+    }
+
     public List<Map<String, Object>> getStacktraceAsList() {
         return stacktraceAsList;
     }
@@ -37,5 +47,9 @@ public class BeanWithYamlDocumentsResources {
 
     public Collection<Log> getLogsAsCollection() {
         return logsAsCollection;
+    }
+
+    public List<Map<String, Object>> getYamlDocumentsAutowiredInConstructor() {
+        return yamlDocumentsAutowiredInConstructor;
     }
 }

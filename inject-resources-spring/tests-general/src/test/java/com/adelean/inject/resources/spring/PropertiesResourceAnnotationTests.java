@@ -28,8 +28,20 @@ public class PropertiesResourceAnnotationTests {
 
     @Test
     @DisplayName("injects properties content into Properties instance field")
-    public void testInjectBinaryContentIntoByteArrayClassField() {
+    public void testInjectPropertiesContentIntoPropertiesClassField() {
         assertThat(beanWithPropertiesResource.getDbProperties())
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(3)
+                .containsEntry("db.user", "hosuaby")
+                .containsEntry("db.password", "password")
+                .containsEntry("db.url", "localhost");
+    }
+
+    @Test
+    @DisplayName("injects properties content into Properties constructor argument")
+    public void testInjectPropertiesContentIntoPropertiesConstructorArgument() {
+        assertThat(beanWithPropertiesResource.getDbPropertiesAutowiredInConstructor())
                 .isNotNull()
                 .isNotEmpty()
                 .hasSize(3)

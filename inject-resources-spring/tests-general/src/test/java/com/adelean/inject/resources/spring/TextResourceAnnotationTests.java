@@ -28,8 +28,18 @@ public class TextResourceAnnotationTests {
 
     @Test
     @DisplayName("injects text content into String instance field")
-    public void testInjectBinaryContentIntoByteArrayClassField() {
+    public void testInjectTextContentIntoStringClassField() {
         assertThat(beanWithTextResource.getText())
+                .isNotNull()
+                .isNotEmpty()
+                .isNotBlank()
+                .isEqualTo("The quick brown fox jumps over the lazy dog.");
+    }
+
+    @Test
+    @DisplayName("injects text content into String constructor argument")
+    public void testInjectTextContentIntoStringConstructorArgument() {
+        assertThat(beanWithTextResource.getTextAutowiredInConstructor())
                 .isNotNull()
                 .isNotEmpty()
                 .isNotBlank()

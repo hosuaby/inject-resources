@@ -90,4 +90,20 @@ public class YamlResourceAnnotationTests {
                 .hasFieldOrPropertyWithValue("city", "Bikini Bottom")
                 .hasFieldOrPropertyWithValue("zipcode", 10101);
     }
+
+    @Test
+    @DisplayName("injects YAML content into constructor argument")
+    public void testInjectYamlContentIntoConstructorArgument() {
+        assertThat(beanWithYamlResources.getYamlAutowiredInConstructor())
+                .isNotNull()
+                .hasFieldOrPropertyWithValue("firstName", "Bob")
+                .hasFieldOrPropertyWithValue("lastName", "Square Pants")
+                .hasFieldOrPropertyWithValue("email", "sponge.bob@bikinibottom.io")
+                .hasFieldOrPropertyWithValue("age", 22)
+                .extracting("address", as(type(Person.Address.class)))
+                .isNotNull()
+                .hasFieldOrPropertyWithValue("address1", "ananas house")
+                .hasFieldOrPropertyWithValue("city", "Bikini Bottom")
+                .hasFieldOrPropertyWithValue("zipcode", 10101);
+    }
 }

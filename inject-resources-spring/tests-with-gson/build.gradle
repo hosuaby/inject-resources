@@ -11,15 +11,12 @@ jacocoTestReport {
 }
 
 dependencies {
-    implementation enforcedPlatform('org.springframework.boot:spring-boot-dependencies:2.3.2.RELEASE')
+    implementation enforcedPlatform(group: 'org.springframework.boot', name: 'spring-boot-dependencies', version: SPRING_VERSION)
 
     testImplementation(group: 'io.hosuaby', name: 'inject-resources-spring', version: project.version)
 
     testImplementation project(':test-commons')
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
-    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
     testImplementation group: 'com.fatboyindustrial.gson-javatime-serialisers', name: 'gson-javatime-serialisers', version: '1.1.1'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
 }

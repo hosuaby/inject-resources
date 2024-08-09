@@ -37,6 +37,13 @@ public final class Annotations {
     private Annotations() {
     }
 
+    public static boolean isResourceAnnotation(String annotationTypeName) {
+        return RESOURCE_ANNOTATIONS
+                .stream()
+                .map(Class::getName)
+                .anyMatch(annotationTypeName::equals);
+    }
+
     @Nullable
     public static Annotation findSingleResourceAnnotation(AnnotatedElement annotatedElement) {
         Annotation foundAnnotation = null;

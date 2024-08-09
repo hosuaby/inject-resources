@@ -192,4 +192,62 @@ public class YamlDocumentsResourceAnnotationTests {
                                 LogSeverity.DEBUG,
                                 "Baz was notified"));
     }
+
+    @Test
+    @DisplayName("injects YAML documents content into constructor")
+    public void testInjectYamlDocumentsIntoConstructor() {
+        var stacktraceAsList = beanWithYamlDocumentsResources.getYamlDocumentsAutowiredInConstructor();
+        assertThat(stacktraceAsList)
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(3);
+
+        assertThat(stacktraceAsList.get(0))
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(3)
+                .containsEntry("Time", Date.from(LocalDateTime
+                        .of(2001, 11, 23, 15, 1, 42)
+                        .atZone(ZoneId.of("UTC"))
+                        .toInstant()))
+                .containsEntry("User", "ed")
+                .containsEntry("Warning", "This is an error message for the log file");
+
+        assertThat(stacktraceAsList.get(1))
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(3)
+                .containsEntry("Time", Date.from(LocalDateTime
+                        .of(2001, 11, 23, 15, 2, 31)
+                        .atZone(ZoneId.of("UTC"))
+                        .toInstant()))
+                .containsEntry("User", "ed")
+                .containsEntry("Warning", "A slightly different error message.");
+
+        assertThat(stacktraceAsList.get(2))
+                .isNotNull()
+                .isNotEmpty()
+                .hasSize(4)
+                .containsEntry("Date", Date.from(LocalDateTime
+                        .of(2001, 11, 23, 15, 3, 17)
+                        .atZone(ZoneId.of("UTC"))
+                        .toInstant()))
+                .containsKey("Stack")
+                .containsEntry("User", "ed")
+                .containsEntry("Fatal", "Unknown variable \"bar\"");
+        assertThat(stacktraceAsList.get(2).get("Stack"))
+                .isNotNull()
+                .asList()
+                .isNotEmpty()
+                .hasSize(2)
+                .containsExactly(
+                        Map.of(
+                                "file", "TopClass.py",
+                                "line", 23,
+                                "code", "x = MoreObject(\"345\\n\")\n"),
+                        Map.of(
+                                "file", "MoreClass.py",
+                                "line", 58,
+                                "code", "foo = bar"));
+    }
 }
