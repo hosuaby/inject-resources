@@ -67,9 +67,9 @@ signing {
 }
 
 dependencies {
-    compile project(':inject-resources-core')
-    compile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
+    api project(':inject-resources-core')
+    api group: 'junit', name: 'junit', version: '4.13.2'
+    api group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
     compileOnly project(':inject-resources-commons')
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
@@ -79,17 +79,16 @@ dependencies {
 
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
 
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
-    testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '3.4.1'
-    testCompile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
-    testCompile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: JACKSON_VERSION
-    testCompile group: 'io.leangen.geantyref', name: 'geantyref', version: '1.3.11'
-
     testImplementation project(':test-commons')
     testImplementation project(':inject-resources-core')
     testImplementation project(':inject-resources-commons')
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
+    testImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: JACKSON_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
     testImplementation group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    testImplementation group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '3.4.1'
+    testImplementation group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
+    testImplementation group: 'io.leangen.geantyref', name: 'geantyref', version: '1.3.11'
 }

@@ -95,6 +95,9 @@ configure(coveredProjects) {
 }
 
 def integrationTestsProjectsPaths = [
+        ':inject-resources-spring:tests-general',
+        ':inject-resources-spring:tests-with-jackson',
+        ':inject-resources-spring:tests-with-gson',
         ':inject-resources-junit-jupiter:tests-general',
         ':inject-resources-junit-jupiter:tests-with-jackson',
         ':inject-resources-junit-jupiter:tests-with-gson',

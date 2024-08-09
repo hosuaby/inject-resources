@@ -1,10 +1,10 @@
 package com.adelean.inject.resources.spring.beans;
 
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
 import com.adelean.inject.resources.spring.YamlResource;
 import com.adelean.resources.data.Person;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 @Component
 public class BeanWithYamlResources {

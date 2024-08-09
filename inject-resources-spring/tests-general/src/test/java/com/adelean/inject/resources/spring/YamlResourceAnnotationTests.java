@@ -1,14 +1,8 @@
 package com.adelean.inject.resources.spring;
 
-import static org.assertj.core.api.Assertions.as;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.type;
-
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.Map;
-
+import com.adelean.inject.resources.spring.beans.BeanWithYamlResources;
+import com.adelean.inject.resources.spring.beans.TestConfig;
+import com.adelean.resources.data.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,10 +10,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import com.adelean.inject.resources.spring.beans.BeanWithYamlResources;
-import com.adelean.inject.resources.spring.beans.TestConfig;
-import com.adelean.resources.data.Person;
-import com.tngtech.archunit.thirdparty.com.google.common.collect.ImmutableMap;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.as;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestConfig.class)
@@ -63,12 +62,12 @@ public class YamlResourceAnnotationTests {
                 .isNotEmpty()
                 .hasSize(2)
                 .containsExactly(
-                        ImmutableMap.of(
+                        Map.of(
                                 "part_no", "A4786",
                                 "descrip", "Water Bucket (Filled)",
                                 "price", 1.47,
                                 "quantity", 4),
-                        ImmutableMap.of(
+                        Map.of(
                                 "part_no", "E1628",
                                 "descrip", "High Heeled \"Ruby\" Slippers",
                                 "size", 8,

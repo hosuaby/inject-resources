@@ -1,12 +1,12 @@
 package com.adelean.inject.resources.spring.beans;
 
+import com.adelean.inject.resources.spring.YamlDocumentsResource;
+import com.adelean.resources.data.snakeyaml.Log;
+import org.springframework.stereotype.Component;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Component;
-import com.adelean.inject.resources.spring.YamlDocumentsResource;
-import com.adelean.resources.data.snakeyaml.Log;
 
 @Component
 public class BeanWithYamlDocumentsResources {

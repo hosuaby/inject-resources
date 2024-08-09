@@ -1,7 +1,5 @@
 package com.adelean.inject.resources.spring;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.adelean.inject.resources.spring.beans.BeanWithBinaryResource;
 import com.adelean.inject.resources.spring.beans.TestConfig;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestConfig.class)

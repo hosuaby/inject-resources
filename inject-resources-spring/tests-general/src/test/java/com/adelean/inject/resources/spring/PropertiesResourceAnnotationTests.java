@@ -1,8 +1,6 @@
 package com.adelean.inject.resources.spring;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import com.adelean.inject.resources.spring.beans.BeanWithTextResource;
+import com.adelean.inject.resources.spring.beans.BeanWithPropertiesResource;
 import com.adelean.inject.resources.spring.beans.TestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,27 +10,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestConfig.class)
-@DisplayName("@TextResource")
-public class TextResourceAnnotationTests {
+@DisplayName("@PropertiesResource")
+public class PropertiesResourceAnnotationTests {
 
     @Autowired
-    private BeanWithTextResource beanWithTextResource;
+    private BeanWithPropertiesResource beanWithPropertiesResource;
 
     @BeforeEach
     public void assertBeanInjected() {
-        assertThat(beanWithTextResource)
+        assertThat(beanWithPropertiesResource)
                 .isNotNull();
     }
 
     @Test
-    @DisplayName("injects text content into String instance field")
+    @DisplayName("injects properties content into Properties instance field")
     public void testInjectBinaryContentIntoByteArrayClassField() {
-        assertThat(beanWithTextResource.getText())
+        assertThat(beanWithPropertiesResource.getDbProperties())
                 .isNotNull()
                 .isNotEmpty()
-                .isNotBlank()
-                .isEqualTo("The quick brown fox jumps over the lazy dog.");
+                .hasSize(3)
+                .containsEntry("db.user", "hosuaby")
+                .containsEntry("db.password", "password")
+                .containsEntry("db.url", "localhost");
     }
 }

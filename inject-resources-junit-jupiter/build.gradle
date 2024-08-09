@@ -98,5 +98,4 @@ dependencies {
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
-    testImplementation group: 'org.yaml', name: 'snakeyaml', version: SNAKE_YAML_VERSION
 }
