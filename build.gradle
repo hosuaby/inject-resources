@@ -33,7 +33,7 @@ allprojects {
     }
 }
 
-configure(subprojects.findAll { it.path != ':inject-resources-junit-vintage' }) {
+configure(subprojects.findAll { !it.path.contains(':inject-resources-junit-vintage') }) {
     test {
         useJUnitPlatform()
         testLogging {
@@ -46,6 +46,7 @@ def coveredProjectsPaths = [
         ':inject-resources-core',
         ':inject-resources-commons',
         ':inject-resources-spring',
+        ':inject-resources-spring:tests-general',
         ':inject-resources-spring:tests-with-jackson',
         ':inject-resources-spring:tests-with-gson',
         ':inject-resources-junit-jupiter',

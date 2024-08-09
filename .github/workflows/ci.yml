@@ -35,7 +35,7 @@ jobs:
 
             - name: Report coverage
               if: github.ref == 'refs/heads/master'
-              run: ./gradlew test -DINTEGRATION_TESTS=true jacocoTestReport jacocoRootReport coveralls
+              run: ./gradlew -DINTEGRATION_TESTS=true test jacocoTestReport jacocoRootReport coveralls
 
     test:
         runs-on: ubuntu-latest
