@@ -66,6 +66,10 @@ signing {
     sign publishing.publications.mavenJava
 }
 
+tasks.withType(GenerateModuleMetadata).configureEach {
+    suppressedValidationErrors.add('enforced-platform')
+}
+
 dependencies {
     api project(':inject-resources-core')
 

@@ -1,20 +1,23 @@
+plugins {
+    id 'java-library'
+}
+
 dependencies {
-    compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
+    api group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
 
     compileOnly project(':inject-resources-core')
-    compileOnly group: 'org.reflections', name: 'reflections', version: '0.10.2'
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
     compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
     compileOnly group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
-
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
-    testCompile group: 'io.leangen.geantyref', name: 'geantyref', version: '1.3.11'
-    testCompile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
-    testCompile group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
+    compileOnly group: 'org.reflections', name: 'reflections', version: '0.10.2'
 
     testImplementation project(':inject-resources-core')
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: JUNIT_VERSION
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
+    testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    testImplementation group: 'io.leangen.geantyref', name: 'geantyref', version: '1.3.11'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.6.0'
     testImplementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
 }
