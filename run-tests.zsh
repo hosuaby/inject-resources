@@ -72,13 +72,13 @@ for snakeyaml_version in $snakeyaml_versions; do
 done
 
 for spring_version in $spring_versions; do
-    echo "Tests with Spring Boot ${spring_version}:"
+  echo "Tests with Spring Boot ${spring_version}:"
 
-    printf "\tRun tests with Spring Boot %s...\n" "${spring_version}"
-    ./gradlew test -DINTEGRATION_TESTS=true -DSPRING_VERSION="${spring_version}" &> /dev/null
-      res=$?
-      result=$(( $result + $res ))
-      print_result "$spring_version" $res
+  printf "\tRun tests with Spring Boot %s...\n" "${spring_version}"
+  ./gradlew test -DINTEGRATION_TESTS=true -DSPRING_VERSION="${spring_version}" &> /dev/null
+  res=$?
+  result=$(( $result + $res ))
+  print_result "$spring_version" $res
 done
 
 exit $result

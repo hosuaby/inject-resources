@@ -44,7 +44,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                jdk_version: [ 17, 21 ]
+                jdk_version: [ 17, 21, 22 ]
         steps:
             - name: Checkout
               uses: actions/checkout@v2

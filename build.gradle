@@ -90,8 +90,8 @@ configure(coveredProjects) {
 
     jacocoTestReport {
         reports {
-            xml.enabled = true
-            html.enabled = true
+            xml.required = true
+            html.required = true
         }
     }
 }
@@ -143,34 +143,18 @@ configure(publishedProjects) {
     }
 }
 
-task jacocoMerge(type: JacocoMerge) {
-    coveredProjects.each { subproject ->
-        executionData subproject.tasks.withType(Test)
-    }
-
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        archiveClassifier = 'sources'
-        from sourceSets.main.allSource
-    }
-
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        archiveClassifier = 'javadoc'
-        from javadoc.destinationDir
-    }
-}
-
 task jacocoRootReport(type: JacocoReport) {
-    dependsOn coveredProjects.jacocoTestReport, project.jacocoMerge
+    dependsOn coveredProjects.jacocoTestReport
+    mustRunAfter ':test-commons:test'
 
-    additionalSourceDirs.from(files(coveredProjects.sourceSets.main.allSource.srcDirs))
-    sourceDirectories.from(files(coveredProjects.sourceSets.main.allSource.srcDirs))
-    classDirectories.from(files(coveredProjects.sourceSets.main.output))
-
-    executionData(jacocoMerge.destinationFile)
+    additionalSourceDirs.from = files(coveredProjects.sourceSets.main.allSource.srcDirs)
+    sourceDirectories.from = files(coveredProjects.sourceSets.main.allSource.srcDirs)
+    classDirectories.from = files(coveredProjects.sourceSets.main.output)
+    executionData.from = files(subprojects.jacocoTestReport.executionData)
 
     reports {
-        html.enabled = true
-        xml.enabled = true
+        html.required = true
+        xml.required = true
     }
 }
 
