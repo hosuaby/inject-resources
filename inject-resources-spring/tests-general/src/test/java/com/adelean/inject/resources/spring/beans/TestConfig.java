@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -22,6 +23,6 @@ public class TestConfig {
 
     @Bean("log-parser")
     public Yaml logYaml() {
-        return new Yaml(new Constructor(Log.class));
+        return new Yaml(new Constructor(Log.class, new LoaderOptions()));
     }
 }

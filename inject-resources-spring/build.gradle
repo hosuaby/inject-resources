@@ -4,6 +4,17 @@ plugins {
     id 'maven-publish'
 }
 
+if (SPRING_VERSION > '3') {
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    compileTestJava {
+        sourceCompatibility = JavaVersion.VERSION_17
+    }
+}
+
 jar {
     from project.sourceSets.main.output
     from project(':inject-resources-commons').sourceSets.main.output

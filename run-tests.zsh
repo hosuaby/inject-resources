@@ -28,6 +28,7 @@ jackson_versions=( "2.10.5" "2.11.4" "2.12.5" "2.13.5" "2.14.3" "2.15.4" "2.16.2
 gson_versions=( "2.8.9" "2.9.1" "2.10.1" "2.11.0" )
 snakeyaml_versions=( "1.33" "2.2" )
 spring_versions=( "2.3.12.RELEASE" "2.4.13" "2.5.15" "2.6.15" "2.7.18" )
+spring_boot_3_versions=( "3.0.13" "3.1.12" "3.2.8" "3.3.2" )
 
 result=0
 
@@ -80,5 +81,19 @@ for spring_version in $spring_versions; do
   result=$(( $result + $res ))
   print_result "$spring_version" $res
 done
+
+java_version=`java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}'`
+
+if [[ "$java_version" > "17" ]]; then
+  for spring_version in $spring_boot_3_versions; do
+    echo "Tests with Spring Boot ${spring_version}:"
+
+    printf "\tRun tests with Spring Boot %s...\n" "${spring_version}"
+    ./gradlew test -DINTEGRATION_TESTS=true -DSPRING_VERSION="${spring_version}" &> /dev/null
+    res=$?
+    result=$(( $result + $res ))
+    print_result "$spring_version" $res
+  done
+fi
 
 exit $result
