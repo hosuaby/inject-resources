@@ -31,7 +31,7 @@ in test classes and use it as chained builder for resource rules.
 
 [source, java]
 ----
-import static com.adelean.inject.resources.junit.vintage.GivenResource.givenResource;
+import static io.hosuaby.inject.resources.junit.vintage.GivenResource.givenResource;
 ----
 
 Then resource rules can be built using chained builder:
@@ -40,7 +40,7 @@ Then resource rules can be built using chained builder:
 ----
 @Rule
 public JsonResource<Person> spongeBob = givenResource()
-        .json("/com/adelean/junit/jupiter/sponge-bob.json")
+        .json("/io/hosuaby/junit/jupiter/sponge-bob.json")
         .withCharset(StandardCharsets.UTF_8)
         .parseWith(new ObjectMapper());
 ----
@@ -51,7 +51,7 @@ Following subsections show rules for different types of resources.
 
 `BinaryResource` rule loads content of binary resource.
 
-Given a resource `/com/adelean/junit/jupiter/fibonacci.bin` with binary content:
+Given a resource `/io/hosuaby/junit/jupiter/fibonacci.bin` with binary content:
 
 [source, text]
 ----
@@ -66,7 +66,7 @@ class MyTestClass {
 
     @Rule
     public BinaryResource fibonacci = givenResource()
-            .binary("/com/adelean/junit/jupiter/fibonacci.bin");
+            .binary("/io/hosuaby/junit/jupiter/fibonacci.bin");
 
     @Test
     public void testWithBinaryResource() {
@@ -80,7 +80,7 @@ class MyTestClass {
 
 `TextResource` loads content of text resource.
 
-Assuming there is a resource `/com/adelean/junit/jupiter/resource.txt` containing
+Assuming there is a resource `/io/hosuaby/junit/jupiter/resource.txt` containing
 
 [source, text]
 ----
@@ -95,7 +95,7 @@ class MyTestClass {
 
     @Rule
     public ResourceRule<String> textResource = givenResource()
-            .text("/com/adelean/junit/jupiter/resource.txt")
+            .text("/io/hosuaby/junit/jupiter/resource.txt")
             .withCharset(StandardCharsets.UTF_8);
 
     @Test
@@ -110,7 +110,7 @@ class MyTestClass {
 
 `PropertiesResource` loads content of java properties resource.
 
-Given a properties resource `/com/adelean/junit/jupiter/db.properties` with content:
+Given a properties resource `/io/hosuaby/junit/jupiter/db.properties` with content:
 
 [source, properties]
 ----
@@ -127,7 +127,7 @@ class MyTestClass {
 
     @Rule
     public PropertiesResource dbProperties = givenResource()
-            .properties("/com/adelean/junit/jupiter/db.properties");
+            .properties("/io/hosuaby/junit/jupiter/db.properties");
     @Test
     public void testWithJavaPropertiesResource() {
         assertThat(dbProperties.get())
@@ -160,13 +160,13 @@ class MyTestClass {
     /* Parse JSON with Jackson */
     @Rule
     public JsonResource<Map<String, Object>> jsonAsMap = givenResource()
-            .json("/com/adelean/junit/jupiter/sponge-bob.json")
+            .json("/io/hosuaby/junit/jupiter/sponge-bob.json")
             .parseWith(new ObjectMapper());
 
     /* Parse JSON with Gson */
     @Rule
     public JsonLinesResource<Collection<Log>> logsAsCollection = givenResource()
-            .jsonLines("/com/adelean/junit/jupiter/logs.jsonl")
+            .jsonLines("/io/hosuaby/junit/jupiter/logs.jsonl")
             .parseWith(new Gson());
 }
 ----
@@ -190,13 +190,13 @@ class MyTestClass {
     /* Load and parse YAML resource */
     @Rule
     public YamlResource<Person> spongeBob = givenResource()
-            .yaml("/com/adelean/junit/jupiter/sponge-bob.yaml")
+            .yaml("/io/hosuaby/junit/jupiter/sponge-bob.yaml")
             .parseWith(new Yaml());
 
     /* Load and parse YAML documents resource */
     @Rule
     public YamlDocumentsResource<Log[]> logsAsArray = givenResource()
-            .yamlDocuments("/com/adelean/junit/jupiter/logs.yml")
+            .yamlDocuments("/io/hosuaby/junit/jupiter/logs.yml")
             .parseWith(new Yaml(new Constructor(Log.class, new LoaderOptions())));
 }
 ----

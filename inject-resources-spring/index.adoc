@@ -48,17 +48,17 @@ Then you can use resource annotations to inject content of resources into your b
 @Component
 public class MyBean {
 
-    @BinaryResource("/com/adelean/junit/jupiter/fibonacci.bin") <1>
+    @BinaryResource("/io/hosuaby/junit/jupiter/fibonacci.bin") <1>
     private byte[] fibonacciInstanceField;
 
     @Autowired
     public MyBean(
-            @TextResource("/com/adelean/junit/jupiter/resource.txt") <2>
+            @TextResource("/io/hosuaby/junit/jupiter/resource.txt") <2>
             String text) {
         // ...
     }
 
-    @JsonResource(from = "/com/adelean/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper") <3>
+    @JsonResource(from = "/io/hosuaby/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper") <3>
     public void setParsedJson(Person parsedJson) {
         // ...
     }
@@ -77,7 +77,7 @@ The following sections present those available resource annotations and their us
 
 ==== Binary resources
 
-Given a resource `/com/adelean/junit/jupiter/fibonacci.bin` with binary content:
+Given a resource `/io/hosuaby/junit/jupiter/fibonacci.bin` with binary content:
 
 [source, text]
 ----
@@ -91,14 +91,14 @@ Inject the content of that resource using annotation `@BinaryResource`:
 @Component
 class MyBean {
 
-    @BinaryResource("/com/adelean/junit/jupiter/fibonacci.bin")
+    @BinaryResource("/io/hosuaby/junit/jupiter/fibonacci.bin")
     private byte[] fibonacci;
 }
 ----
 
 ==== Text resources
 
-Assuming there is a resource `/com/adelean/junit/jupiter/resource.txt` containing
+Assuming there is a resource `/io/hosuaby/junit/jupiter/resource.txt` containing
 
 [source, text]
 ----
@@ -112,14 +112,14 @@ Content of that resource can be injected using annotation `@TextResource`:
 @Component
 class MyBean {
 
-    @TextResource("/com/adelean/junit/jupiter/resource.txt")
+    @TextResource("/io/hosuaby/junit/jupiter/resource.txt")
     private String instanceField;
 }
 ----
 
 ==== Properties resources
 
-Given a properties resource `/com/adelean/junit/jupiter/db.properties` with content:
+Given a properties resource `/io/hosuaby/junit/jupiter/db.properties` with content:
 
 [source, properties]
 ----
@@ -135,7 +135,7 @@ These properties can be injected using annotation `@PropertiesResource`:
 @Component
 class MyBean {
 
-    @PropertiesResource("/com/adelean/junit/jupiter/db.properties")
+    @PropertiesResource("/io/hosuaby/junit/jupiter/db.properties")
     private Properties dbProperties;
 }
 ----
@@ -183,20 +183,20 @@ first found or primary bean if those types are used.
 public class MyBean {
 
     /* JSON resources */
-    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    @JsonResource("/io/hosuaby/junit/jupiter/sponge-bob.json")
     static Map<String, Object> jsonAsMap;
 
-    @JsonResource(from = "/com/adelean/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper")
+    @JsonResource(from = "/io/hosuaby/junit/jupiter/sponge-bob.json", parserBean = "defaultObjectMapper")
     JsonNode jsonNode;
 
-    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    @JsonResource("/io/hosuaby/junit/jupiter/sponge-bob.json")
     Person spongeBob;
 
     /* JSONL resources */
-    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsObjectMapper")
+    @JsonLinesResource(from = "/io/hosuaby/junit/jupiter/logs.jsonl", parserBean = "logsObjectMapper")
     private Log[] logsAsArray;
 
-    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsObjectMapper")
+    @JsonLinesResource(from = "/io/hosuaby/junit/jupiter/logs.jsonl", parserBean = "logsObjectMapper")
     private Collection<Log> logsAsCollection;
 }
 ----
@@ -230,20 +230,20 @@ public class GsonConfig {
 public class MyBean {
 
     /* JSON resources */
-    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    @JsonResource("/io/hosuaby/junit/jupiter/sponge-bob.json")
     private static Map<String, Object> jsonAsMap;
 
-    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    @JsonResource("/io/hosuaby/junit/jupiter/sponge-bob.json")
     protected JsonElement jsonElement;
 
-    @JsonResource("/com/adelean/junit/jupiter/sponge-bob.json")
+    @JsonResource("/io/hosuaby/junit/jupiter/sponge-bob.json")
     Person spongeBob;
 
     /* JSONL resources */
-    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsGson")
+    @JsonLinesResource(from = "/io/hosuaby/junit/jupiter/logs.jsonl", parserBean = "logsGson")
     private Log[] logsAsArray;
 
-    @JsonLinesResource(from = "/com/adelean/junit/jupiter/logs.jsonl", parserBean = "logsGson")
+    @JsonLinesResource(from = "/io/hosuaby/junit/jupiter/logs.jsonl", parserBean = "logsGson")
     private Collection<Log> logsAsCollection;
 }
 ----
@@ -282,23 +282,23 @@ public class YamlConfig {
 public class MyBean {
 
     /* YAML resources */
-    @YamlResource("/com/adelean/junit/jupiter/receipt.yml")
+    @YamlResource("/io/hosuaby/junit/jupiter/receipt.yml")
     Map<String, Object> receipt;
 
-    @YamlResource("/com/adelean/junit/jupiter/sponge-bob.yaml")
+    @YamlResource("/io/hosuaby/junit/jupiter/sponge-bob.yaml")
     Person spongeBob;
 
     /* YAML documents resources */
-    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/stacktrace.yaml", yamlBean = "defaultYaml")
+    @YamlDocumentsResource(from = "/io/hosuaby/junit/jupiter/stacktrace.yaml", yamlBean = "defaultYaml")
     List<Map<String, Object>> stacktraceAsList;
 
-    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/stacktrace.yaml", yamlBean = "defaultYaml")
+    @YamlDocumentsResource(from = "/io/hosuaby/junit/jupiter/stacktrace.yaml", yamlBean = "defaultYaml")
     Map<String, Object>[] stacktraceAsArray;
 
-    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yamlBean = "log-parser")
+    @YamlDocumentsResource(from = "/io/hosuaby/junit/jupiter/logs.yml", yamlBean = "log-parser")
     Log[] logsAsArray;
 
-    @YamlDocumentsResource(from = "/com/adelean/junit/jupiter/logs.yml", yamlBean = "log-parser")
+    @YamlDocumentsResource(from = "/io/hosuaby/junit/jupiter/logs.yml", yamlBean = "log-parser")
     Collection<Log> logsAsCollection;
 }
 ----

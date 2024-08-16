@@ -27,7 +27,7 @@ that with simple annotations.
 ```java
 var text = resource()
         .onClassLoaderOf(this.getClass())
-        .withPath("/com/adelean/junit/jupiter", "resource.txt")
+        .withPath("/io/hosuaby/junit/jupiter", "resource.txt")
         .text();
 ```
 
@@ -39,8 +39,8 @@ Check [Core](https://hosuaby.github.io/inject-resources/0.3.5/asciidoc/#inject-r
 @Component
 public class MyBean {
 
-    // Field 'text' is injected with content of '/com/adelean/junit/jupiter/resource.txt'
-    @TextResource("/com/adelean/junit/jupiter/resource.txt")
+    // Field 'text' is injected with content of '/io/hosuaby/junit/jupiter/resource.txt'
+    @TextResource("/io/hosuaby/junit/jupiter/resource.txt")
     private String text;
 }
 ```
@@ -55,7 +55,7 @@ Check [Spring extension](https://hosuaby.github.io/inject-resources/0.3.5/asciid
 @TestWithResources
 class InjectTextResourcesTests {
 
-    @GivenTextResource("/com/adelean/junit/jupiter/resource.txt")
+    @GivenTextResource("/io/hosuaby/junit/jupiter/resource.txt")
     String instanceField;
 
     @Test
@@ -75,7 +75,7 @@ class MyTestClass {
 
     @Rule
     public ResourceRule<String> textResource = givenResource()
-            .text("/com/adelean/junit/jupiter/resource.txt")
+            .text("/io/hosuaby/junit/jupiter/resource.txt")
             .withCharset(StandardCharsets.UTF_8);
 
     @Test

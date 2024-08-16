@@ -27,7 +27,7 @@ compile group: 'io.hosuaby', name: 'inject-resources-core', version: '{project-v
 [source, java]
 ----
 var text = resource()
-        .withPath("/com/adelean/junit/jupiter", "resource.txt")
+        .withPath("/io/hosuaby/junit/jupiter", "resource.txt")
         .text();
 ----
 
@@ -37,7 +37,7 @@ Method `InjectResources#resource` is an entry point of Java DSL. It's recommende
 
 [source, java]
 ----
-import static com.adelean.inject.resources.core.InjectResources.resource;
+import static io.hosuaby.inject.resources.core.InjectResources.resource;
 ----
 
 ==== Choosing the classloader
@@ -51,14 +51,14 @@ Example:
 ----
 var text = resource()
         .onClassLoader(this.getClass().getClassLoader())
-        .withPath("/com/adelean/junit/jupiter", "resource.txt")
+        .withPath("/io/hosuaby/junit/jupiter", "resource.txt")
         .text();
 
 // or
 
 var text = resource()
         .onClassLoaderOf(this.getClass())
-        .withPath("/com/adelean/junit/jupiter", "resource.txt")
+        .withPath("/io/hosuaby/junit/jupiter", "resource.txt")
         .text();
 ----
 
@@ -72,9 +72,9 @@ Method `withPath(path)` allows to define the path to the requested resource. The
 [source, java]
 ----
 // There notations are equivalent
-resource().withPath("/com/adelean/junit/jupiter/resource.txt");
-resource().withPath("/com/adelean/junit/jupiter", "resource.txt");
-resource().withPath("com", "adelean", "junit", "jupiter", "resource.txt");
+resource().withPath("/io/hosuaby/junit/jupiter/resource.txt");
+resource().withPath("/io/hosuaby/junit/jupiter", "resource.txt");
+resource().withPath("io", "hosuaby", "junit", "jupiter", "resource.txt");
 ----
 
 ==== Read text content
