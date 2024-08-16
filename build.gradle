@@ -24,7 +24,7 @@ allprojects {
     ext {
         INTEGRATION_TESTS = System.getProperty('INTEGRATION_TESTS')
 
-        JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.11.0-RC1'
+        JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.11.0'
         JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.17.2'
         GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.11.0'
         SNAKE_YAML_VERSION = System.getProperty('SNAKE_YAML_VERSION') ?: '2.2'
